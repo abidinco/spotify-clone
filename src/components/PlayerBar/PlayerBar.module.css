@@ -1,0 +1,10 @@
+.player-bar {
+    grid-area: player-bar;
+    width: 100%;
+    z-index: 4;
+    background-color: #181818;
+    height: auto;
+    min-width: 620px;
+    height: 90px;
+    color: white;
+}

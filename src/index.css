@@ -1,0 +1,20 @@
+@import url('./assets/normalize.css');
+@import url('./assets/font-circular-std/font-face.css');
+
+html {
+  height: 100%;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  --fallback-fonts: Helvetica Neue,helvetica,arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic;
+}
+
+body {
+  box-sizing: border-box;
+  font-weight: 900;
+  font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  --nav-bar-width: 216px;
+  overflow: hidden;
+}

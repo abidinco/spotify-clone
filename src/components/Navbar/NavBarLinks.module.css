@@ -1,0 +1,39 @@
+.links {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #a7a7a7;
+    align-items: center;
+    cursor: default;
+}
+
+.links > div:nth-child(1),
+.links > div:nth-child(2),
+.links > div:nth-child(3) {
+    padding: 0 8px;
+    letter-spacing: 2px;
+}
+
+.links > div:hover {
+    color: white;
+    transform: scale(1.075);
+    cursor: default;
+}
+
+.divider {
+    border-left: 1px solid white;
+    height: 25px;
+    margin: 0 40px 0 20px;
+}
+
+.links > div:last-child {
+    background-color: white;
+    color: black;
+    padding: 15px 30px;
+    margin-left: 30px;
+    border-radius: 25px;
+}
+
+.links > div:last-child:hover {
+    transform: scale(1.075)
+}
