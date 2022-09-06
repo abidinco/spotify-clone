@@ -17,17 +17,37 @@ const SideBar = () => {
                         <Icon name="sidebar-search" color="#FFF" width={24} height={24} />
                         <span>Search</span>
                     </div>
-                    <div>
+                    <div className="popover-wrapper">
                         <Icon name="sidebar-library" color="#FFF" width={24} height={24} />
-                        <span>Your Library</span>
+                        <div className="popover-title">
+                            <span>Your Library</span>
+                        </div>
+                        <div className="popover-content">
+                            <div className="popover-content-title">Enjoy Your Library</div>
+                            <div className="popover-content-text">Log in to see saved songs, podcasts, artists, and playlists in Your Library.</div>
+                            <div className="popover-content-actions">
+                                <div>Not now</div>
+                                <div>Log in</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className={styles["navigation-links"]}>
-                    <div>
+                    <div className="popover-wrapper">
                         <div className={styles["create-playlist-icon"]}>
                             <Icon name="sidebar-create-playlist" color="#000" width={12} height={12} />
                         </div>
-                        <span>Create Playlist</span>
+                        <div className="popover-title">
+                            <span>Create Playlist</span>
+                        </div>
+                        <div className="popover-content">
+                            <div className="popover-content-title">Create a playlist</div>
+                            <div className="popover-content-text">Log in to create and share playlists.</div>
+                            <div className="popover-content-actions">
+                                <div>Not now</div>
+                                <div>Log in</div>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <div className={styles["liked-songs-icon"]}>

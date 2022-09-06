@@ -5,7 +5,7 @@ html {
   height: 100%;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  --fallback-fonts: Helvetica Neue,helvetica,arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic;
+  --fallback-fonts: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic;
 }
 
 body {
@@ -17,4 +17,79 @@ body {
   -webkit-tap-highlight-color: transparent;
   --nav-bar-width: 216px;
   overflow: hidden;
+}
+
+.popover-wrapper {
+  position: relative;
+}
+
+.popover-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  right: -320px;
+  top: 5px;
+  transform: translate(10px, 0);
+  background-color: #0d72ea;
+  padding: 16px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  width: 332px;
+}
+
+.popover-content::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  left: -8px;
+  top: 10px;
+  border-style: solid;
+  border-width: 8px 8px 8px 0;
+  border-color: transparent #0d72ea transparent transparent;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.popover-content-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.popover-content-text {
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 24px;
+  white-space: pre-wrap;
+}
+
+.popover-wrapper:hover .popover-content {
+  z-index: 10;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, 0);
+  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.popover-content-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.popover-content-actions > div {
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 500px;
+  padding: 16px 32px;
+  transition: scale .3s ease-in-out;
+}
+
+.popover-content-actions > div:hover {
+  transform: scale(1.04);
+}
+
+.popover-content-actions > div:last-child {
+  background-color: white;
+  color: black;
 }
