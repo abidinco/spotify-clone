@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import styles from './Body.module.css'
+import styles from './Body.module.css';
+import { Routes, Route } from 'react-router-dom';
+
 import NavBar from '../Navbar/NavBar';
+import HomePage from './HomePage';
+import SearchPage from './SearchPage';
+import LikedSongsPage from './LikedSongsPage';
 
 const Body = () => {
     const [scrollFromTop, setScrollFromTop] = useState(0);
@@ -11,9 +16,11 @@ const Body = () => {
     return (
         <div className={styles.body} onScroll={handleScroll}>
             <NavBar scrollFromTop={scrollFromTop} />
-            <div className={styles.main}>
-                <div>Body</div>
-            </div>
+            <Routes className={styles.main}>
+                <Route path="/*" element={ <HomePage /> } />
+                <Route path="/search" element={ <SearchPage /> } />
+                <Route path="/collection/tracks" element={ <LikedSongsPage /> } />
+            </Routes>
         </div>
     )
 }

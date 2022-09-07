@@ -1,4 +1,5 @@
 import styles from './PlayerBar.module.css'
+import React from 'react';
 
 const PlayerBar = () => {
     return(

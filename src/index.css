@@ -19,6 +19,18 @@ body {
   overflow: hidden;
 }
 
+.padding-all-32 {
+  padding: 32px;
+}
+
+.padding-all-16 {
+  padding: 16px;
+}
+
+.padding-tb-16 {
+  padding: 16px;
+}
+
 .popover-wrapper {
   position: relative;
 }

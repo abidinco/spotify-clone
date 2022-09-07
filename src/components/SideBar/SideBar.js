@@ -1,5 +1,7 @@
 import styles from './SideBar.module.css';
 import Icon from '../UI/Icon';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
     return (
@@ -11,11 +13,15 @@ const SideBar = () => {
                 <div className={styles["navigation-links"]}>
                     <div>
                         <Icon name="sidebar-home-active" color="#FFF" width={24} height={24} />
-                        <span>Home</span>
+                        <Link to="/">
+                            <span>Home</span>
+                        </Link>
                     </div>
                     <div>
                         <Icon name="sidebar-search" color="#FFF" width={24} height={24} />
-                        <span>Search</span>
+                        <Link to="/search">
+                            <span>Search</span>
+                        </Link>
                     </div>
                     <div className="popover-wrapper">
                         <Icon name="sidebar-library" color="#FFF" width={24} height={24} />
@@ -49,11 +55,21 @@ const SideBar = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="popover-wrapper">
                         <div className={styles["liked-songs-icon"]}>
                             <Icon name="sidebar-liked-songs" color="#fff" width={12} height={12} />
                         </div>
-                        <span>Liked Songs</span>
+                        <div className="popover-title">
+                            <span>Liked Songs</span>
+                        </div>
+                        <div className="popover-content">
+                            <div className="popover-content-title">Enjoy your Liked Songs</div>
+                            <div className="popover-content-text">Log in to see all the songs you've liked in one easy playlist.</div>
+                            <div className="popover-content-actions">
+                                <div>Not now</div>
+                                <div>Log in</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
