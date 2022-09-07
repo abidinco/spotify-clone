@@ -1,9 +1,18 @@
 .wrapper {
-    padding: 64px 32px 32px 32px;
+    padding: 64px 16px 32px 32px;
 }
 
 .wrapper > div:first-child {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 16px;
+}
+
+.cards-container {
+    display: flex;
+    gap: 24px;
+    grid-template-rows: 1fr;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
