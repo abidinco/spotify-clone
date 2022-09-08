@@ -53,6 +53,11 @@
     opacity: 1;
 }
 
+.navigation-links a {
+    grid-gap: 12px;
+    gap: 12px;
+}
+
 .create-playlist-icon {
     background-color: #fff;
     border-radius: 2px;

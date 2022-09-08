@@ -33,7 +33,7 @@ const SearchPage = () => {
                 <BrowseCard name="Pop" color="rgb(141, 103, 171)" image={'pop.jfif'} />
                 <BrowseCard name="Hip-Hop" color="rgb(186, 93, 7)" image={'hip-hop.jfif'} />
                 <BrowseCard name="Summer" color="rgb(255, 200, 100)" image={'summer.jpeg'} />
-                <BrowseCard name="Trending" color="rgb(180, 155, 200)" image={'1.jfif'} />
+                <BrowseCard name="Trending" color="rgb(180, 155, 200)" image={'trending.jpg'} />
                 <BrowseCard name="Mood" color="rgb(141, 103, 171)" image={'mood.jfif'} />
                 <BrowseCard name="EQUAL" color="rgb(20, 138, 8)" image={'equal.jfif'} />
                 <BrowseCard name="Decades" color="rgb(186, 93, 7)" image={'decades.jfif'} />

@@ -1,9 +1,12 @@
 import styles from './SideBar.module.css';
 import Icon from '../UI/Icon';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const SideBar = () => {
+
+    const location = useLocation().pathname;
+
     return (
         <div className={styles['side-bar']}>
             <div>
@@ -12,13 +15,13 @@ const SideBar = () => {
                 </div>
                 <div className={styles["navigation-links"]}>
                     <div>
-                        <Icon name="sidebar-home-active" color="#FFF" width={24} height={24} />
+                        <Icon name={`sidebar-home${location === '/' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
                         <Link to="/">
                             <span>Home</span>
                         </Link>
                     </div>
                     <div>
-                        <Icon name="sidebar-search" color="#FFF" width={24} height={24} />
+                        <Icon name={`sidebar-search${location === '/search' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
                         <Link to="/search">
                             <span>Search</span>
                         </Link>
