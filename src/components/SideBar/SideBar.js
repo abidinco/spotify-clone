@@ -15,14 +15,14 @@ const SideBar = () => {
                 </div>
                 <div className={styles["navigation-links"]}>
                     <div>
-                        <Icon name={`sidebar-home${location === '/' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
                         <Link to="/">
+                        <Icon name={`sidebar-home${location === '/' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
                             <span>Home</span>
                         </Link>
                     </div>
                     <div>
-                        <Icon name={`sidebar-search${location === '/search' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
                         <Link to="/search">
+                        <Icon name={`sidebar-search${location === '/search' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
                             <span>Search</span>
                         </Link>
                     </div>

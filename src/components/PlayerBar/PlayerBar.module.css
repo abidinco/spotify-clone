@@ -1,10 +1,186 @@
-.player-bar {
+.bar {
     grid-area: player-bar;
-    width: 100%;
-    z-index: 4;
+    z-index: 1;
     background-color: #181818;
-    height: auto;
     min-width: 620px;
     height: 90px;
+    border-top: 1px solid #282828;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.now-playing {
+    min-width: 180px;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    transition: transform .25s cubic-bezier(.3, 0, 0, 1), -webkit-transform .25s cubic-bezier(.3, 0, 0, 1);
+}
+
+.player-controls {
+    max-width: 722px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.controls {
+    min-width: 180px;
+    width: 30%;
+}
+
+/* Now Playing Styles */
+
+.now-playing-cover {
+    isolation: isolate;
+    position: relative;
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 10px rgb(0 0 0 / 30%);
+}
+
+.now-playing-info {
+    display: flex;
+    justify-content: center;
+    column-gap: 8px;
+    margin: 0 14px;
+    flex-direction: column;
+}
+
+.now-playing-info>div:hover {
+    text-decoration: underline;
+}
+
+.now-playing-action-button {
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.now-playing-info-title {
+    justify-self: flex-start;
+    width: 100%;
+    margin-left: -6px;
+    margin-right: -6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6px, #000 calc(100% - 12px), transparent);
+    overflow: hidden;
+    position: relative;
+    padding-inline-end: 12px;
+    padding-inline-start: 6px;
+    font-size: 14px;
+    font-weight: 400;
     color: white;
+
+}
+
+.now-playing-info-artist {
+    margin-left: -6px;
+    margin-right: -6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6px, #000 calc(100% - 12px), transparent);
+    overflow: hidden;
+    position: relative;
+    padding-inline-end: 12px;
+    padding-inline-start: 6px;
+    white-space: nowrap;
+    font-size: 11px;
+    line-height: 18px;
+    color: #6a6a6a;
+}
+
+/* Player Controls */
+
+.player-control-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.player-control-play {
+    background-color: white;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+}
+
+.player-control-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-control-position {
+    font-size: 11px;
+    font-weight: 400;
+    color: #a7a7a7;
+}
+
+.player-control-progress {
+    width: 100%;
+    height: 12px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.player-control-progress-input {
+    width: 100%;
+    height: 4px;
+    background-color: hsla(0, 0%, 100%, .3);
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.player-control-progress-input::-webkit-slider-thumb {
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+    z-index: 100;
+    -webkit-appearance: none;
+    appearance: none;
+    bottom: 4px;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    cursor: default;
+}
+
+.player-control-progress-input::-webkit-slider-runnable-track {
+    border-radius: 4px;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(#1db954, #1db954) 0/var(--sx) 100% no-repeat #ccc;
+}
+
+.player-control-progress-input::-moz-range-progress {
+    height: 0.25em;
+    background: #1db954 !important;
+}
+
+.player-control-progress-input::-ms-fill-lower {
+    height: 0.25em;
+    background: #1db954 !important;
+}   
+
+.player-control-duration {
+    font-size: 11px;
+    font-weight: 400;
+    color: #a7a7a7;
 }
