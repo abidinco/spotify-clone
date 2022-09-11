@@ -41,7 +41,12 @@ const PlayerBar = () => {
                 </div>
             </div>
             <div className={styles.controls}>
-                Volume control
+                <Icon name="player-queue" color="rgb(255, 255, 255, .7)" width={16} height={16} />
+                <Icon name="player-devices" color="rgb(255, 255, 255, .7)" width={16} height={16} />
+                <Icon name="player-volume-off" color="rgb(255, 255, 255, .7)" width={16} height={16} />
+                <div className={styles['player-volume-bar']}>
+                    <input className={styles['player-control-progress-input']} type="range" min={0} max={100} step={1} />
+                </div>
             </div>
         </div>
     )

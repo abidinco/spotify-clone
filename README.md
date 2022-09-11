@@ -20,3 +20,4 @@
  - [ ] navbar: back and forward buttons' background colors will be changed
  - [X] sidebar: change sidebar link icons when route is active
  - [X] ui: tooltip can be added. when non-auth user clicks for auth-user-links spotify shows tooltips to auth
+ - [ ] playerbar: change input-range styles for track's played part to white / hover to green

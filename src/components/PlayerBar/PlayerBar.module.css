@@ -138,49 +138,23 @@
     display: flex;
 }
 
-.player-control-progress-input {
-    width: 100%;
-    height: 4px;
-    background-color: hsla(0, 0%, 100%, .3);
-    border-radius: 10px;
-    cursor: pointer;
-    -webkit-appearance: none;
-}
-
-.player-control-progress-input::-webkit-slider-thumb {
-    background-color: #fff;
-    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
-    z-index: 100;
-    -webkit-appearance: none;
-    appearance: none;
-    bottom: 4px;
-    position: relative;
-    width: 12px;
-    height: 12px;
-    border-radius: 12px;
-    cursor: default;
-}
-
-.player-control-progress-input::-webkit-slider-runnable-track {
-    border-radius: 4px;
-    height: 4px;
-    width: 100%;
-    background: linear-gradient(#1db954, #1db954) 0/var(--sx) 100% no-repeat #ccc;
-}
-
-.player-control-progress-input::-moz-range-progress {
-    height: 0.25em;
-    background: #1db954 !important;
-}
-
-.player-control-progress-input::-ms-fill-lower {
-    height: 0.25em;
-    background: #1db954 !important;
-}   
-
 .player-control-duration {
     font-size: 11px;
     font-weight: 400;
     color: #a7a7a7;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.player-volume-bar {
+    margin-right: 4px;
+    width: 93px;
+    display: flex;
+    justify-content: center;
 }
