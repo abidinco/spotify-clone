@@ -29,7 +29,7 @@ const NavBar = (props) => {
         <div className={styles.navbar} ref={navBarElement}>
             <div className={styles['navbar-left-area']}>
                 <NavBarButtons />
-                { isSearchPage ? <SearchBox /> : null }
+                { isSearchPage && <SearchBox /> }
             </div>
             <NavBarLinks />
         </div>
