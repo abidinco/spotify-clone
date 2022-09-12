@@ -75,10 +75,11 @@ body {
   white-space: pre-wrap;
 }
 
-.popover-wrapper:hover .popover-content {
-  z-index: 10;
-  opacity: 1;
+.popover-wrapper:focus>.popover-content {
   visibility: visible;
+  opacity: 1;
+  z-index: 10;
+  display: block;
   transform: translate(0, 0);
   transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
 }
@@ -89,7 +90,7 @@ body {
   justify-content: flex-end;
 }
 
-.popover-content-actions > div {
+.popover-content-actions>div {
   font-size: 1rem;
   font-weight: 700;
   border-radius: 500px;
@@ -97,11 +98,11 @@ body {
   transition: scale .3s ease-in-out;
 }
 
-.popover-content-actions > div:hover {
+.popover-content-actions>div:hover {
   transform: scale(1.04);
 }
 
-.popover-content-actions > div:last-child {
+.popover-content-actions>div:last-child {
   background-color: white;
   color: black;
 }
@@ -153,4 +154,4 @@ input[type="range"]:hover::-moz-range-progress {
 input[type="range"]::-ms-fill-lower {
   height: 0.25em;
   background: red;
-}   
+}
