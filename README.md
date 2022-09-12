@@ -7,13 +7,13 @@
   <img src="https://user-images.githubusercontent.com/71569044/188719435-e429ddea-6f68-404a-9f82-742d3ba433ba.gif" />
 </p>
 <p align="center">
-  <img src="https://progress-bar.dev/11" />
+  <img src="https://progress-bar.dev/12" />
 </p>
 <div align="center">
   <h2>demo</h2>
 </div>
 
-![demo](https://user-images.githubusercontent.com/71569044/189550430-ab18eed6-fafb-4aea-bbee-6687f5a8a1b2.png)
+![demo](https://user-images.githubusercontent.com/71569044/189738233-139279f8-87e8-48f6-86fa-7161b3e702a6.png)
 
 ## may be consider
 
