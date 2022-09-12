@@ -106,6 +106,10 @@
     margin-bottom: 12px;
 }
 
+.player-control-buttons *:hover {
+    fill: white;
+}
+
 .player-control-play {
     background-color: white;
     border-radius: 32px;
@@ -114,6 +118,14 @@
     align-items: center;
     height: 32px;
     width: 32px;
+}
+
+.player-control-play * {
+    fill: black !important;
+}
+
+.player-control-play:hover {
+    transform: scale(1.1);
 }
 
 .player-control-bar {
@@ -150,6 +162,10 @@
     align-items: center;
     justify-content: flex-end;
     gap: 16px;
+}
+
+.controls *:hover {
+    fill: white;
 }
 
 .player-volume-bar {
