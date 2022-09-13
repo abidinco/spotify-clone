@@ -1,8 +1,8 @@
 import React from 'react'
 import Icon from '../UI/Icon';
-import styles from './NavBarButtons.module.css';
+import styles from './NavbarNavigation.module.css';
 
-const NavBarButtons = () => {
+const NavbarNavigation = () => {
   return (
     <div className={styles.buttons}>
       <Icon name="arrow-left" color="#FFFFFF" width={24} height={24} />
@@ -11,4 +11,4 @@ const NavBarButtons = () => {
   )
 }
 
-export default NavBarButtons;
+export default NavbarNavigation;

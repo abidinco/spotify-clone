@@ -1,23 +1,23 @@
 import React, { useEffect, useRef, useCallback } from 'react'; 
 import { useLocation } from 'react-router-dom';
-import styles from './NavBar.module.css';
-import NavBarButtons from './NavBarButtons';
-import NavBarLinks from './NavBarLinks';
+import styles from './Navbar.module.css';
+import NavbarNavigation from './NavbarNavigation';
+import NavbarLinks from './NavbarLinks';
 import SearchBox from './SearchBox';
 
-const NavBar = (props) => {
+const Navbar = (props) => {
 
     let isSearchPage = useLocation().pathname === '/search';
 
-    const navBarElement = useRef(null);
+    const navbarElement = useRef(null);
     
     const changeNavbarBackgroundOpacity = useCallback(() => {
         if(props.scrollFromTop >= 160) {
-            navBarElement.current.style.backgroundColor = 'rgba(7, 7, 7, 1)';
+            navbarElement.current.style.backgroundColor = 'rgba(7, 7, 7, 1)';
         } else if (props.scrollFromTop >= 100) {
-            navBarElement.current.style.backgroundColor = 'rgba(7, 7, 7, 0.75)';
+            navbarElement.current.style.backgroundColor = 'rgba(7, 7, 7, 0.75)';
         } else {
-            navBarElement.current.style.backgroundColor = 'rgba(7, 7, 7, 0.5)';
+            navbarElement.current.style.backgroundColor = 'rgba(7, 7, 7, 0.5)';
         }
     }, [props.scrollFromTop])
 
@@ -26,14 +26,14 @@ const NavBar = (props) => {
     }, [changeNavbarBackgroundOpacity]);
 
     return(
-        <div className={styles.navbar} ref={navBarElement}>
+        <div className={styles.navbar} ref={navbarElement}>
             <div className={styles['navbar-left-area']}>
-                <NavBarButtons />
+                <NavbarNavigation />
                 { isSearchPage && <SearchBox /> }
             </div>
-            <NavBarLinks />
+            <NavbarLinks />
         </div>
     )
 }
 
-export default NavBar;
+export default Navbar;

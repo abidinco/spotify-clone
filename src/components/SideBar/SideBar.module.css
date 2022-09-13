@@ -43,6 +43,7 @@
     padding: 0 24px;
     cursor: pointer;
     align-items: center;
+    position: relative;
     display: flex;
     font-size: 0.875rem;
     opacity: .7;
