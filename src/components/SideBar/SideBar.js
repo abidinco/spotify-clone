@@ -35,7 +35,7 @@ const SideBar = () => {
                         </Link>
                     </div>
                     <div className={`${appCtx.isLoggedIn ? null : 'popover-wrapper'}`} tabIndex={0}>
-                        <Icon name="sidebar-library" color="#FFF" width={24} height={24} />
+                        <Icon name={`sidebar-library${location === '/collection/playlists' ? '-active' : ''}`} color="#FFF" width={ appCtx.isLoggedIn ? 28 : 24 } height={ appCtx.isLoggedIn ? 28 : 24 } />
                         {
                             appCtx.isLoggedIn ?
                             <Link to="/collection/playlists" className="popover-title">
@@ -74,7 +74,7 @@ const SideBar = () => {
                     </div>
                     <div className={`${appCtx.isLoggedIn ? null : 'popover-wrapper'}`} tabIndex={0}>
                         <div className={styles["liked-songs-icon"]}>
-                            <Icon name="sidebar-liked-songs" color="#fff" width={12} height={12} />
+                            <Icon name="sidebar-liked-songs" color="#fff" width={24} height={12} />
                         </div>
                         {
                             appCtx.isLoggedIn ?

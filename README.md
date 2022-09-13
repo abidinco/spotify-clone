@@ -22,4 +22,4 @@
  - [X] ui: tooltip can be added. when non-auth user clicks for auth-user-links spotify shows tooltips to auth
  - [ ] playerbar: change input-range styles for track's played part to white / hover to green
  - [ ] cross browser: svg icons
- - [ ] sidebar: library & liked-songs icons' width's decreasing 19px when user auth
+ - [ ] sidebar: library & liked-songs icons' width's decreasing 19px when user auth / solved temporarily
