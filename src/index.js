@@ -13,7 +13,7 @@ root.render(
     <BrowserRouter>
       <AppContextProvider>
         <App />
-        <div id="to-lose-focus-to-sidebar-popover" tabIndex="-1" />
+        <div id="empty" tabIndex="-1" />
       </AppContextProvider>
     </BrowserRouter>
   </React.StrictMode>

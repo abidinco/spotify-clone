@@ -1,107 +1,50 @@
-import styles from './SideBar.module.css';
+import styles from './Sidebar.module.css';
 import Icon from '../UI/Icon';
 import React, { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppContext from '../../store';
 
+import SidebarLink from './SidebarLink';
 
-const SideBar = () => {
 
-    const location = useLocation().pathname;
-
+const Sidebar = () => {
     const appCtx = useContext(AppContext);
 
-    const resetFocus = () => {
-        document.getElementById('to-lose-focus-to-sidebar-popover').focus();
-    }
-
     return (
-        <div className={styles['side-bar']}>
-            <div>
-                <div className={styles.logo}>
+        <div className={styles.sidebar}>
+            <div className={styles.navigation}>
+                <div style={{ marginBottom: 20 }}>
                     <Icon name="logo-white" color="#FFFFFF" width={130} height={40} />
                 </div>
-                <div className={styles["navigation-links"]}>
-                    <div>
-                        <Link to="/">
-                            <Icon name={`sidebar-home${location === '/' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
-                            <span>Home</span>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to="/search">
-                            <Icon name={`sidebar-search${location === '/search' ? '-active' : ''}`} color="#FFF" width={24} height={24} />
-                            <span>Search</span>
-                        </Link>
-                    </div>
-                    <div className={`${appCtx.isLoggedIn ? null : 'popover-wrapper'}`} tabIndex={0}>
-                        <Icon name={`sidebar-library${location === '/collection/playlists' ? '-active' : ''}`} color="#FFF" width={ appCtx.isLoggedIn ? 28 : 24 } height={ appCtx.isLoggedIn ? 28 : 24 } />
-                        {
-                            appCtx.isLoggedIn ?
-                            <Link to="/collection/playlists" className="popover-title">
-                                <span>Your Library</span>
-                            </Link> :
-                            <div className="popover-title">
-                                <span>Your Library</span>
-                            </div>
-                        }
-                        <div className="popover-content">
-                            <div className="popover-content-title">Enjoy Your Library</div>
-                            <div className="popover-content-text">Log in to see saved songs, podcasts, artists, and playlists in Your Library.</div>
-                            <div className="popover-content-actions">
-                                <div onClick={resetFocus}>Not now</div>
-                                <div onClick={appCtx.handleLogin}>Log in</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles["navigation-links"]}>
-                    <div className={`${appCtx.isLoggedIn ? null : 'popover-wrapper'}`} tabIndex={0}>
-                        <div className={styles["create-playlist-icon"]}>
-                            <Icon name="sidebar-create-playlist" color="#000" width={12} height={12} />
-                        </div>
-                        <div className="popover-title">
-                            <span>Create Playlist</span>
-                        </div>
-                        <div className="popover-content">
-                            <div className="popover-content-title">Create a playlist</div>
-                            <div className="popover-content-text">Log in to create and share playlists.</div>
-                            <div className="popover-content-actions">
-                                <div onClick={resetFocus}>Not now</div>
-                                <div onClick={appCtx.handleLogin}>Log in</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`${appCtx.isLoggedIn ? null : 'popover-wrapper'}`} tabIndex={0}>
-                        <div className={styles["liked-songs-icon"]}>
-                            <Icon name="sidebar-liked-songs" color="#fff" width={24} height={12} />
-                        </div>
-                        {
-                            appCtx.isLoggedIn ?
-                            <Link to="/collection/tracks" className="popover-title">
-                                <span>Liked Songs</span>
-                            </Link> :
-                            <div className="popover-title">
-                                <span>Liked Songs</span>
-                            </div>
-                        }
-                        <div className="popover-content">
-                            <div className="popover-content-title">Enjoy your Liked Songs</div>
-                            <div className="popover-content-text">Log in to see all the songs you've liked in one easy playlist.</div>
-                            <div className="popover-content-actions">
-                                <div onClick={resetFocus}>Not now</div>
-                                <div onClick={appCtx.handleLogin}>Log in</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <SidebarLink to="/" name="Home" icon="home" />
+                <SidebarLink to="/search" name="Search" icon="search" />
+                <SidebarLink to="/collection/playlists" name="Your Library" icon="library" popoverContentTitle="Enjoy Your Library"
+                    popoverContentText="Log in to see saved songs, podcasts, artists, and playlists in Your Library." />
+                <div style={{ height: 24 }}></div>
+                <SidebarLink to="#" name="Create Playlist" icon="create-playlist" popoverContentTitle="Create a playlist"
+                    popoverContentText="Log in to create and share playlists." />
+                <SidebarLink to="/collection/tracks" name="Liked Songs" icon="liked-songs" popoverContentTitle="Enjoy your Liked Songs"
+                    popoverContentText="Log in to see all the songs you've liked in one easy playlist." />
             </div>
-            <div className={styles["navigation-footer-links"]}>
-                <span>Cookies</span>
-                <span>Privacy</span>
+            <div className={styles.playlists}>
+                <div></div>
+                <Link to="#">arkada çalması düşünülsün</Link>
+                <Link to="#">when u in 100's</Link>
+                <Link to="#">laylaylom</Link>
+                <Link to="#">pool</Link>
+                <Link to="#">çözüm süreci</Link>
+                <Link to="#">kumaş pantolonlu şarkılar</Link>
+                <Link to="#">geç saatte yenen hamur işi</Link>
+                <Link to="#">dış çekimden dönüyorum</Link>
             </div>
+            {!appCtx.isLoggedIn &&
+                <div className={styles.footer}>
+                    <span>Cookies</span>
+                    <span>Privacy</span>
+                </div>
+            }
         </div>
     )
 }
 
-export default SideBar;
+export default Sidebar;

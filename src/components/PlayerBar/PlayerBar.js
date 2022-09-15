@@ -1,8 +1,8 @@
-import styles from './PlayerBar.module.css'
+import styles from './Playerbar.module.css'
 import React from 'react';
 import Icon from '../UI/Icon';
 
-const PlayerBar = () => {
+const Playerbar = () => {
     return (
         <div className={styles.bar}>
             <div className={styles['now-playing']}>
@@ -52,4 +52,4 @@ const PlayerBar = () => {
     )
 }
 
-export default PlayerBar;
+export default Playerbar;

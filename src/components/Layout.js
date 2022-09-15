@@ -1,15 +1,15 @@
 import React from 'react';
-import PlayerBar from './PlayerBar/PlayerBar';
-import SideBar from './SideBar/SideBar';
+import Playerbar from './Playerbar/Playerbar';
+import Sidebar from './Sidebar/Sidebar';
 import Body from './Body/Body';
 import styles from './Layout.module.css';
 
 const Layout = () => {
     return(
         <div className={styles.container}>
-            <SideBar />
+            <Sidebar />
             <Body />
-            <PlayerBar />
+            <Playerbar />
         </div>
     )
 }

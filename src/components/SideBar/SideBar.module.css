@@ -1,85 +1,63 @@
-.side-bar {
+.sidebar {
     grid-area: side-bar;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
     background-color: #000;
     color: white;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     min-height: 0;
     position: relative;
     width: 241px;
     z-index: 3;
     padding-top: 24px;
-    justify-content: space-between;
     font-weight: 400;
 }
 
-.side-bar a {
+.sidebar a {
     text-decoration: none;
     color: white;
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
 }
 
-.logo {
+.navigation {
     padding: 0px 24px;
-    margin-bottom: 24px;
-}
-
-.navigation-links {
-    margin-bottom: 24px;
-}
-
-.navigation-links > div {
-    gap: 16px;
-    height: 40px;
-    padding: 0 24px;
-    cursor: pointer;
-    align-items: center;
-    position: relative;
     display: flex;
-    font-size: 0.875rem;
-    opacity: .7;
-    transition: opacity 0.2s ease-in-out;
+    flex: 1;
+    flex-direction: column;
 }
 
-.navigation-links div:hover {
+.playlists {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.playlists a {
+    height: 32px;
+    line-height: 32px;
+    cursor: default;
+    opacity: .7;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+}
+
+.playlists a:hover {
     opacity: 1;
 }
 
-.navigation-links a {
-    grid-gap: 12px;
-    gap: 12px;
+.playlists>div:first-child {
+    height: 10px;
+    border-top: 1px solid #282828;
 }
 
-.create-playlist-icon {
-    background-color: #fff;
-    border-radius: 2px;
-    color: #000;
-    display: flex;
-    height: 24px;
-    width: 24px;
-    align-items: center;
-    justify-content: center;
-}
-
-.liked-songs-icon {
-    background: linear-gradient(135deg,#450af5,#c4efd9);
-    display: flex;
-    height: 24px;
-    width: 24px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-}
-
-.navigation-footer-links {
+.footer {
     display: flex;
     flex-direction: column;
     margin: 0 24px;
@@ -88,11 +66,11 @@
     font-weight: 400;
 }
 
-.navigation-footer-links span {
+.footer span {
     height: 30px;
 }
 
-.navigation-footer-links span:hover {
+.footer span:hover {
     text-decoration: underline;
     cursor: pointer;
 }
