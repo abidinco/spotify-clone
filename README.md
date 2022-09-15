@@ -7,13 +7,13 @@
   <img src="https://user-images.githubusercontent.com/71569044/188719435-e429ddea-6f68-404a-9f82-742d3ba433ba.gif" />
 </p>
 <p align="center">
-  <img src="https://progress-bar.dev/12" />
+  <img src="https://progress-bar.dev/13" />
 </p>
 <div align="center">
   <h2>demo</h2>
 </div>
 
-![demo](https://user-images.githubusercontent.com/71569044/189738233-139279f8-87e8-48f6-86fa-7161b3e702a6.png)
+![demo](https://user-images.githubusercontent.com/71569044/190486943-0cd4c80e-434a-4930-a441-7f476cb7e0b5.png)
 
 ## may be consider
 
@@ -22,4 +22,4 @@
  - [X] ui: tooltip can be added. when non-auth user clicks for auth-user-links spotify shows tooltips to auth
  - [ ] playerbar: change input-range styles for track's played part to white / hover to green
  - [ ] cross browser: svg icons
- - [ ] sidebar: library & liked-songs icons' width's decreasing 19px when user auth / solved temporarily
+ - [X] sidebar: library & liked-songs icons' width's decreasing 19px when user auth / solved with component named SidebarLink
