@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon {
+    background-color: #1ed760;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 48px;
+}
+
+.icon:hover {
+    transform: scale(1.05);
+}
+
+.text {
+    font-size: 24px;
+    font-weight: 700;
+}

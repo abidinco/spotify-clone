@@ -26,17 +26,19 @@ const Sidebar = () => {
                 <SidebarLink to="/collection/tracks" name="Liked Songs" icon="liked-songs" popoverContentTitle="Enjoy your Liked Songs"
                     popoverContentText="Log in to see all the songs you've liked in one easy playlist." />
             </div>
-            <div className={styles.playlists}>
-                <div></div>
-                <Link to="#">arkada çalması düşünülsün</Link>
-                <Link to="#">when u in 100's</Link>
-                <Link to="#">laylaylom</Link>
-                <Link to="#">pool</Link>
-                <Link to="#">çözüm süreci</Link>
-                <Link to="#">kumaş pantolonlu şarkılar</Link>
-                <Link to="#">geç saatte yenen hamur işi</Link>
-                <Link to="#">dış çekimden dönüyorum</Link>
-            </div>
+            {appCtx.isLoggedIn &&
+                <div className={styles.playlists}>
+                    <div></div>
+                    <Link to="#">arkada çalması düşünülsün</Link>
+                    <Link to="#">when u in 100's</Link>
+                    <Link to="#">laylaylom</Link>
+                    <Link to="#">pool</Link>
+                    <Link to="#">çözüm süreci</Link>
+                    <Link to="#">kumaş pantolonlu şarkılar</Link>
+                    <Link to="#">geç saatte yenen hamur işi</Link>
+                    <Link to="#">dış çekimden dönüyorum</Link>
+                </div>
+            }
             {!appCtx.isLoggedIn &&
                 <div className={styles.footer}>
                     <span>Cookies</span>

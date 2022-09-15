@@ -3,16 +3,19 @@ import { useLocation } from 'react-router-dom';
 
 import LibraryTabs from './LibraryTabs';
 import SearchBox from './SearchBox';
+import NowPlaying from './NowPlaying';
 
 const NavbarContent = () => {
-
-    const isSearchPage = useLocation().pathname === '/search';
-    const isLibraryPage = useLocation().pathname.startsWith('/collection/');
+    const location = useLocation().pathname;
+    const isSearchPage = location === '/search';
+    const isLibraryPage = location.startsWith('/collection/') && (location !== '/collection/tracks');
+    const isPlayingPage = location.startsWith('/playlist') || location === '/collection/tracks';
 
     return(
         <div>
             { isSearchPage && <SearchBox /> }
             { isLibraryPage && <LibraryTabs /> }
+            { isPlayingPage && <NowPlaying />}
         </div>
     )
 }
