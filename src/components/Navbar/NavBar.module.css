@@ -18,8 +18,7 @@
     padding: 0 20px 0 32px
 }
 
-.navbar-left-area {
+.navbar > *:nth-child(2) {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex: 1;
 }

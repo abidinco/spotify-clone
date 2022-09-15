@@ -70,6 +70,11 @@
     padding: 9px 20px;
     font-size: 14px;
     border-radius: 500px;
+    cursor: default;
+}
+
+.buttons>div:nth-child(2):hover {
+    background: #282828;
 }
 
 .buttons>div:nth-child(2)>span {
