@@ -1,8 +1,13 @@
 import styles from './Playerbar.module.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from '../UI/Icon';
 
 const Playerbar = () => {
+
+    useEffect(() => {
+        window.addInputRangeStyle();
+    }, [window.addInputRangeStyle]);
+
     return (
         <div className={styles.bar}>
             <div className={styles['now-playing']}>

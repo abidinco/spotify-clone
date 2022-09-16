@@ -6,6 +6,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   --fallback-fonts: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic;
+  user-select: none;
 }
 
 body {
@@ -115,9 +116,11 @@ input[type="range"] {
   cursor: pointer;
   -webkit-appearance: none;
   cursor: default;
+  -webkit-appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
+  display: none;
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
@@ -132,14 +135,14 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: default;
 }
 
+input[type="range"]:hover::-webkit-slider-thumb {
+  display: flex;
+}
+
 input[type="range"]::-webkit-slider-runnable-track {
   border-radius: 4px;
   height: 4px;
   width: 100%;
-}
-
-input[type="range"]:hover::-webkit-slider-runnable-track {
-  background: #1db954;
 }
 
 input[type="range"]::-moz-range-progress {

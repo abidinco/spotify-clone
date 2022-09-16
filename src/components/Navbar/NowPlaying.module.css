@@ -19,7 +19,12 @@
     transform: scale(1.05);
 }
 
+.icon:active {
+    transform: scale(0.99);
+}
+
 .text {
     font-size: 24px;
     font-weight: 700;
+    letter-spacing: -1px;
 }

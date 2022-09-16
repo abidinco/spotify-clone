@@ -7,7 +7,7 @@
   <img src="https://user-images.githubusercontent.com/71569044/188719435-e429ddea-6f68-404a-9f82-742d3ba433ba.gif" />
 </p>
 <p align="center">
-  <img src="https://progress-bar.dev/13" />
+  <img src="https://progress-bar.dev/14" />
 </p>
 <div align="center">
   <h2>demo</h2>
@@ -20,6 +20,6 @@
  - [ ] navbar: back and forward buttons' background colors will be changed
  - [X] sidebar: change sidebar link icons when route is active
  - [X] ui: tooltip can be added. when non-auth user clicks for auth-user-links spotify shows tooltips to auth
- - [ ] playerbar: change input-range styles for track's played part to white / hover to green
+ - [-] playerbar: input-range styles for track's played part to white / hover to green / solved but not working for mouse-down to green
  - [ ] cross browser: svg icons
  - [X] sidebar: library & liked-songs icons' width's decreasing 19px when user auth / solved with component named SidebarLink
