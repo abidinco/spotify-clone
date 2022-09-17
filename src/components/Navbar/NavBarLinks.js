@@ -9,10 +9,21 @@ const NavbarLinks = () => {
 
   return (
     <div>
+      {!appCtx.isLoggedIn &&
+        <div className={styles.links}>
+          <div>Premium</div>
+          <div>Support</div>
+          <div>Download</div>
+          <div className={styles.divider}></div>
+          <div>Sign up</div>
+          <div onClick={appCtx.handleLogin}>Log in</div>
+        </div>
+      }
       {appCtx.isLoggedIn &&
         <div className={styles.buttons}>
           <div>Upgrade</div>
           <div tabIndex={0}>
+            <img src="/pp.jfif" alt="Profile" />
             <span>Abidin A.</span>
             <Icon name="navbar-drop-down" color="#fff" width={16} height={16} />
             <div className={styles.dropdown}>
@@ -37,16 +48,6 @@ const NavbarLinks = () => {
               <div onClick={appCtx.handleLogout}>Log out</div>
             </div>
           </div>
-        </div>
-      }
-      {!appCtx.isLoggedIn &&
-        <div className={styles.links}>
-          <div>Premium</div>
-          <div>Support</div>
-          <div>Download</div>
-          <div className={styles.divider}></div>
-          <div>Sign up</div>
-          <div onClick={appCtx.handleLogin}>Log in</div>
         </div>
       }
     </div>
