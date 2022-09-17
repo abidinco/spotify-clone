@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import HomePage from './HomePage';
 import SearchPage from './SearchPage';
-import LikedSongsPage from './LikedSongsPage';
+import PlaylistPage from './PlaylistPage';
 import PlaylistsPage from './PlaylistsPage';
 import PodcastsPage from './PodcastsPage';
 import ArtistsPage from './ArtistsPage';
@@ -23,7 +23,7 @@ const Body = () => {
             <Routes className={styles.main}>
                 <Route path="/*" element={ <HomePage /> } />
                 <Route path="/search" element={ <SearchPage /> } />
-                <Route path="/collection/tracks" element={ <LikedSongsPage /> } />
+                <Route path="/collection/tracks" element={ <PlaylistPage /> } />
                 <Route path="/collection/playlists" element={ <PlaylistsPage /> } />
                 <Route path="/collection/podcasts" element={ <PodcastsPage /> } />
                 <Route path="/collection/artists" element={ <ArtistsPage /> } />

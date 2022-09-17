@@ -157,3 +157,11 @@ input[type="range"]:hover::-moz-range-progress {
 input[type="range"]::-ms-fill-lower {
   height: 0.25em;
 }
+
+#navbar-root.display-now-playing #navbar-now-playing-wrapper {
+  opacity: 1;
+}
+
+#navbar-root:not(.display-now-playing) #navbar-now-playing-wrapper {
+  opacity: 0;
+}

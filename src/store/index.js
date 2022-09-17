@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const initialState = {
     isLoggedIn: false,
@@ -8,16 +9,23 @@ const AppContext = createContext(initialState);
 
 export const AppContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = () => {
-        setIsLoggedIn(true)
+        setIsLoggedIn(true);
+        setTimeout(() => {
+            navigate('/');
+        }, 100);
     }
 
     const handleLogout = () => {
-        setIsLoggedIn(false)
+        setIsLoggedIn(false);
+        setTimeout(() => {
+            navigate('/');
+        }, 100);
     }
 
-    return(
+    return (
         <AppContext.Provider value={{ isLoggedIn: isLoggedIn, handleLogin: handleLogin, handleLogout: handleLogout }}>
             {props.children}
         </AppContext.Provider>
