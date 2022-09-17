@@ -23,7 +23,7 @@ const Body = () => {
             <Routes className={styles.main}>
                 <Route path="/*" element={ <HomePage /> } />
                 <Route path="/search" element={ <SearchPage /> } />
-                <Route path="/collection/tracks" element={ <PlaylistPage /> } />
+                <Route path="/collection/tracks" element={ <PlaylistPage scrollFromTop={scrollFromTop} /> } />
                 <Route path="/collection/playlists" element={ <PlaylistsPage /> } />
                 <Route path="/collection/podcasts" element={ <PodcastsPage /> } />
                 <Route path="/collection/artists" element={ <ArtistsPage /> } />

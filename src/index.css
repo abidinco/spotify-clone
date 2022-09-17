@@ -153,3 +153,11 @@ input[type="range"]::-ms-fill-lower {
 #navbar-root:not(.display-now-playing) #navbar-now-playing-wrapper {
   opacity: 0;
 }
+
+.pinned-table-header {
+  position: fixed;
+  top: 64px;
+  background: #181818;
+  margin: 0 !important;
+  padding: 0 48px !important;
+}

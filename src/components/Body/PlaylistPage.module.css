@@ -81,7 +81,6 @@
 .table {
     position: relative;
     top: -64px;
-    padding: 0 32px;
 }
 
 .table-header {
@@ -90,6 +89,7 @@
     text-transform: uppercase;
     font-weight: 400;
     padding: 0 16px;
+    margin: 0 32px;
     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
     letter-spacing: 1px;
     display: grid;
@@ -116,6 +116,7 @@
     font-size: 14px;
     color: #b3b3b3;
     font-weight: 400;
+    margin: 0 32px;
     padding: 0 16px;
     font-family: 'Circular Std Book';
 }

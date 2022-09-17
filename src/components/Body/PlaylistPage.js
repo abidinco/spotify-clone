@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import styles from './PlaylistPage.module.css';
 import Icon from '../UI/Icon';
 
-const PlaylistPage = () => {
+const PlaylistPage = (props) => {
+    const tableHeaderElement = useRef(null);
+
+    const pinHeader = useCallback(() => {
+        if (props.scrollFromTop >= 350) {
+            tableHeaderElement.current.classList.add('pinned-table-header');
+        } else {
+            tableHeaderElement.current.classList.remove('pinned-table-header');
+        }
+    }, [props.scrollFromTop]);
+
+    useEffect(() => {
+      pinHeader();
+    }, [pinHeader]);
+    
     return (
         <div>
             <div className={styles.header} style={{ backgroundColor: 'rgb(80, 56, 160)' }}>
@@ -21,7 +35,7 @@ const PlaylistPage = () => {
                 </div>
             </div>
             <div className={styles.table}>
-                <div className={styles['table-header']}>
+                <div className={styles['table-header']} ref={tableHeaderElement}>
                     <span style={{ fontSize: 16, fontWeight: 300 }}>#</span>
                     <span>Title</span>
                     <span>Album</span>
