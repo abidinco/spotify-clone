@@ -156,7 +156,7 @@ input[type="range"]::-ms-fill-lower {
 
 .pinned-table-header {
   position: fixed;
-  top: 64px;
+  top: 63px;
   background: #181818;
   margin: 0 !important;
   padding: 0 48px !important;
