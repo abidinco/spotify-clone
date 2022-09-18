@@ -6,10 +6,7 @@ import Navbar from '../Navbar/Navbar';
 import HomePage from './HomePage';
 import SearchPage from './SearchPage';
 import PlaylistPage from './PlaylistPage';
-import PlaylistsPage from './PlaylistsPage';
-import PodcastsPage from './PodcastsPage';
-import ArtistsPage from './ArtistsPage';
-import AlbumsPage from './AlbumsPage';
+import CollectionsPage from './CollectionsPage';
 
 const Body = () => {
     const [scrollFromTop, setScrollFromTop] = useState(0);
@@ -24,10 +21,10 @@ const Body = () => {
                 <Route path="/*" element={ <HomePage /> } />
                 <Route path="/search" element={ <SearchPage /> } />
                 <Route path="/collection/tracks" element={ <PlaylistPage scrollFromTop={scrollFromTop} /> } />
-                <Route path="/collection/playlists" element={ <PlaylistsPage /> } />
-                <Route path="/collection/podcasts" element={ <PodcastsPage /> } />
-                <Route path="/collection/artists" element={ <ArtistsPage /> } />
-                <Route path="/collection/albums" element={ <AlbumsPage /> } />
+                <Route path="/collection/playlists" element={ <CollectionsPage tab="playlists" /> } />
+                <Route path="/collection/podcasts" element={ <CollectionsPage tab="podcasts" /> } />
+                <Route path="/collection/artists" element={ <CollectionsPage tab="artists" /> } />
+                <Route path="/collection/albums" element={ <CollectionsPage tab="albums" /> } />
             </Routes>
         </div>
     )

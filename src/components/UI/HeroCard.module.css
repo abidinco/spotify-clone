@@ -1,0 +1,65 @@
+.wrapper {
+    grid-column: span 2;
+    background: linear-gradient(149.46deg, #450af5, #8e8ee5 99.16%);
+    color: #fff;
+    font-size: 1rem;
+    border-radius: clamp(4px, (var(--column-width, 0px) - 32px) * 0.025, 8px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+}
+
+.list {
+    padding: 64px 20px 0 20px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    max-height: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.list>span:nth-child(2n) {
+    opacity: .7;
+    padding-left: 4px;
+}
+
+.name {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    padding: 24px 20px 0 20px;
+}
+
+.count {
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 20px 20px 0 20px;
+}
+
+.button-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1ed760;
+    border-radius: 48px;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    transform: translateY(8px);
+    transition: all .3s ease;
+    opacity: 0;
+}
+
+.wrapper:hover .button-wrapper {
+    opacity: 1;
+    transform: translateY(0px);
+}
