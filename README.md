@@ -7,13 +7,13 @@
   <img src="https://user-images.githubusercontent.com/71569044/188719435-e429ddea-6f68-404a-9f82-742d3ba433ba.gif" />
 </p>
 <p align="center">
-  <img src="https://progress-bar.dev/15" />
+  <img src="https://progress-bar.dev/16" />
 </p>
 <div align="center">
   <h2>demo</h2>
 </div>
 
-https://user-images.githubusercontent.com/71569044/190876872-455add34-2456-4a54-8873-5c5a75a27493.mp4
+https://user-images.githubusercontent.com/71569044/191108018-b68c97d1-a508-4c5f-a3cc-e151221f8fd4.mp4
 
 ## may be consider
 
@@ -23,3 +23,4 @@ https://user-images.githubusercontent.com/71569044/190876872-455add34-2456-4a54-
  - [ ] playerbar: input-range styles for track's played part to white / hover to green / solved but not working for mouse-down to green
  - [ ] cross browser: svg icons
  - [X] sidebar: library & liked-songs icons' width's decreasing 19px when user auth / solved with component named SidebarLink
+ - [ ] ui: add background-gradient and noise to navbar and playlist-page

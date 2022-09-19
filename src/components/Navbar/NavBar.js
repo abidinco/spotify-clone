@@ -57,7 +57,7 @@ const Navbar = (props) => {
             } else if (props.scrollFromTop >= 100) {
                 navbarElement.current.style.backgroundColor = 'rgba(var(--background), 0.75)';
             } else {
-                navbarElement.current.style.backgroundColor = 'rgba(var(--background), 0.5)';
+                navbarElement.current.style.backgroundColor = 'rgba(var(--background), 0)';
             }
         }
     }, [props.scrollFromTop])
