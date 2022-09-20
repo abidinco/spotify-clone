@@ -12,7 +12,7 @@
     margin: 4px 10px 0px 11px;
 }
 
-.box > span:last-child {
+.box > div:last-child {
     margin: 5px 12px 1px 10px;
 }
 

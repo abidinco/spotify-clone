@@ -1,32 +1,61 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const initialState = {
     isLoggedIn: false,
+    searchText: '',
+    isSearching: false,
 }
 
 const AppContext = createContext(initialState);
 
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'LOGIN':
+            return { ...state, isLoggedIn: true }
+        case 'LOGOUT':
+            return { ...state, isLoggedIn: false }
+        case 'SEARCH':
+            return { ...state, searchText: action.payload.searchText, isSearching: action.payload.isSearching }
+        case 'SEARCH_CLEAR':
+            return { ...state, searchText: '', isSearching: false }
+        default:
+            return state;
+    }
+}
+
 export const AppContextProvider = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [appState, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        setIsLoggedIn(true);
-        setTimeout(() => {
-            navigate('/');
-        }, 100);
+        dispatch({ type: 'LOGIN' });
+        setTimeout(() => { navigate('/') }, 100);
     }
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
-        setTimeout(() => {
-            navigate('/');
-        }, 100);
+        dispatch({ type: 'LOGOUT' });
+        setTimeout(() => { navigate('/') }, 100);
+    }
+
+    const handleSearch = (text) => {
+        dispatch({ type: 'SEARCH', payload: { searchText: text, isSearching: (text.trim() === '') ? false : true } })
+    }
+
+    const handleResetSearch = () => {
+        dispatch({ type: 'SEARCH_CLEAR' });
     }
 
     return (
-        <AppContext.Provider value={{ isLoggedIn: isLoggedIn, handleLogin: handleLogin, handleLogout: handleLogout }}>
+        <AppContext.Provider value={{
+            handleLogin: handleLogin,
+            handleLogout: handleLogout,
+            handleSearch: handleSearch,
+            resetSearch: handleResetSearch,
+            isLoggedIn: appState.isLoggedIn,
+            searchText: appState.searchText,
+            isSearching: appState.isSearching,
+        }}>
             {props.children}
         </AppContext.Provider>
     )
