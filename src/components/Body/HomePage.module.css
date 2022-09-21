@@ -26,6 +26,21 @@
 .title {
     font-size: 24px;
     letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title>a {
+    font-size: 12px;
+    color: #bebebe;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.title>a:hover {
+    text-decoration: underline;
 }
 
 .cards-container {
