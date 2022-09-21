@@ -39,11 +39,16 @@ export const AppContextProvider = (props) => {
     }
 
     const handleSearch = (text) => {
-        dispatch({ type: 'SEARCH', payload: { searchText: text, isSearching: (text.trim() === '') ? false : true } })
+        dispatch({ type: 'SEARCH', payload: { searchText: text, isSearching: (text.trim() === '') ? false : true } });
+        navigateToSearchTerm('/search/' + text.trim());
     }
 
     const handleResetSearch = () => {
         dispatch({ type: 'SEARCH_CLEAR' });
+    }
+
+    const navigateToSearchTerm = (to) => {
+        navigate(to);
     }
 
     return (

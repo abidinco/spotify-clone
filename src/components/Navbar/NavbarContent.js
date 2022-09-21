@@ -7,7 +7,7 @@ import NowPlaying from './NowPlaying';
 
 const NavbarContent = () => {
     const location = useLocation().pathname;
-    const isSearchPage = location === '/search';
+    const isSearchPage = location.startsWith('/search');
     const isLibraryPage = location.startsWith('/collection/') && (location !== '/collection/tracks');
     const isPlayingPage = location.startsWith('/playlist') || location === '/collection/tracks';
 

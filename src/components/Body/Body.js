@@ -18,13 +18,15 @@ const Body = () => {
         <div className={styles.body} onScroll={handleScroll}>
             <Navbar scrollFromTop={scrollFromTop} />
             <Routes className={styles.main}>
-                <Route path="/*" element={ <HomePage /> } />
-                <Route path="/search" element={ <SearchPage /> } />
-                <Route path="/collection/tracks" element={ <PlaylistPage scrollFromTop={scrollFromTop} /> } />
-                <Route path="/collection/playlists" element={ <CollectionsPage tab="playlists" /> } />
-                <Route path="/collection/podcasts" element={ <CollectionsPage tab="podcasts" /> } />
-                <Route path="/collection/artists" element={ <CollectionsPage tab="artists" /> } />
-                <Route path="/collection/albums" element={ <CollectionsPage tab="albums" /> } />
+                <Route path="/*" element={<HomePage />} />
+                <Route path="/search" element={<SearchPage />}>
+                    <Route path=":searchTerm" element={<SearchPage />} />
+                </Route>
+                <Route path="/collection/tracks" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
+                <Route path="/collection/playlists" element={<CollectionsPage tab="playlists" />} />
+                <Route path="/collection/podcasts" element={<CollectionsPage tab="podcasts" />} />
+                <Route path="/collection/artists" element={<CollectionsPage tab="artists" />} />
+                <Route path="/collection/albums" element={<CollectionsPage tab="albums" />} />
             </Routes>
         </div>
     )
