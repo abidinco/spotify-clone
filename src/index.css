@@ -155,9 +155,15 @@ input[type="range"]::-ms-fill-lower {
 }
 
 .pinned-table-header {
-  position: fixed;
+  position: sticky;
   top: 63px;
+  scroll-behavior: smooth;
   background: #181818;
   margin: 0 !important;
   padding: 0 48px !important;
+}
+
+/* Common Styles */
+.padding-0-32 {
+  padding: 0 32px;
 }

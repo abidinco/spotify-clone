@@ -2,20 +2,29 @@ import React, { useContext } from "react";
 import styles from './SearchPage.module.css';
 import BrowseCard from '../UI/BrowseCard';
 import AppContext from "../../store";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const SearchPage = () => {
     const appCtx = useContext(AppContext);
     const { searchTerm } = useParams();
     return (
-        <div className={styles.wrapper}>
-            {appCtx.isSearching &&
-                <React.Fragment>
-                    <div>{searchTerm}</div>
-                </React.Fragment>
-            }
+        <React.Fragment>
             {!appCtx.isSearching &&
-                <React.Fragment>
+                <div className="padding-0-32">
+                    <div className={styles.tabs}>
+                        <Link to="#">All</Link>
+                        <Link to="#">Artists</Link>
+                        <Link to="#">Songs</Link>
+                        <Link to="#">Playlists</Link>
+                        <Link to="#">Albums</Link>
+                        <Link to="#">Podcasts & Shows</Link>
+                        <Link to="#">Profiles</Link>
+                    </div>
+                    <div>{searchTerm}</div>
+                </div>
+            }
+            {appCtx.isSearching &&
+                <div className={styles['wrapper-genres']}>
                     <div className={styles['text-browse']}>Browse all</div>
                     <div className={styles['cards-container']}>
                         <BrowseCard name="Podcasts" color="rgb(39, 133, 106)" image={'podcasts.jfif'} />
@@ -51,9 +60,9 @@ const SearchPage = () => {
                         <BrowseCard name="Dance / Electronic" color="rgb(220, 20, 140)" image={'dance-electronic.jfif'} />
                         <BrowseCard name="Rock" color="rgb(230, 30, 50)" image={'rock.jfif'} />
                     </div>
-                </React.Fragment>
+                </div>
             }
-        </div>
+        </React.Fragment>
     )
 }
 

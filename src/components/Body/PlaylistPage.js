@@ -6,7 +6,7 @@ const PlaylistPage = (props) => {
     const tableHeaderElement = useRef(null);
 
     const pinHeader = useCallback(() => {
-        if (props.scrollFromTop >= 350) {
+        if (props.scrollFromTop >= 380) {
             tableHeaderElement.current.classList.add('pinned-table-header');
         } else {
             tableHeaderElement.current.classList.remove('pinned-table-header');
