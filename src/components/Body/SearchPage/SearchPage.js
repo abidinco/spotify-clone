@@ -1,29 +1,22 @@
 import React, { useContext } from "react";
-import styles from './SearchPage.module.css';
-import BrowseCard from '../UI/BrowseCard';
-import AppContext from "../../store";
-import { useParams, Link } from 'react-router-dom';
+import styles from "./SearchPage.module.css";
+import BrowseCard from "../../UI/BrowseCard";
+import AppContext from "../../../store";
+import { useParams } from 'react-router-dom';
+import SearchNavigation from "./SearchNavigation";
 
 const SearchPage = () => {
     const appCtx = useContext(AppContext);
     const { searchTerm } = useParams();
     return (
         <React.Fragment>
-            {!appCtx.isSearching &&
+            {appCtx.isSearching &&
                 <div className="padding-0-32">
-                    <div className={styles.tabs}>
-                        <Link to="#">All</Link>
-                        <Link to="#">Artists</Link>
-                        <Link to="#">Songs</Link>
-                        <Link to="#">Playlists</Link>
-                        <Link to="#">Albums</Link>
-                        <Link to="#">Podcasts & Shows</Link>
-                        <Link to="#">Profiles</Link>
-                    </div>
-                    <div>{searchTerm}</div>
+                    <SearchNavigation />
+                    <div>Content will come to here: {searchTerm}</div>
                 </div>
             }
-            {appCtx.isSearching &&
+            {!appCtx.isSearching &&
                 <div className={styles['wrapper-genres']}>
                     <div className={styles['text-browse']}>Browse all</div>
                     <div className={styles['cards-container']}>

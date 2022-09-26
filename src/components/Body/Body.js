@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar';
 import HomePage from './HomePage';
-import SearchPage from './SearchPage';
+import SearchPage from './SearchPage/SearchPage';
 import PlaylistPage from './PlaylistPage';
 import CollectionsPage from './CollectionsPage';
 
@@ -21,6 +21,7 @@ const Body = () => {
                 <Route path="/*" element={<HomePage />} />
                 <Route path="/search" element={<SearchPage />}>
                     <Route path=":searchTerm" element={<SearchPage />} />
+                    <Route path=":searchTerm/:searchType" element={<SearchPage />} />
                 </Route>
                 <Route path="/collection/tracks" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
                 <Route path="/collection/playlists" element={<CollectionsPage tab="playlists" />} />
