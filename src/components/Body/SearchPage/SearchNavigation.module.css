@@ -3,6 +3,8 @@
     position: sticky;
     display: flex;
     align-items: center;
+    top: 64px;
+    background-color: #121212;
 }
 
 .tabs a {
