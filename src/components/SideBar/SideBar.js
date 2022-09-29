@@ -17,7 +17,7 @@ const Sidebar = () => {
                     <Icon name="logo-white" color="#FFFFFF" width={130} height={40} />
                 </div>
                 <SidebarLink to="/" name="Home" icon="home" />
-                <SidebarLink to="/search" name="Search" icon="search" />
+                <SidebarLink to="/search/" name="Search" icon="search" />
                 <SidebarLink to="/collection/playlists" name="Your Library" icon="library" popoverContentTitle="Enjoy Your Library"
                     popoverContentText="Log in to see saved songs, podcasts, artists, and playlists in Your Library." />
                 <div style={{ height: 24 }}></div>

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import SearchNavigation from "./SearchNavigation";
 import CardsGrid from "./CardsGrid";
 import TracksList from "./TracksList";
+import SearchAll from "./SearchAll";
 
 const SearchPage = () => {
     const appCtx = useContext(AppContext);
@@ -13,7 +14,7 @@ const SearchPage = () => {
             {appCtx.isSearching &&
                 <div className="padding-0-32">
                     <SearchNavigation />
-                    {searchType === undefined && <div>Arama sayfası</div>}
+                    {searchType === undefined && <SearchAll />}
                     {searchType === 'tracks' && <TracksList />}
                     {searchType !== 'tracks' && searchType !== undefined && <CardsGrid />}
                 </div>
