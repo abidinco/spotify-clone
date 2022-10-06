@@ -66,6 +66,7 @@
     width: 100%;
     margin-left: -6px;
     margin-right: -6px;
+    mask-image: linear-gradient(90deg, transparent 0, #000 6px, #000 calc(100% - 12px), transparent);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6px, #000 calc(100% - 12px), transparent);
     overflow: hidden;
     position: relative;
@@ -90,6 +91,7 @@
 .now-playing-info-artist a {
     margin-left: -6px;
     margin-right: -12px;
+    mask-image: linear-gradient(90deg, transparent 0, #000 6px, #000 calc(100% - 12px), transparent);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6px, #000 calc(100% - 12px), transparent);
     overflow: hidden;
     position: relative;

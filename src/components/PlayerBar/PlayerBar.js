@@ -41,7 +41,7 @@ const Playerbar = () => {
                         7:51
                     </div>
                     <div className={styles['player-control-progress']}>
-                        <input className={styles['player-control-progress-input']} type="range" min={0} max={100} step={2} />
+                        <input className={styles['player-control-progress-input']} type="range" min={0} max={100} step={2} defaultValue={0} />
                     </div>
                     <div className={styles['player-control-duration']}>
                         9:40
