@@ -1,6 +1,7 @@
 import styles from './Playerbar.module.css'
 import React, { useEffect } from 'react';
 import Icon from '../UI/Icon';
+import { Link } from 'react-router-dom';
 
 const Playerbar = () => {
 
@@ -13,8 +14,10 @@ const Playerbar = () => {
             <div className={styles['now-playing']}>
                 <img className={styles['now-playing-cover']} alt="Song Cover" src="/browse-card-images/new-releases.jfif" />
                 <div className={styles['now-playing-info']}>
-                    <div className={styles['now-playing-info-title']}>Bregovic: Ederlezi</div>
-                    <div className={styles['now-playing-info-artist']}>Goran Bregovic, Nigel Kennedy, The Kroke Band</div>
+                    <Link to="" className={styles['now-playing-info-title']}>Bregovic: Ederlezi</Link>
+                    <div className={styles['now-playing-info-artist']}>
+                        <Link to="">Goran Bregovic</Link><span>,</span>
+                        <Link to="">Nigel Kennedy</Link></div>
                 </div>
                 <div className={styles['now-playing-action-button']}>
                     <Icon name="player-heart" color="rgb(255, 255, 255, .7)" width={16} height={16} />

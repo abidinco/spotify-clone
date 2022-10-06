@@ -27,7 +27,7 @@
 
 .list>span:nth-child(2n) {
     opacity: .7;
-    padding-left: 4px;
+    padding: 0 4px;
 }
 
 .name {
