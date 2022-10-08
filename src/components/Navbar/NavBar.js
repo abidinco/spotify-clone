@@ -9,7 +9,7 @@ const Navbar = (props) => {
     const location = useLocation().pathname;
     const navbarElement = useRef(null);
     // if page is playlist page (liked-songs-page or any other playlist-page) we'll change navbar background and navbar opacity breakpoints
-    const isPlaylistPage = location.startsWith('/playlist') || (location === '/collection/tracks');
+    const isPlaylistPage = location.startsWith('/playlist') || (location === '/collection/tracks') || location.startsWith('/artist');
     // we'll define navbarBackgroundColor for decide which color we'll use navbar-background
     // when we decide which color to use, setting it with custom property (line 67)
     // let's decide which navbar-background-color we'll use

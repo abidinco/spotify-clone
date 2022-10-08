@@ -7,15 +7,15 @@ import NowPlaying from './NowPlaying';
 
 const NavbarContent = () => {
     const location = useLocation().pathname;
-    const isSearchPage = location.startsWith('/search');
-    const isLibraryPage = location.startsWith('/collection/') && (location !== '/collection/tracks');
-    const isPlayingPage = location.startsWith('/playlist') || location === '/collection/tracks';
+    const showSearchBox = location.startsWith('/search');
+    const showTabs = location.startsWith('/collection/') && (location !== '/collection/tracks');
+    const showPlayButton = location.startsWith('/playlist') || location === '/collection/tracks' || location.startsWith('/artist');
 
     return(
         <div>
-            { isSearchPage && <SearchBox /> }
-            { isLibraryPage && <LibraryTabs /> }
-            { isPlayingPage && <NowPlaying />}
+            { showSearchBox && <SearchBox /> }
+            { showTabs && <LibraryTabs /> }
+            { showPlayButton && <NowPlaying />}
         </div>
     )
 }

@@ -7,7 +7,6 @@ import HomePage from './HomePage';
 import SearchPage from './SearchPage/SearchPage';
 import PlaylistPage from './PlaylistPage';
 import CollectionsPage from './CollectionsPage';
-import ArtistPage from './ArtistPage';
 import NotFoundPage from '../NotFoundPage';
 
 const Body = () => {
@@ -32,7 +31,7 @@ const Body = () => {
                 <Route path="/collection/albums" element={<CollectionsPage tab="albums" />} />
 
                 <Route path="/playlist/:playlistId" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
-                <Route path="/artist/:artistId" element={<ArtistPage scrollFromTop={scrollFromTop} />} />
+                <Route path="/artist/:artistId" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
                 <Route path="*" element={<NotFoundPage />} />
 
             </Routes>
