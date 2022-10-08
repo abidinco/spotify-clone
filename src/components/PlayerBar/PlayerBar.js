@@ -16,8 +16,8 @@ const Playerbar = () => {
                 <div className={styles['now-playing-info']}>
                     <Link to="" className={styles['now-playing-info-title']}>Bregovic: Ederlezi</Link>
                     <div className={styles['now-playing-info-artist']}>
-                        <Link to="">Goran Bregovic</Link><span>,</span>
-                        <Link to="">Nigel Kennedy</Link></div>
+                        <Link to="/artist/goran">Goran Bregovic</Link><span>,</span>
+                        <Link to="/artist/">Nigel Kennedy</Link></div>
                 </div>
                 <div className={styles['now-playing-action-button']}>
                     <Icon name="player-heart" color="rgb(255, 255, 255, .7)" width={16} height={16} />

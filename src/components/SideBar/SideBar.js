@@ -13,9 +13,9 @@ const Sidebar = () => {
     return (
         <div className={styles.sidebar}>
             <div className={styles.navigation}>
-                <div style={{ marginBottom: 20 }}>
+                <Link to="/" style={{ marginBottom: 20 }}>
                     <Icon name="logo-white" color="#FFFFFF" width={130} height={40} />
-                </div>
+                </Link>
                 <SidebarLink to="/" name="Home" icon="home" />
                 <SidebarLink to="/search/" name="Search" icon="search" />
                 <SidebarLink to="/collection/playlists" name="Your Library" icon="library" popoverContentTitle="Enjoy Your Library"
