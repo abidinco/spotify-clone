@@ -1,10 +1,12 @@
 import React from "react";
 import styles from './SearchAll.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Icon from "../../UI/Icon";
 import PlayCard from "../../UI/PlayCard";
 
 const SearchAll = () => {
+    const navigate = useNavigate();
+
     return (
         <React.Fragment>
             <div className={styles.grid}>
@@ -14,7 +16,7 @@ const SearchAll = () => {
                         <img src="/discover-weekly.jfif" alt="Top Result" />
                         <div>Top result name</div>
                         <div className={styles.row}>
-                            <Link to="" className={styles['meta-link']}>Bottom meta</Link>
+                            <div onClick={() => navigate('')} className={styles['meta-link']}>Bottom meta</div>
                             <div className={styles.chip}>Song</div>
                         </div>
                         <div className={styles['button-wrapper']}>

@@ -4,10 +4,10 @@ import HeroCard from "../UI/HeroCard";
 
 import styles from './CollectionsPage.module.css';
 
-const CollectionsPage = (props) => {
+const CollectionsPage = ({ tab }) => {
     return(
         <div className={styles.wrapper}>
-            <div>{props.tab}</div>
+            <div>{tab}</div>
             <div className={styles['cards-container']}>
                 <HeroCard count={38} />
                 <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom lay lay lom lay lay lom" subtitle="if you are here, good luck to you if you are here, good luck to you if you are here, good luck to you" />

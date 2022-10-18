@@ -4,8 +4,8 @@ import Icon from '../UI/Icon';
 import { useLocation } from 'react-router-dom';
 
 const PlaylistPage = (props) => {
-    const location = useLocation().pathname;
-    const isPlaylistPage = location.startsWith('/playlist') || location === '/collection/tracks';
+    const { pathname } = useLocation();
+    const isPlaylistPage = pathname.startsWith('/playlist') || pathname === '/collection/tracks';
 
     const tableHeaderElement = useRef(null);
 

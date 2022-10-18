@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState, useEffect } from 'react';
+import React, { useContext, useRef } from 'react';
 import styles from './SearchBox.module.css';
 import Icon from '../UI/Icon';
 import AppContext from '../../store';
@@ -19,26 +19,25 @@ function debounce(fn, time) {
 
 const SearchBox = () => {
   const appCtx = useContext(AppContext);
-  const [search, setSearch] = useState('');
+  const inputRef = useRef('');
 
   const api = val => {
     appCtx.handleSearch(val);
   }
 
-  const func = useCallback(debounce(string => api(string), 1000), []);
-
-  useEffect(() => {
-    func(search)
-  }, [search]);
+  const func = debounce(string => api(string), 1000);
 
   const changeHandler = e => {
-    if(e.target.value.trim() === '') api(e.target.value);
-    setSearch(e.target.value);
+    if (e.target.value.trim() === '') {
+      api(e.target.value);
+    } else {
+      func(e.target.value);
+    }
   }
 
   const resetHandler = () => {
     appCtx.resetSearch();
-    setSearch('');
+    inputRef.current.value = '';
   }
 
   return (
@@ -47,15 +46,15 @@ const SearchBox = () => {
         <Icon name="navbar-search" color="#000" width={24} height={24} />
       </span>
       <input className={styles.input}
+        ref={inputRef}
         autoCorrect='off'
         autoCapitalize='off'
         spellCheck='false'
         placeholder='What do you want to listen to?'
-        value={search}
         onChange={changeHandler}
       />
       <div onClick={resetHandler}>
-        {(search.trim() === '') ? null : <Icon name="navbar-search-clear" color="#000" width={24} height={24} />}
+        {inputRef.current.value !== '' && <Icon name="navbar-search-clear" color="#000" width={24} height={24} />}
       </div>
     </div>
   )
