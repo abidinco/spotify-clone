@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import NavbarNavigation from './NavbarNavigation';
 import NavbarContent from './NavbarContent';
-import NavbarLinks from './NavbarLinks';
-import styles from './Navbar.module.css';
+import NavbarLinks from './NavBarLinks';
+import styles from './NavBar.module.css';
 
 const Navbar = (props) => {
     const location = useLocation().pathname;

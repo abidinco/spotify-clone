@@ -1,5 +1,5 @@
-import styles from './Playerbar.module.css'
 import React, { useEffect } from 'react';
+import styles from './PlayerBar.module.css'
 import Icon from '../UI/Icon';
 import { Link } from 'react-router-dom';
 

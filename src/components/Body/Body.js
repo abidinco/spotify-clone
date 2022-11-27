@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Body.module.css';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/NavBar';
 import HomePage from './HomePage';
 import SearchPage from './SearchPage/SearchPage';
 import PlaylistPage from './PlaylistPage';
