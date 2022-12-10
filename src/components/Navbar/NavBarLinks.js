@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styles from './NavBarLinks.module.css';
+import styles from './NavbarLinks.module.css';
 import Icon from '../UI/Icon';
 import AppContext from '../../store';
 

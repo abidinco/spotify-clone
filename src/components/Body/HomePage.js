@@ -14,57 +14,37 @@ const HomePage = () => {
                 <React.Fragment>
                     <div className={styles.message}>Good evening</div>
                     <div className={styles['top-items']}>
-                        <TopItem image="/playlist-cover-liked-songs.png" name="Liked Songs" />
-                        <TopItem image="/discover-weekly.jfif" name="Discover Weekly" />
-                        <TopItem image="/playlist-cover-liked-songs.png" name="arkada çalması düşünülsün" />
-                        <TopItem image="/discover-weekly.jfif" name="All Out 2010s" />
+                        <TopItem href="/collection/tracks" image="/playlist-cover-liked-songs.png" name="Liked Songs" />
+                        <TopItem href="/playlist/1" image="/discover-weekly.jfif" name="Discover Weekly" />
+                        <TopItem href="/playlist/2" image="/playlist-cover-liked-songs.png" name="arkada çalması düşünülsün" />
+                        <TopItem href="/playlist/3" image="/discover-weekly.jfif" name="All Out 2010s" />
                     </div>
                     <div className={styles.title}>Your playlists</div>
                     <div className={styles['cards-container']}>
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
+                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
                     </div>
                     <div className={styles.title}>Episodes for you</div>
                     <div className={styles['cards-container']}>
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
+                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
                     </div>
                     <div className={styles.title}>Recently played</div>
                     <div className={styles['cards-container']}>
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
+                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
                     </div>
                 </React.Fragment>}
             {!appCtx.isLoggedIn &&
                 <React.Fragment>
                     <div className={styles.title}>Your playlists</div>
                     <div className={styles['cards-container']}>
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
+                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
                     </div>
                     <div className={styles.title}><div>Focus</div><Link to="#">SEE ALL</Link></div>
                     <div className={styles['cards-container']}>
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
+                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
                     </div>
                     <div className={styles.title}>Sleep</div>
                     <div className={styles['cards-container']}>
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                        <PlayCard cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya" />
+                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
                     </div>
                 </React.Fragment>
             }

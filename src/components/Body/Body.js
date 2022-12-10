@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Body.module.css';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from '../Navbar/NavBar';
+import Navbar from '../Navbar/Navbar';
 import HomePage from './HomePage';
 import SearchPage from './SearchPage/SearchPage';
 import PlaylistPage from './PlaylistPage';
@@ -17,23 +17,22 @@ const Body = () => {
 
     return (
         <div className={styles.body} onScroll={handleScroll}>
-            <Navbar scrollFromTop={scrollFromTop} />
+            <Navbar />
             <Routes className={styles.main}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/search" element={<SearchPage />}>
                     <Route path=":searchTerm" element={<SearchPage />} />
                     <Route path=":searchTerm/:searchType" element={<SearchPage />} />
                 </Route>
-                <Route path="/collection/tracks" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
+                <Route path="/collection/tracks" element={<PlaylistPage />} />
                 <Route path="/collection/playlists" element={<CollectionsPage tab="playlists" />} />
                 <Route path="/collection/podcasts" element={<CollectionsPage tab="podcasts" />} />
                 <Route path="/collection/artists" element={<CollectionsPage tab="artists" />} />
                 <Route path="/collection/albums" element={<CollectionsPage tab="albums" />} />
 
-                <Route path="/playlist/:playlistId" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
-                <Route path="/artist/:artistId" element={<PlaylistPage scrollFromTop={scrollFromTop} />} />
+                <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
+                <Route path="/artist/:artistId" element={<PlaylistPage />} />
                 <Route path="*" element={<NotFoundPage />} />
-
             </Routes>
         </div>
     )

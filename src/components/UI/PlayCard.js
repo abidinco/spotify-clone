@@ -1,10 +1,11 @@
 import React from "react";
 import styles from './PlayCard.module.css';
 import Icon from './Icon';
+import { Link } from 'react-router-dom';
 
 const PlayCard = (props) => {
     return (
-        <div className={styles.wrapper}>
+        <Link to={props.href} className={styles.wrapper}>
             <img className={props.rounded ? styles.rounded : null} src={props.cover} alt="Cover" />
             <div className={styles.title}>{props.title}</div>
             <div className={styles.subtitle}>{props.subtitle}</div>
@@ -13,7 +14,7 @@ const PlayCard = (props) => {
                     <Icon name="player-play" color="black" width={18} height={18} />
                 </div>
             }
-        </div>
+        </Link>
     )
 }
 

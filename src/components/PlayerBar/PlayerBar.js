@@ -3,11 +3,11 @@ import styles from './PlayerBar.module.css'
 import Icon from '../UI/Icon';
 import { Link } from 'react-router-dom';
 
-const Playerbar = () => {
+const PlayerBar = () => {
 
     useEffect(() => {
         window.addInputRangeStyle();
-    }, [window.addInputRangeStyle]);
+    }, []);
 
     return (
         <div className={styles.bar}>
@@ -60,4 +60,4 @@ const Playerbar = () => {
     )
 }
 
-export default Playerbar;
+export default PlayerBar;

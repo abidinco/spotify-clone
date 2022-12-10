@@ -1,25 +1,25 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import styles from './PlaylistPage.module.css';
 import Icon from '../UI/Icon';
 import { useLocation } from 'react-router-dom';
 
-const PlaylistPage = (props) => {
+const PlaylistPage = () => {
     const { pathname } = useLocation();
     const isPlaylistPage = pathname.startsWith('/playlist') || pathname === '/collection/tracks';
-
     const tableHeaderElement = useRef(null);
 
-    const pinHeader = useCallback(() => {
-        if (isPlaylistPage && props.scrollFromTop >= 380) {
-            tableHeaderElement.current.classList.add('pinned-table-header');
-        } else if (isPlaylistPage) {
-            isPlaylistPage && tableHeaderElement.current.classList.remove('pinned-table-header');
-        }
-    }, [props.scrollFromTop]);
-
     useEffect(() => {
+        const pinHeader = () => {
+            let pageY = Math.abs(document.querySelector('#navbar-root').nextElementSibling.getBoundingClientRect().top - 64);
+            if (isPlaylistPage && pageY >= 380) {
+                tableHeaderElement.current.classList.add('pinned-table-header');
+            } else if (isPlaylistPage) {
+                isPlaylistPage && tableHeaderElement.current.classList.remove('pinned-table-header');
+            }
+        }
+
         pinHeader();
-    }, [pinHeader]);
+    }, [isPlaylistPage]);
 
     return (
         <div>
@@ -41,7 +41,6 @@ const PlaylistPage = (props) => {
                     <Icon name="player-play" width={24} height={24} color="#000" />
                 </div>
             </div>
-            <div style={{ height: 10000 }}></div>
             {isPlaylistPage &&
                 <div className={styles.table}>
                     <div className={styles['table-header']} ref={tableHeaderElement}>
@@ -51,7 +50,7 @@ const PlaylistPage = (props) => {
                         <span>Date Added</span>
                         <span><Icon name="duration" height={16} width={16} color="#b3b3b3" /></span>
                     </div>
-                    <div className={styles.playlist}>
+                    <div className={styles.playlist} style={{ height: 1000}}>
                         <div className={styles.item}>
                             <div className={styles.index}>
                                 <div className={styles['index-number']}>1</div>
@@ -75,7 +74,6 @@ const PlaylistPage = (props) => {
                     </div>
                 </div>
             }
-
         </div>
     )
 }

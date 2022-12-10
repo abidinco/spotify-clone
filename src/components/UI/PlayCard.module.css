@@ -5,6 +5,7 @@
     position: relative;
     border-radius: clamp(4px, (var(--column-width, 0px) - 32px) * 0.025, 8px);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .wrapper:hover {
@@ -29,6 +30,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-bottom: 4px;
+    color: white;
 }
 
 .subtitle {

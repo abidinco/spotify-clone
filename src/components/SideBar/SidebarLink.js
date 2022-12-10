@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AppContext from '../../store';
 import Icon from '../UI/Icon';
-import styles from './SidebarLink.module.css';
+import styles from './SideBarLink.module.css';
 
-const SidebarLink = (props) => {
+const SideBarLink = (props) => {
     const appCtx = useContext(AppContext);
 
     const location = useLocation().pathname;
@@ -61,4 +61,4 @@ const SidebarLink = (props) => {
     )
 }
 
-export default SidebarLink;
+export default SideBarLink;

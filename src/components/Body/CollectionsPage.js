@@ -10,14 +10,7 @@ const CollectionsPage = ({ tab }) => {
             <div>{tab}</div>
             <div className={styles['cards-container']}>
                 <HeroCard count={38} />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom lay lay lom lay lay lom" subtitle="if you are here, good luck to you if you are here, good luck to you if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
-                <PlayCard cover="/browse-card-images/new-releases.jfif" title="laylaylom" subtitle="if you are here, good luck to you" />
+                <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="laylaylom lay lay lom lay lay lom" subtitle="if you are here, good luck to you if you are here, good luck to you if you are here, good luck to you" />
             </div>
         </div>
     )

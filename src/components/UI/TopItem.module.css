@@ -9,6 +9,8 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    color: white;
+    text-decoration: none;
 }
 
 .wrapper:hover {
