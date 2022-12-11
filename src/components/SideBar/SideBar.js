@@ -1,12 +1,22 @@
 import styles from './SideBar.module.css';
 import Icon from '../UI/Icon';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../store';
 import SideBarLink from './SideBarLink';
+import Spotify from '../../spotify/api';
 
 const Sidebar = () => {
     const appCtx = useContext(AppContext);
+    const [playlists, setPlaylists] = useState();
+    const getPlaylists = async () => {
+        const playlists = await Spotify.getCurrentUsersPlaylists();
+        setPlaylists(playlists);
+    }
+
+    useEffect(() => {
+      getPlaylists();
+    }, []);
 
     return (
         <div className={styles.sidebar}>
@@ -27,14 +37,12 @@ const Sidebar = () => {
             {appCtx.isLoggedIn &&
                 <div className={styles.playlists}>
                     <div></div>
-                    <Link to="/playlist/1">arkada çalması düşünülsün</Link>
-                    <Link to="/playlist/1">when u in 100's</Link>
-                    <Link to="/playlist/1">laylaylom</Link>
-                    <Link to="/playlist/1">pool</Link>
-                    <Link to="/playlist/1">çözüm süreci</Link>
-                    <Link to="/playlist/1">kumaş pantolonlu şarkılar</Link>
-                    <Link to="/playlist/1">geç saatte yenen hamur işi</Link>
-                    <Link to="/playlist/1">dış çekimden dönüyorum</Link>
+                    {playlists
+                        ? playlists.items.map((playlist) => (
+                            <Link key={playlist.id} to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
+                        ))
+                        : null
+                    }
                 </div>
             }
             {!appCtx.isLoggedIn &&

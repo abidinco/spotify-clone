@@ -48,6 +48,31 @@ const Spotify = {
             window.location.assign(LOGIN_URL);
             return "";
         }
+    },
+    async getUserId(token) {
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        let userId;
+        const response = await fetch("https://api.spotify.com/v1/me", {
+            headers: headers,
+        });
+        const jsonResponse = await response.json();
+        if(jsonResponse) userId = jsonResponse.id;
+        return userId;
+    },
+    async getCurrentUsersPlaylists() {
+        const token = localStorage.getItem('accessToken');
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
+            headers: headers,
+            method: 'GET',
+        });
+        const jsonResponse = await response.json();
+        return jsonResponse;
     }
 }
 
