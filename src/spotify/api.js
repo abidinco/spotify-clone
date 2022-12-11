@@ -1,27 +1,51 @@
 import SECRET from './secret';
 
-let spotifyAccessToken = "";
-const clientId = SECRET.clientId;
-const redirectUri = SECRET.redirectUri;
+const CLIENT_ID = SECRET.clientId;
+const REDIRECT_URI = "http://localhost:3000/callback";
+const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+
+let spotifyAccessToken;
+const scopes = [
+    "ugc-image-upload",
+    "user-read-playback-state",
+    "user-modify-playback-state",
+    "user-read-currently-playing",
+    "app-remote-control",
+    "streaming",
+    "playlist-read-private",
+    "playlist-read-collaborative",
+    "playlist-modify-private",
+    "playlist-modify-public",
+    "user-follow-modify",
+    "user-follow-read",
+    "user-read-playback-position",
+    "user-top-read",
+    "user-read-recently-played",
+    "user-library-modify",
+    "user-library-read",
+    "user-read-private",
+    "user-read-email"
+];
+
+export const LOGIN_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
 
 const Spotify = {
     getAccessToken() {
-        const scopes = "ugc-image-upload user-read-playback-state streaming user-read-email playlist-read-collaborative user-modify-playback-state user-read-private playlist-modify-public user-library-modify user-top-read user-read-currently-playing playlist-read-private user-follow-read app-remote-control user-read-recently-played playlist-modify-private user-follow-modify user-library-read";
-        if (spotifyAccessToken) {
+        if(localStorage.getItem('accessToken')) {
+            spotifyAccessToken = localStorage.getItem('accessToken');
             return spotifyAccessToken;
         }
-        const accessToken = window.location.href.match(/access_token=([^&]*)/);
-        const expiresIn = window.location.href.match(/expires_in=([^&]*)/);
+        const accessToken = window.location.hash.match(/access_token=([^&]*)/);
+        const expiresIn = window.location.hash.match(/expires_in=([^&]*)/);
         if (accessToken && expiresIn) {
-            spotifyAccesToken = accessToken[1];
-            localStorage.setItem("accessToken", spotifyAccesToken);
+            spotifyAccessToken = accessToken[1];
+            localStorage.setItem("accessToken", spotifyAccessToken);
             let expiryTime = Number(expiresIn[1]);
-            window.setTimeout(() => (spotifyAccesToken = ""), expiryTime * 1000);
+            window.setTimeout(() => (spotifyAccessToken = ""), expiryTime * 1000);
             window.history.pushState("Access Token", " ", "/");
-            return spotifyAccesToken;
+            return spotifyAccessToken;
         } else {
-            const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(scopes)}&response_type=token`;
-            window.location.assign(url);
+            window.location.assign(LOGIN_URL);
             return "";
         }
     }

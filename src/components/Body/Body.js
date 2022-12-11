@@ -7,6 +7,7 @@ import HomePage from './HomePage';
 import SearchPage from './SearchPage/SearchPage';
 import PlaylistPage from './PlaylistPage';
 import CollectionsPage from './CollectionsPage';
+import CallbackPage from '../CallbackPage';
 import NotFoundPage from '../NotFoundPage';
 
 const Body = () => {
@@ -32,6 +33,7 @@ const Body = () => {
 
                 <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
                 <Route path="/artist/:artistId" element={<PlaylistPage />} />
+                <Route path="/callback" element={< CallbackPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>

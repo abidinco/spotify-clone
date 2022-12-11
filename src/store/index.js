@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react";
 import { useNavigate } from 'react-router-dom';
+import Spotify from '../spotify/api';
 
 const initialState = {
     isLoggedIn: false,
@@ -29,11 +30,15 @@ export const AppContextProvider = (props) => {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        dispatch({ type: 'LOGIN' });
-        setTimeout(() => { navigate('/') }, 100);
+        if(localStorage.getItem("accessToken")) {
+            dispatch({ type: 'LOGIN' });
+        } else {
+            Spotify.getAccessToken();
+        }
     }
 
     const handleLogout = () => {
+        localStorage.removeItem("accessToken");
         dispatch({ type: 'LOGOUT' });
         setTimeout(() => { navigate('/') }, 100);
     }
