@@ -30,18 +30,25 @@ const scopes = [
 export const LOGIN_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
 
 const Spotify = {
+    getNow() {
+        let now = new Date();
+        return now.getTime();
+    },
     getAccessToken() {
-        if(localStorage.getItem('accessToken')) {
+        // Spotify API responds "Token expired" when token expired.
+        // TODO: Added expiry control in if statement. Let's see is this working
+        if(localStorage.getItem('accessToken') && (this.getNow() > localStorage.getItem('accessTokenExpiry'))) {
             spotifyAccessToken = localStorage.getItem('accessToken');
             return spotifyAccessToken;
         }
-        const accessToken = window.location.hash.match(/access_token=([^&]*)/);
-        const expiresIn = window.location.hash.match(/expires_in=([^&]*)/);
+        let accessToken = window.location.hash.match(/access_token=([^&]*)/);
+        let expiresIn = window.location.hash.match(/expires_in=([^&]*)/);
         if (accessToken && expiresIn) {
             spotifyAccessToken = accessToken[1];
             localStorage.setItem("accessToken", spotifyAccessToken);
             let expiryTime = Number(expiresIn[1]);
             window.setTimeout(() => (spotifyAccessToken = ""), expiryTime * 1000);
+            localStorage.setItem('accessTokenExpiry', this.getNow() + expiryTime);
             window.history.pushState("Access Token", " ", "/");
             return spotifyAccessToken;
         } else {
@@ -50,28 +57,80 @@ const Spotify = {
         }
     },
     async getUserId(token) {
-        const headers = {
+        let headers = {
             Authorization: `Bearer ${token}`,
         };
         let userId;
-        const response = await fetch("https://api.spotify.com/v1/me", {
+        let response = await fetch("https://api.spotify.com/v1/me", {
             headers: headers,
         });
-        const jsonResponse = await response.json();
+        let jsonResponse = await response.json();
         if(jsonResponse) userId = jsonResponse.id;
         return userId;
     },
     async getCurrentUsersPlaylists() {
-        const token = localStorage.getItem('accessToken');
-        const headers = {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
             Authorization: `Bearer ${token}`,
             "content-type": "application/json",
         }
-        const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
+        let response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
             headers: headers,
             method: 'GET',
         });
-        const jsonResponse = await response.json();
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getUsersSavedTracks() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/tracks`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getPlaylist(playlist_id) {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getPlaylistItems(playlist_id) {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getArtist(artist_id) {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/playlists/${artist_id}/tracks`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
         return jsonResponse;
     }
 }
