@@ -1,23 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import TopItem from "../UI/TopItem";
 import PlayCard from "../UI/PlayCard";
 
 import { Link } from 'react-router-dom';
 import AppContext from '../../store';
 import styles from './HomePage.module.css';
+import Spotify from '../../spotify/api';
 
 const HomePage = () => {
+    const [playlists, setPlaylists] = useState();
+    const getCurrentUsersPlaylists = useCallback(async () => {
+        const listOfPlaylist = await Spotify.getCurrentUsersPlaylists();
+        setPlaylists(listOfPlaylist);
+    }, []);
+    const welcomingMessage = () => {
+        let date = new Date();
+        if (date.getHours() < 12) return "Good morning"
+        if (date.getHours() < 17) return "Good afternoon"
+        if (date.getHours() < 25) return "Good evening"
+    }
+    useEffect(() => {
+        getCurrentUsersPlaylists();
+    }, [getCurrentUsersPlaylists]);
     const appCtx = useContext(AppContext);
     return (
         <div className={styles.wrapper}>
             {appCtx.isLoggedIn &&
                 <React.Fragment>
-                    <div className={styles.message}>Good evening</div>
+                    <div className={styles.message}>{welcomingMessage()}</div>
                     <div className={styles['top-items']}>
                         <TopItem href="/collection/tracks" image="/playlist-cover-liked-songs.png" name="Liked Songs" />
-                        <TopItem href="/playlist/1" image="/discover-weekly.jfif" name="Discover Weekly" />
-                        <TopItem href="/playlist/2" image="/playlist-cover-liked-songs.png" name="arkada çalması düşünülsün" />
-                        <TopItem href="/playlist/3" image="/discover-weekly.jfif" name="All Out 2010s" />
+                        { playlists
+                            ? playlists.items.map((playlist) => (
+                                <TopItem
+                                    key={playlist.id}
+                                    href={`/playlist/${playlist.id}`}
+                                    image={playlist.images[0] ? playlist.images[0].url : 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'}
+                                    name={playlist.name} />
+                            ))
+                            : null
+                        }
                     </div>
                     <div className={styles.title}>Your playlists</div>
                     <div className={styles['cards-container']}>

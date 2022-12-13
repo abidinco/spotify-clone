@@ -11,6 +11,7 @@ import CallbackPage from '../CallbackPage';
 import NotFoundPage from '../NotFoundPage';
 
 const Body = () => {
+    // TODO: App re-renders every scroll, prevent it
     const [scrollFromTop, setScrollFromTop] = useState(0);
     const handleScroll = e => {
         setScrollFromTop(e.currentTarget.scrollTop);

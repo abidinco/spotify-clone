@@ -81,7 +81,7 @@ const Spotify = {
         let jsonResponse = await response.json();
         return jsonResponse;
     },
-    async getUsersSavedTracks() {
+    async getCurrentUserSavedTracks() {
         let token = localStorage.getItem('accessToken');
         let headers = {
             Authorization: `Bearer ${token}`,
