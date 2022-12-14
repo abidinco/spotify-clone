@@ -34,12 +34,19 @@ const PlaylistPage = () => {
     } else if (isLikedSongsPage) {
         getLikedSongs = async () => {
             let arr = pathname.split("/");
-            const likedSongs = await Spotify.getLikedSongs(arr[arr.length-1])
+            const likedSongs = await Spotify.getCurrentUserSavedTracks(arr[arr.length-1])
             setLikedSongs(likedSongs);
         }
     }
 
+    function millisToMinutesAndSeconds(millis) {
+        var minutes = Math.floor(millis / 60000);
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+      }
+
     useEffect(() => {
+        // this func for stick to header of playlist when scroll
         const pinHeader = () => {
             let pageY = Math.abs(document.querySelector('#navbar-root').nextElementSibling.getBoundingClientRect().top - 64);
             if (isArtistPage && pageY >= 380) {
@@ -72,7 +79,6 @@ const PlaylistPage = () => {
                     <div className={styles['header-info-name']}>
                         { isLikedSongsPage && 'Liked Songs' }
                         { isArtistPage && 'artist' }
-                        
                     </div>
                     <div className={styles['header-info-bottom']}>
                         {!isArtistPage && <React.Fragment><img src="/pp.jfif" width={24} height={24} alt="Pp" /> <span>Abidin A.</span> • 2 songs, <span>15 min 28 sec</span></React.Fragment>}
@@ -95,26 +101,36 @@ const PlaylistPage = () => {
                         <span><Icon name="duration" height={16} width={16} color="#b3b3b3" /></span>
                     </div>
                     <div className={styles.playlist} style={{ height: 1000}}>
-                        <div className={styles.item}>
-                            <div className={styles.index}>
-                                <div className={styles['index-number']}>1</div>
-                                <div className={styles['index-icon']}>
-                                    <Icon name="player-play" width={16} height={16} color="#fff" />
-                                </div>
-                            </div>
-                            <div className={styles.meta}>
-                                <img src="/browse-card-images/decades.jfif" alt="Song" />
-                                <div>
-                                    <div className={styles['song-name']}>Gnossienne No.1</div>
-                                    <div>Erkan Oğur</div>
-                                </div>
-                            </div>
-                            <div>Dönmez Yol</div>
-                            <div className={styles.date}>Dec 5, 2021</div>
-                            <div className={styles.duration}>
-                                <span>4:39</span>
-                            </div>
-                        </div>
+
+                        { console.log(likedSongs) }
+
+                        { likedSongs
+                            ? likedSongs.items.map((song, index) => (
+                                <div className={styles.item} key={song.track.id}>
+                                    <div className={styles.index}>
+                                        <div className={styles['index-number']}>{index+1}</div>
+                                        <div className={styles['index-icon']}>
+                                            <Icon name="player-play" width={16} height={16} color="#fff" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.meta}>
+                                        <img src={song.track.album.images[0].url} alt="Song" />
+                                        <div>
+                                            <div className={styles['song-name']}>{song.track.name}</div>
+                                            <div>{song.track.artists.map((artist) => artist.name + "  ")}</div>
+                                        </div>
+                                    </div>
+                                    <div>{song.track.album.name}</div>
+                                    <div className={styles.date}>{song.added_at}</div>
+                                    <div className={styles.duration}>
+                                        <span>{millisToMinutesAndSeconds(song.track.duration_ms)}</span>
+                                    </div>
+                                </div> 
+                            ))
+                            : null
+                        }
+
+
                     </div>
                 </div>
             }

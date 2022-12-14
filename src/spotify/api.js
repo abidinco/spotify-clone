@@ -34,6 +34,7 @@ const Spotify = {
         let now = new Date();
         return now.getTime();
     },
+    // TODO: Too much repetitive functions going on here. Will be fixed.
     getAccessToken() {
         // Spotify API responds "Token expired" when token expired.
         // TODO: Added expiry control in if statement. Let's see is this working (Update: It's not.)

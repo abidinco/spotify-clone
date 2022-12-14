@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, useCallback } from "react";
 import TopItem from "../UI/TopItem";
 import PlayCard from "../UI/PlayCard";
 
-import { Link } from 'react-router-dom';
 import AppContext from '../../store';
 import styles from './HomePage.module.css';
 import Spotify from '../../spotify/api';
@@ -12,6 +11,7 @@ const HomePage = () => {
     // const [topArtists, setTopArtists] = useState();
     const [topTracks, setTopTracks] = useState();
     const [recentlyPlayedTracks, setRecentlyPlayedTracks] = useState();
+
     const getCurrentUsersPlaylists = useCallback(async () => {
         let listOfPlaylist = await Spotify.getCurrentUsersPlaylists();
         setPlaylists(listOfPlaylist);
@@ -28,6 +28,7 @@ const HomePage = () => {
         let listOfTracks = await Spotify.getCurrentUserRecentlyPlayedTracks();
         setRecentlyPlayedTracks(listOfTracks);
     }, []);
+
     const welcomingMessage = () => {
         let date = new Date();
         if (date.getHours() < 12) return "Good morning"
@@ -103,18 +104,10 @@ const HomePage = () => {
                 </React.Fragment>}
             {!appCtx.isLoggedIn &&
                 <React.Fragment>
-                    <div className={styles.title}>Your playlists</div>
-                    <div className={styles['cards-container']}>
-                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                    </div>
-                    <div className={styles.title}><div>Focus</div><Link to="#">SEE ALL</Link></div>
-                    <div className={styles['cards-container']}>
-                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                    </div>
-                    <div className={styles.title}>Sleep</div>
-                    <div className={styles['cards-container']}>
-                        <PlayCard href="/playlist/1" cover="/browse-card-images/new-releases.jfif" title="Daily Mix 1" subtitle="Ebru Gündeş, Ahmet Kaya, Ebru Gündeş, Ahmet Kaya" />
-                    </div>
+                    <div className={styles.title}>Login to see</div>
+                    {
+                        // TODO: Add fancy "login to see" thing here.
+                    }
                 </React.Fragment>
             }
         </div>
