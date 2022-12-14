@@ -36,7 +36,7 @@ const Spotify = {
     },
     getAccessToken() {
         // Spotify API responds "Token expired" when token expired.
-        // TODO: Added expiry control in if statement. Let's see is this working
+        // TODO: Added expiry control in if statement. Let's see is this working (Update: It's not.)
         if(localStorage.getItem('accessToken') && (this.getNow() > localStorage.getItem('accessTokenExpiry'))) {
             spotifyAccessToken = localStorage.getItem('accessToken');
             return spotifyAccessToken;
@@ -88,6 +88,45 @@ const Spotify = {
             "content-type": "application/json",
         }
         let response = await fetch(`https://api.spotify.com/v1/me/tracks`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getCurrentUserTopArtists() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getCurrentUserTopTracks() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/top/tracks`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getCurrentUserRecentlyPlayedTracks() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/player/recently-played`, {
             headers: headers,
             method: 'GET',
         });
