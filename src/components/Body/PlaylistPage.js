@@ -6,10 +6,12 @@ import Spotify from "../../spotify/api";
 
 const PlaylistPage = () => {
     const { pathname } = useLocation();
+    const location = useLocation();
     const isArtistPage = pathname.startsWith('/artist');
     const isPlaylistPage = pathname.startsWith('/playlist');
     const isLikedSongsPage = pathname === '/collection/tracks';
     const tableHeaderElement = useRef(null);
+    const [pageKey, setPageKey] = useState(location.key);
 
     const [artist, setArtist] = useState(null);
     const [playlist, setPlaylist] = useState(null);
@@ -59,6 +61,7 @@ const PlaylistPage = () => {
     }, [isArtistPage]);
 
     useEffect(() => {
+        setPageKey(location.key);
         if(isPlaylistPage) {
             getPlaylist();
         } else if(isArtistPage) {
@@ -66,7 +69,7 @@ const PlaylistPage = () => {
         } else if (isLikedSongsPage) {
             getLikedSongs();
         }
-    }, [isArtistPage, isLikedSongsPage, isPlaylistPage]);
+    }, [isArtistPage, isLikedSongsPage, isPlaylistPage, location.key]);
 
     return (
         <div>
@@ -79,6 +82,7 @@ const PlaylistPage = () => {
                     <div className={styles['header-info-name']}>
                         { isLikedSongsPage && 'Liked Songs' }
                         { isArtistPage && 'artist' }
+                        { isPlaylistPage && playlist ? playlist.name : null }
                     </div>
                     <div className={styles['header-info-bottom']}>
                         {!isArtistPage && <React.Fragment><img src="/pp.jfif" width={24} height={24} alt="Pp" /> <span>Abidin A.</span> • 2 songs, <span>15 min 28 sec</span></React.Fragment>}
@@ -101,10 +105,7 @@ const PlaylistPage = () => {
                         <span><Icon name="duration" height={16} width={16} color="#b3b3b3" /></span>
                     </div>
                     <div className={styles.playlist} style={{ height: 1000}}>
-
-                        { console.log(likedSongs) }
-
-                        { likedSongs
+                        { (isLikedSongsPage && likedSongs)
                             ? likedSongs.items.map((song, index) => (
                                 <div className={styles.item} key={song.track.id}>
                                     <div className={styles.index}>
@@ -114,7 +115,7 @@ const PlaylistPage = () => {
                                         </div>
                                     </div>
                                     <div className={styles.meta}>
-                                        <img src={song.track.album.images[0].url} alt="Song" />
+                                        <img src={song.track.album.images[0].url ? song.track.album.images[0].url : 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'} alt="Song" />
                                         <div>
                                             <div className={styles['song-name']}>{song.track.name}</div>
                                             <div>{song.track.artists.map((artist) => artist.name + "  ")}</div>
@@ -129,8 +130,31 @@ const PlaylistPage = () => {
                             ))
                             : null
                         }
-
-
+                        { (isPlaylistPage && playlist)
+                            ? playlist.tracks.items.map((song, index) => (
+                                <div className={styles.item} key={song.track.id}>
+                                    <div className={styles.index}>
+                                        <div className={styles['index-number']}>{index+1}</div>
+                                        <div className={styles['index-icon']}>
+                                            <Icon name="player-play" width={16} height={16} color="#fff" />
+                                        </div>
+                                    </div>
+                                    <div className={styles.meta}>
+                                        <img src={song.track.album.images[0].url ? song.track.album.images[0].url : 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'} alt="Song" />
+                                        <div>
+                                            <div className={styles['song-name']}>{song.track.name}</div>
+                                            <div>{song.track.artists.map((artist) => artist.name + "  ")}</div>
+                                        </div>
+                                    </div>
+                                    <div>{song.track.album.name}</div>
+                                    <div className={styles.date}>{song.added_at}</div>
+                                    <div className={styles.duration}>
+                                        <span>{millisToMinutesAndSeconds(song.track.duration_ms)}</span>
+                                    </div>
+                                </div>
+                            ))
+                            : null
+                        }
                     </div>
                 </div>
             }
