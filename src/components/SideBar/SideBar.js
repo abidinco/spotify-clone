@@ -15,8 +15,8 @@ const Sidebar = () => {
     }
 
     useEffect(() => {
-      getPlaylists();
-    }, []);
+      appCtx.isLoggedIn && getPlaylists();
+    }, [appCtx.isLoggedIn]);
 
     return (
         <div className={styles.sidebar}>

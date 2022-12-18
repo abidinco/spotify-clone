@@ -7,6 +7,7 @@ import styles from './HomePage.module.css';
 import Spotify from '../../spotify/api';
 
 const HomePage = () => {
+    const appCtx = useContext(AppContext);
     const [playlists, setPlaylists] = useState();
     // const [topArtists, setTopArtists] = useState();
     const [topTracks, setTopTracks] = useState();
@@ -36,12 +37,11 @@ const HomePage = () => {
         if (date.getHours() < 25) return "Good evening"
     }
     useEffect(() => {
-        getCurrentUsersPlaylists();
+        appCtx.isLoggedIn && getCurrentUsersPlaylists();
         // getCurrentUserTopArtists();
-        getCurrentUserTopTracks();
-        getCurrentUserRecentlyPlayedTracks();
-    }, [getCurrentUserRecentlyPlayedTracks, getCurrentUserTopTracks, getCurrentUsersPlaylists]);
-    const appCtx = useContext(AppContext);
+        appCtx.isLoggedIn && getCurrentUserTopTracks();
+        appCtx.isLoggedIn && getCurrentUserRecentlyPlayedTracks();
+    }, [appCtx.isLoggedIn, getCurrentUserRecentlyPlayedTracks, getCurrentUserTopTracks, getCurrentUsersPlaylists]);
     return (
         <div className={styles.wrapper}>
             {appCtx.isLoggedIn &&
