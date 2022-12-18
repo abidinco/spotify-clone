@@ -1,5 +1,5 @@
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000/callback";
+const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 
 let spotifyAccessToken;
