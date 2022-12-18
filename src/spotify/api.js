@@ -1,6 +1,4 @@
-import SECRET from './secret';
-
-const CLIENT_ID = SECRET.clientId;
+const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/callback";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 

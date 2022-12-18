@@ -1,4 +1,4 @@
-src/spotify/secret.js
+.env
 
 # dependencies
 /node_modules
