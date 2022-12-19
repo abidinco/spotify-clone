@@ -67,6 +67,19 @@ const Spotify = {
         if(jsonResponse) userId = jsonResponse.id;
         return userId;
     },
+    async getCurrentUser() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
     async getCurrentUsersPlaylists() {
         let token = localStorage.getItem('accessToken');
         let headers = {
