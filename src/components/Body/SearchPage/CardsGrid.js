@@ -3,21 +3,29 @@ import styles from './CardsGrid.module.css';
 import BrowseCard from "../../UI/BrowseCard";
 import { useParams } from 'react-router-dom';
 import PlayCard from '../../UI/PlayCard';
+import GENRES from './Genres';
 
 const Genres = (props) => {
+    console.log(GENRES);
     const { searchType } = useParams();
     const isCoverRounded = (searchType === 'artists') || (searchType === 'users');
     const dontShowPlayButton = (searchType === 'podcastAndEpisodes' || searchType === 'users');
+    // TODO: getBackground func renders every scroll :d
+    const getBackground = (max) => {
+        return `rgb(${Math.floor(Math.random()*max)},${Math.floor(Math.random()*max)},${Math.floor(Math.random()*max)})`;
+    };
     return (
         <div className={props.genres ? styles['padding-genres'] : styles['padding-others']}>
             {props.genres && <div className={styles['text-browse']}>Browse all</div>}
             <div className={styles['cards-container']}>
                 {props.genres &&
                     <React.Fragment>
-                        <BrowseCard name="Podcasts" color="rgb(39, 133, 106)" image={'podcasts.jfif'} />
-                        <BrowseCard name="Made For You" color="rgb(30, 50, 100)" image={'pop-mix.png'} />
-                        <BrowseCard name="Charts" color="rgb(141, 103, 171)" image={'charts.jpg'} />
-                        <BrowseCard name="New Releases" color="rgb(232, 17, 91)" image={'new-releases.jfif'} />
+                        { GENRES
+                            ? GENRES.map((genre, i) => (
+                                <BrowseCard key={i} name={genre.name} color={getBackground(255)} image={genre.image} />
+                            ))
+                            : null
+                        }
                     </React.Fragment>
                 }
                 {!props.genres &&

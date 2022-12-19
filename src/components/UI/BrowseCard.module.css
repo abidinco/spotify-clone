@@ -10,7 +10,7 @@
 }
 
 .wrapper:hover {
-    cursor: pointer;
+    cursor: not-allowed;
 }
 
 .wrapper > div {
