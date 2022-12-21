@@ -167,3 +167,8 @@ input[type="range"]::-ms-fill-lower {
 .padding-0-32 {
   padding: 0 32px;
 }
+
+.not-allowed:hover,
+.not-allowed *:hover {
+  cursor: not-allowed;
+}

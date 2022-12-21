@@ -34,12 +34,6 @@ const Spotify = {
     },
     // TODO: Too much repetitive functions going on here. Will be fixed.
     getAccessToken() {
-        // Spotify API responds "Token expired" when token expired.
-        // TODO: Added expiry control in if statement. Let's see is this working (Update: It's not.)
-        if(localStorage.getItem('accessToken') && (this.getNow() > localStorage.getItem('accessTokenExpiry'))) {
-            spotifyAccessToken = localStorage.getItem('accessToken');
-            return spotifyAccessToken;
-        }
         let accessToken = window.location.hash.match(/access_token=([^&]*)/);
         let expiresIn = window.location.hash.match(/expires_in=([^&]*)/);
         if (accessToken && expiresIn) {
@@ -100,6 +94,45 @@ const Spotify = {
             "content-type": "application/json",
         }
         let response = await fetch(`https://api.spotify.com/v1/me/tracks`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getCurrentUserSavedShows() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/shows`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getCurrentUserFollowedArtists() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/following?type=artist`, {
+            headers: headers,
+            method: 'GET',
+        });
+        let jsonResponse = await response.json();
+        return jsonResponse;
+    },
+    async getCurrentUserSavedAlbums() {
+        let token = localStorage.getItem('accessToken');
+        let headers = {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+        }
+        let response = await fetch(`https://api.spotify.com/v1/me/albums`, {
             headers: headers,
             method: 'GET',
         });

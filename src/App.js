@@ -1,18 +1,24 @@
-import Layout from './components/Layout';
+import Layout from "./components/Layout";
 import React, { useEffect, useContext } from "react";
-import AppContext from '../src/store/index';
+import AppContext from "../src/store/index";
 
 function App() {
   const appCtx = useContext(AppContext);
   useEffect(() => {
-    if(localStorage.getItem("accessToken")) {
+    let now = new Date();
+    // If now > tokenExpiry delete accessToken
+    if (
+      localStorage.getItem("accessTokenExpiry") &&
+      now.getTime() > localStorage.getItem("accessTokenExpiry")
+    ) {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("accessTokenExpiry");
+    } else if (localStorage.getItem("accessToken")) {
       appCtx.handleLogin();
     }
   }, []);
 
-  return (
-    <Layout />
-  );
+  return <Layout />;
 }
 
 export default App;

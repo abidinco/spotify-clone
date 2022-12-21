@@ -1,27 +1,33 @@
 import React from "react";
-import styles from './HeroCard.module.css';
-import Icon from './Icon';
+import styles from "./HeroCard.module.css";
+import { Link } from "react-router-dom";
+import Icon from "./Icon";
 
 const HeroCard = (props) => {
-    return(
-        <div className={styles.wrapper}>
-            <div className={styles.list}>
-                <span>Erkan Oğur</span>
-                <span>Gnossienne No.1</span>
-                <span>Erkan Oğur</span>
-                <span>Gnossienne No.1</span>
-                <span>Erkan Oğur</span>
-                <span>Gnossienne No.1</span>
-                <span>Erkan Oğur</span>
-                <span>Gnossienne No.1</span>
-            </div>
-            <div className={styles.name}>Liked Songs</div>
-            <div className={styles.count}>{props.count} liked songs</div>
-            <div className={styles['button-wrapper']}>
-                <Icon name="player-play" color="black" width={18} height={18} />
-            </div>
-        </div>
-    )
-}
+  return (
+    <Link
+      to={props.to ? props.to : ""}
+      className={[props.className, styles.wrapper].join(" ")}
+    >
+      <div className={styles.list}>
+        {props.list
+          ? props.list.map((item, i) => (
+              <div key={i}>
+                <span>{item.name}</span>
+                <span>{item.artist}</span>
+              </div>
+            ))
+          : null}
+      </div>
+      <div className={styles.name}>{props.title}</div>
+      <div className={styles.count}>
+        {props.count} {props.countSuffix}
+      </div>
+      <div className={styles["button-wrapper"]}>
+        <Icon name="player-play" color="black" width={18} height={18} />
+      </div>
+    </Link>
+  );
+};
 
 export default HeroCard;

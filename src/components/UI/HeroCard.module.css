@@ -9,6 +9,7 @@
     flex-direction: column;
     position: relative;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .list {
@@ -25,9 +26,23 @@
     font-weight: 400;
 }
 
-.list>span:nth-child(2n) {
+.list > div {
+    display: inline-flex;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.list > div > span:nth-child(2) {
     opacity: .7;
-    padding: 0 4px;
+    padding: 0 5px;
+}
+
+.list > div > span:nth-child(1):before {
+    content: ' • ';
+}
+
+.list > div:first-child > span:nth-child(1):before {
+    content: none !important;
 }
 
 .name {

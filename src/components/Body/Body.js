@@ -6,7 +6,7 @@ import Navbar from '../Navbar/Navbar';
 import HomePage from './HomePage';
 import SearchPage from './SearchPage/SearchPage';
 import PlaylistPage from './PlaylistPage';
-import CollectionsPage from './CollectionsPage';
+import CollectionsPage from './CollectionsPage/CollectionsPage';
 import CallbackPage from '../CallbackPage';
 import NotFoundPage from '../NotFoundPage';
 

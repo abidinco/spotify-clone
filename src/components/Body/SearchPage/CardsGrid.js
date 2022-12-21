@@ -6,7 +6,6 @@ import PlayCard from '../../UI/PlayCard';
 import GENRES from './Genres';
 
 const Genres = (props) => {
-    console.log(GENRES);
     const { searchType } = useParams();
     const isCoverRounded = (searchType === 'artists') || (searchType === 'users');
     const dontShowPlayButton = (searchType === 'podcastAndEpisodes' || searchType === 'users');
