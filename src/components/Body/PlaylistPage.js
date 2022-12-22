@@ -21,6 +21,8 @@ const PlaylistPage = () => {
     let getArtist = () => {};
     let getLikedSongs = () => {};
 
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
     if(isPlaylistPage) {
         getPlaylist = async () => {
             let arr = pathname.split("/");
@@ -46,6 +48,14 @@ const PlaylistPage = () => {
         var seconds = ((millis % 60000) / 1000).toFixed(0);
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
       }
+
+    function formatDate(date) {
+        let d = new Date(date),
+            month = '' + months[(d.getMonth())],
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        return month + ' ' + day + ', ' + year;;
+    }
 
     useEffect(() => {
         // this func for stick to header of playlist when scroll
@@ -104,7 +114,7 @@ const PlaylistPage = () => {
                         <span>Date Added</span>
                         <span><Icon name="duration" height={16} width={16} color="#b3b3b3" /></span>
                     </div>
-                    <div className={styles.playlist} style={{ height: 1000}}>
+                    <div className={styles.playlist}>
                         { (isLikedSongsPage && likedSongs)
                             ? likedSongs.items.map((song, index) => (
                                 <div className={styles.item} key={song.track.id}>
@@ -122,7 +132,7 @@ const PlaylistPage = () => {
                                         </div>
                                     </div>
                                     <div>{song.track.album.name}</div>
-                                    <div className={styles.date}>{song.added_at}</div>
+                                    <div className={styles.date}>{song ? formatDate(song.added_at) : '...'}</div>
                                     <div className={styles.duration}>
                                         <span>{millisToMinutesAndSeconds(song.track.duration_ms)}</span>
                                     </div>
@@ -147,7 +157,7 @@ const PlaylistPage = () => {
                                         </div>
                                     </div>
                                     <div>{song.track.album.name}</div>
-                                    <div className={styles.date}>{song.added_at}</div>
+                                    <div className={styles.date}>{song ? formatDate(song.added_at) : '...'}</div>
                                     <div className={styles.duration}>
                                         <span>{millisToMinutesAndSeconds(song.track.duration_ms)}</span>
                                     </div>
