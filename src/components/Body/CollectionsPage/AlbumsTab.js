@@ -24,7 +24,7 @@ const AlbumsTab = () => {
               cover={
                 album.album.images[0]
                   ? album.album.images[0].url
-                  : "https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2"
+                  : "/blank.jpg"
               }
               title={album.album.name}
               subtitle={album.album.artists[0].name}

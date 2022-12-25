@@ -125,7 +125,7 @@ const PlaylistPage = () => {
                                         </div>
                                     </div>
                                     <div className={styles.meta}>
-                                        <img src={song.track.album.images[0].url ? song.track.album.images[0].url : 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'} alt="Song" />
+                                        <img src={song.track.album.images[0].url ? song.track.album.images[0].url : '/blank.jpg'} alt="Song" />
                                         <div>
                                             <div className={styles['song-name']}>{song.track.name}</div>
                                             <div>{song.track.artists.map((artist) => artist.name + "  ")}</div>
@@ -150,7 +150,7 @@ const PlaylistPage = () => {
                                         </div>
                                     </div>
                                     <div className={styles.meta}>
-                                        <img src={song.track.album.images[0].url ? song.track.album.images[0].url : 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'} alt="Song" />
+                                        <img src={song.track.album.images[0].url ? song.track.album.images[0].url : '/blank.jpg'} alt="Song" />
                                         <div>
                                             <div className={styles['song-name']}>{song.track.name}</div>
                                             <div>{song.track.artists.map((artist) => artist.name + "  ")}</div>

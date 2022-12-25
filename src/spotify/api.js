@@ -39,8 +39,7 @@ const Spotify = {
         if (accessToken && expiresIn) {
             spotifyAccessToken = accessToken[1];
             localStorage.setItem("accessToken", spotifyAccessToken);
-            let expiryTime = Number(expiresIn[1]);
-            window.setTimeout(() => (spotifyAccessToken = ""), expiryTime * 1000);
+            let expiryTime = Number(expiresIn[1]) * 1000;
             localStorage.setItem('accessTokenExpiry', this.getNow() + expiryTime);
             window.history.pushState("Access Token", " ", "/");
             return spotifyAccessToken;
