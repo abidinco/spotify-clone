@@ -22,9 +22,7 @@ const AlbumsTab = () => {
               className="not-allowed"
               href=""
               cover={
-                album.album.images[0]
-                  ? album.album.images[0].url
-                  : "/blank.jpg"
+                album.album.images[0] ? album.album.images[0].url : "/blank.jpg"
               }
               title={album.album.name}
               subtitle={album.album.artists[0].name}

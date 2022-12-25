@@ -40,11 +40,7 @@ const PlaylistsTab = () => {
             <PlayCard
               key={playlist.id}
               href={`/playlist/${playlist.id}`}
-              cover={
-                playlist.images[0]
-                  ? playlist.images[0].url
-                  : "/blank.jpg"
-              }
+              cover={playlist.images[0] ? playlist.images[0].url : "/blank.jpg"}
               title={playlist.name}
               subtitle={
                 playlist.description

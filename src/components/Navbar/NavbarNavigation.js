@@ -1,7 +1,7 @@
-import React from 'react'
-import Icon from '../UI/Icon';
-import styles from './NavbarNavigation.module.css';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import Icon from "../UI/Icon";
+import styles from "./NavbarNavigation.module.css";
+import { useNavigate } from "react-router-dom";
 
 const NavbarNavigation = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const NavbarNavigation = () => {
         <Icon name="arrow-right" color="#FFFFFF" width={22} height={22} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default NavbarNavigation;

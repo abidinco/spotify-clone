@@ -21,11 +21,7 @@ const ArtistsTab = () => {
               className="not-allowed"
               key={i}
               href=""
-              cover={
-                artist.images[0]
-                  ? artist.images[0].url
-                  : "/blank.jpg"
-              }
+              cover={artist.images[0] ? artist.images[0].url : "/blank.jpg"}
               rounded
               title={artist.name}
             />

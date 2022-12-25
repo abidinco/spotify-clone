@@ -1,55 +1,58 @@
 .wrapper {
-    padding: 0 32px 24px 32px;
+  padding: 0 32px 24px 32px;
 }
 
-.wrapper>div {
-    margin: 36px 0;
+.wrapper > div {
+  margin: 36px 0;
 }
 
 .message {
-    font-size: 32px;
-    color: white;
-    font-weight: 700;
-    letter-spacing: -1px;
+  font-size: 32px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: -1px;
 }
 
 .top-items {
-    --min-column-width: 270px;
-    --item-height: 80px;
-    --column-gap: 24px;
-    --row-gap: 16px;
-    grid-gap: var(--row-gap) var(--column-gap);
-    display: grid;
-    grid-template: auto/repeat(auto-fill, minmax(max(var(--min-column-width), 25%), 1fr));
+  --min-column-width: 270px;
+  --item-height: 80px;
+  --column-gap: 24px;
+  --row-gap: 16px;
+  grid-gap: var(--row-gap) var(--column-gap);
+  display: grid;
+  grid-template: auto/repeat(
+    auto-fill,
+    minmax(max(var(--min-column-width), 25%), 1fr)
+  );
 }
 
 .title {
-    font-size: 24px;
-    letter-spacing: -1px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  font-size: 24px;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.title>a {
-    font-size: 12px;
-    color: #bebebe;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
+.title > a {
+  font-size: 12px;
+  color: #bebebe;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
 }
 
-.title>a:hover {
-    text-decoration: underline;
+.title > a:hover {
+  text-decoration: underline;
 }
 
 .cards-container {
-    --column-width: 180px;
-    --column-count: 7;
-    --grid-gap: 24px;
-    grid-template-rows: 1fr;
-    overflow-y: hidden;
-    grid-gap: var(--grid-gap);
-    display: grid;
-    grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
+  --column-width: 180px;
+  --column-count: 7;
+  --grid-gap: 24px;
+  grid-template-rows: 1fr;
+  overflow-y: hidden;
+  grid-gap: var(--grid-gap);
+  display: grid;
+  grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
 }
