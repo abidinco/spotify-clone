@@ -28,14 +28,14 @@ const PlayerBar = () => {
           src={recentSong ? recentSong.track.album.images[0].url : "/blank.jpg"}
         />
         <div className={styles["now-playing-info"]}>
-          <Link to="" className={styles["now-playing-info-title"]}>
+          <Link to="#" className={styles["now-playing-info-title"]}>
             {recentSong ? recentSong.track.name : "..."}
           </Link>
           <div className={styles["now-playing-info-artist"]}>
             {recentSong
               ? recentSong.track.artists.map((artist, i) => (
                   <React.Fragment key={i}>
-                    <Link key={i} to="">
+                    <Link key={i} to={`/artist/${artist.id}`}>
                       {artist.name}
                     </Link>
                     {recentSong.track.artists.length - 2 < i ? null : ", "}

@@ -224,7 +224,7 @@ const Spotify = {
       "content-type": "application/json",
     };
     let response = await fetch(
-      `https://api.spotify.com/v1/playlists/${artist_id}/tracks`,
+      `https://api.spotify.com/v1/artists/${artist_id}`,
       {
         headers: headers,
         method: "GET",

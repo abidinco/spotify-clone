@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import styles from "./PlaylistPage.module.css";
-import Icon from "../UI/Icon";
+import Icon from "../../UI/Icon";
 import { useLocation } from "react-router-dom";
-import Spotify from "../../spotify/api";
+import Spotify from "../../../spotify/api";
+
+import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
 
 const PlaylistPage = () => {
   const { pathname } = useLocation();
@@ -10,6 +12,7 @@ const PlaylistPage = () => {
   const isArtistPage = pathname.startsWith("/artist");
   const isPlaylistPage = pathname.startsWith("/playlist");
   const isLikedSongsPage = pathname === "/collection/tracks";
+
   const tableHeaderElement = useRef(null);
   const [pageKey, setPageKey] = useState(location.key);
 
@@ -20,21 +23,6 @@ const PlaylistPage = () => {
   let getPlaylist = () => {};
   let getArtist = () => {};
   let getLikedSongs = () => {};
-
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   if (isPlaylistPage) {
     getPlaylist = async () => {
@@ -56,20 +44,6 @@ const PlaylistPage = () => {
       );
       setLikedSongs(likedSongs);
     };
-  }
-
-  function millisToMinutesAndSeconds(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-  }
-
-  function formatDate(date) {
-    let d = new Date(date),
-      month = "" + months[d.getMonth()],
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-    return month + " " + day + ", " + year;
   }
 
   useEffect(() => {

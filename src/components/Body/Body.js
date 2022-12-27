@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import HomePage from "./HomePage";
 import SearchPage from "./SearchPage/SearchPage";
-import PlaylistPage from "./PlaylistPage";
+import PlaylistRoot from "./PlaylistPage/PlaylistRoot";
 import CollectionsPage from "./CollectionsPage/CollectionsPage";
 import CallbackPage from "../CallbackPage";
 import NotFoundPage from "../NotFoundPage";
@@ -26,7 +26,7 @@ const Body = () => {
           <Route path=":searchTerm" element={<SearchPage />} />
           <Route path=":searchTerm/:searchType" element={<SearchPage />} />
         </Route>
-        <Route path="/collection/tracks" element={<PlaylistPage />} />
+        <Route path="/collection/tracks" element={<PlaylistRoot />} />
         <Route
           path="/collection/playlists"
           element={<CollectionsPage tab="playlists" />}
@@ -44,8 +44,8 @@ const Body = () => {
           element={<CollectionsPage tab="albums" />}
         />
 
-        <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
-        <Route path="/artist/:artistId" element={<PlaylistPage />} />
+        <Route path="/playlist/:playlistId" element={<PlaylistRoot />} />
+        <Route path="/artist/:artistId" element={<PlaylistRoot />} />
         <Route path="/callback" element={<CallbackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
