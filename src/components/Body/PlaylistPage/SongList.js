@@ -52,22 +52,26 @@ const SongList = (props) => {
                     <div>
                       {props.page === "artist"
                         ? song.artists.map((artist, i) => (
-                            <Link
-                              className={styles["song-link"]}
-                              key={i}
-                              to={`/artist/${artist.id}`}
-                            >
-                              {artist.name}
-                            </Link>
+                            <React.Fragment key={i}>
+                              <Link
+                                className={styles["song-link"]}
+                                to={`/artist/${artist.id}`}
+                              >
+                                {artist.name}
+                              </Link>
+                              {song.artists.length - 2 < i ? null : ", "}
+                            </React.Fragment>
                           ))
                         : song.track.artists.map((artist, i) => (
-                            <Link
-                              className={styles["song-link"]}
-                              key={i}
-                              to={`/artist/${artist.id}`}
-                            >
-                              {artist.name}
-                            </Link>
+                            <React.Fragment key={i}>
+                              <Link
+                                className={styles["song-link"]}
+                                to={`/artist/${artist.id}`}
+                              >
+                                {artist.name}
+                              </Link>
+                              {song.artists.length - 2 < i ? null : ", "}
+                            </React.Fragment>
                           ))}
                     </div>
                   </div>

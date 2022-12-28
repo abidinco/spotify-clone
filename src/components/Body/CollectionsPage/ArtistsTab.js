@@ -18,9 +18,8 @@ const ArtistsTab = () => {
       {artists
         ? artists.artists.items.map((artist, i) => (
             <PlayCard
-              className="not-allowed"
               key={i}
-              href=""
+              href={`/artist/${artist.id}`}
               cover={artist.images[0] ? artist.images[0].url : "/blank.jpg"}
               rounded
               title={artist.name}
