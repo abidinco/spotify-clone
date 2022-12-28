@@ -70,7 +70,7 @@ const SongList = (props) => {
                               >
                                 {artist.name}
                               </Link>
-                              {song.artists.length - 2 < i ? null : ", "}
+                              {song.track.artists.length - 2 < i ? null : ", "}
                             </React.Fragment>
                           ))}
                     </div>
