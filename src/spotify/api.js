@@ -233,6 +233,22 @@ const Spotify = {
     let jsonResponse = await response.json();
     return jsonResponse;
   },
+  async getArtistsTopTracks(artist_id) {
+    let token = localStorage.getItem("accessToken");
+    let headers = {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json",
+    };
+    let response = await fetch(
+      `https://api.spotify.com/v1/artists/${artist_id}/top-tracks?market=TR`,
+      {
+        headers: headers,
+        method: "GET",
+      }
+    );
+    let jsonResponse = await response.json();
+    return jsonResponse;
+  },
 };
 
 export default Spotify;
