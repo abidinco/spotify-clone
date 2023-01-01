@@ -35,8 +35,8 @@ const NavbarLinks = () => {
           <div tabIndex={0}>
             <img
               src={
-                user && user.images[0].url
-                  ? user.images[0].url
+                user
+                  ? user.images[0]?.url
                   : "https://i.scdn.co/image/ab6761610000e5eb55d39ab9c21d506aa52f7021"
               }
               alt="Profile"
