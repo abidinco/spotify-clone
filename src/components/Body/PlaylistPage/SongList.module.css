@@ -1,41 +1,79 @@
-.table {
-  position: relative;
-  top: -64px;
-}
-
 .table-header {
   font-size: 12px;
   color: #b3b3b3;
   text-transform: uppercase;
   font-weight: 400;
-  padding: 0 16px;
-  margin: 0 32px;
+  padding: 0 48px;
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
   letter-spacing: 1px;
-  display: grid;
-  grid-template-columns: [index] 16px [first] 6fr [var1] 4fr [var2] 3fr [last] minmax(
-      120px,
-      1fr
-    );
-  height: 36px;
-  gap: 16px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  height: 36px;
   margin-bottom: 20px;
+  position: sticky;
+  top: 64px;
 }
 
-.table-header > span:last-child {
+.table-header > div,
+.item > div {
   display: flex;
+  flex-basis: 32px;
+}
+
+.table-header > div:first-child,
+.item > div:first-child {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.table-header > div:nth-child(2),
+.item > div:nth-child(2) {
+  flex-grow: 9;
+}
+
+@media only screen and (min-width: 1440px) {
+  .table-header > div:nth-child(2),
+  .item > div:nth-child(2) {
+    flex-grow: 6;
+  }
+}
+
+@media only screen and (min-width: 1020px) and (max-width: 1200px) {
+  .table-header > div:nth-child(2),
+  .item > div:nth-child(2) {
+    flex-grow: 16;
+  }
+}
+
+.table-header > div:nth-child(3),
+.item > div:nth-child(3) {
+  flex-grow: 4;
+}
+
+.table-header > div:nth-child(4),
+.item > div:nth-child(4) {
+  flex-basis: 100px;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1020px) {
+  .table-header > div:nth-child(4),
+  .item > div:nth-child(4) {
+    display: none;
+  }
+}
+
+.table-header > div:last-child,
+.item > div:last-child {
+  flex-grow: 2;
   justify-content: center;
 }
 
 .item {
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: [index] 16px [first] 6fr [var1] 4fr [var2] 3fr [last] minmax(
-      120px,
-      1fr
-    );
-  gap: 16px;
+  justify-content: space-between;
   border-radius: 4px;
   border: 1px solid transparent;
   height: 56px;
@@ -64,12 +102,7 @@
 .item:hover .index-icon,
 .index-number {
   display: flex;
-}
-
-.index {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .index-number {
@@ -115,4 +148,11 @@
 
 .song-link:hover {
   text-decoration: underline;
+}
+
+.album {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 8vw;
+  overflow: hidden;
 }

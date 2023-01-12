@@ -47,9 +47,51 @@ const calculatePlaylistDuration = (items) => {
   return convertMsToTime(durations.reduce((acc, val) => acc + val, 0));
 };
 
+const welcomingMessage = () => {
+  let date = new Date();
+  if (date.getHours() < 12) return "Good morning";
+  if (date.getHours() < 17) return "Good afternoon";
+  if (date.getHours() < 25) return "Good evening";
+};
+
+const navbarBreakpoint = (top) => {
+  const path = document.location.pathname;
+  if (
+    path.startsWith("/playlist") ||
+    path.startsWith("/artist") ||
+    path === "/collection/tracks"
+  ) {
+    if (top >= 386 && !(top < 386)) {
+      return { attribute: "song-list-header-stuck", value: true };
+    } else if (top > 331) {
+      return { attribute: "song-list-header-stuck", value: false };
+    } else if (top >= 330) {
+      return { attribute: "display-now-playing", value: true };
+    } else if (top >= 300) {
+      return { attribute: "navbar-opacity", value: 1 };
+    } else if (top >= 200) {
+      return { attribute: "navbar-opacity", value: 0.5 };
+    } else if (top >= 150) {
+      return { attribute: "navbar-opacity", value: 0 };
+    } else {
+      return { attribute: "display-now-playing", value: false };
+    }
+  } else {
+    if (top >= 150) {
+      return { attribute: "navbar-opacity", value: 1 };
+    } else if (top >= 100) {
+      return { attribute: "navbar-opacity", value: 0.5 };
+    } else {
+      return { attribute: "navbar-opacity", value: 0 };
+    }
+  }
+};
+
 export {
   formatDate,
   millisToMinutesAndSeconds,
   numberWithCommas,
   calculatePlaylistDuration,
+  welcomingMessage,
+  navbarBreakpoint,
 };

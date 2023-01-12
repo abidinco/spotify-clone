@@ -56,3 +56,39 @@
   display: grid;
   grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
 }
+
+@media only screen and (max-width: 770px) {
+  .cards-container {
+    --column-count: 1;
+  }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 970px) {
+  .cards-container {
+    --column-count: 2;
+  }
+}
+
+@media only screen and (min-width: 970px) and (max-width: 1300px) {
+  .cards-container {
+    --column-count: 3;
+  }
+}
+
+@media only screen and (min-width: 1300px) and (max-width: 1500px) {
+  .cards-container {
+    --column-count: 4;
+  }
+}
+
+@media only screen and (min-width: 1500px) and (max-width: 1700px) {
+  .cards-container {
+    --column-count: 5;
+  }
+}
+
+@media only screen and (min-width: 1700px) and (max-width: 1900px) {
+  .cards-container {
+    --column-count: 6;
+  }
+}

@@ -7,7 +7,7 @@ const PlayCard = (props) => {
   return (
     <Link
       to={props.href}
-      className={[props.className, styles.wrapper].join(" ")}
+      className={[props.className, styles.wrapper, "pointer"].join(" ")}
     >
       <img
         className={props.rounded ? styles.rounded : null}

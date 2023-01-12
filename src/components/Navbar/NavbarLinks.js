@@ -44,33 +44,35 @@ const NavbarLinks = () => {
             <span>{user ? user.display_name : null}</span>
             <Icon name="navbar-drop-down" color="#fff" width={16} height={16} />
             <div className={styles.dropdown}>
-              <div>
+              <div className="not-allowed">
                 <span>Account</span>
                 <span role="img" aria-label="External Link">
                   🔗
                 </span>
               </div>
-              <div>Profile</div>
-              <div>
+              <div className="not-allowed">Profile</div>
+              <div className="not-allowed">
                 <span>Upgrade to Premium</span>
                 <span role="img" aria-label="External Link">
                   🔗
                 </span>
               </div>
-              <div>
+              <div className="not-allowed">
                 <span>Support</span>
                 <span role="img" aria-label="External Link">
                   🔗
                 </span>
               </div>
-              <div>
+              <div className="not-allowed">
                 <span>Download</span>
                 <span role="img" aria-label="External Link">
                   🔗
                 </span>
               </div>
-              <div>Settings</div>
-              <div onClick={appCtx.handleLogout}>Log out</div>
+              <div className="not-allowed">Settings</div>
+              <div onClick={appCtx.handleLogout} className="pointer">
+                Log out
+              </div>
             </div>
           </div>
         </div>

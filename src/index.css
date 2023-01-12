@@ -105,9 +105,9 @@ input[type="range"] {
   background-color: hsla(0, 0%, 100%, 0.3);
   border-radius: 10px;
   cursor: pointer;
-  -webkit-appearance: none;
   cursor: default;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -149,12 +149,30 @@ input[type="range"]::-ms-fill-lower {
   height: 0.25em;
 }
 
-#navbar-root.display-now-playing #navbar-now-playing-wrapper {
+body[display-now-playing="true"] #navbar-now-playing-wrapper {
   opacity: 1;
 }
 
-#navbar-root:not(.display-now-playing) #navbar-now-playing-wrapper {
+body[display-now-playing="false"] #navbar-now-playing-wrapper {
   opacity: 0;
+}
+
+body[navbar-opacity="1"] #navbar-root {
+  background: rgba(var(--background), 1);
+}
+body[navbar-opacity="0.5"] #navbar-root {
+  background: rgba(var(--background), 0.5);
+}
+body[navbar-opacity="0.25"] #navbar-root {
+  background: rgba(var(--background), 0.25);
+}
+
+body[song-list-header-stuck="true"] div[class^="SongList_table-header"] {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body[song-list-header-stuck="false"] div[class^="SongList_table-header"] {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .pinned-table-header {
@@ -174,4 +192,9 @@ input[type="range"]::-ms-fill-lower {
 .not-allowed:hover,
 .not-allowed *:hover {
   cursor: not-allowed;
+}
+
+.pointer:hover,
+.pointer *:hover {
+  cursor: pointer;
 }

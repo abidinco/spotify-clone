@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Body.module.css";
 import { Routes, Route } from "react-router-dom";
+import { navbarBreakpoint } from "../../utils";
 
 import Navbar from "../Navbar/Navbar";
 import HomePage from "./HomePage";
@@ -11,14 +12,15 @@ import CallbackPage from "../CallbackPage";
 import NotFoundPage from "../NotFoundPage";
 
 const Body = () => {
-  // TODO: App re-renders every scroll, prevent it
-  const [scrollFromTop, setScrollFromTop] = useState(0);
-  const handleScroll = (e) => {
-    setScrollFromTop(e.currentTarget.scrollTop);
+  const storeScroll = (e) => {
+    document.body.setAttribute(
+      navbarBreakpoint(e.target.scrollTop).attribute,
+      navbarBreakpoint(e.target.scrollTop).value
+    );
   };
 
   return (
-    <div className={styles.body} onScroll={handleScroll}>
+    <div className={styles.body} onScroll={storeScroll}>
       <Navbar />
       <Routes className={styles.main}>
         <Route path="/" element={<HomePage />} />
@@ -43,7 +45,6 @@ const Body = () => {
           path="/collection/albums"
           element={<CollectionsPage tab="albums" />}
         />
-
         <Route path="/playlist/:playlistId" element={<PlaylistRoot />} />
         <Route path="/artist/:artistId" element={<PlaylistRoot />} />
         <Route path="/callback" element={<CallbackPage />} />

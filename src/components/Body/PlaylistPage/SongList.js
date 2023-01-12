@@ -11,13 +11,13 @@ const SongList = (props) => {
   return (
     <div className={styles.table}>
       <div className={styles["table-header"]} ref={tableHeaderElement}>
-        <span style={{ fontSize: 16, fontWeight: 300 }}>#</span>
-        <span>Title</span>
-        <span>Album</span>
-        <span>{props.page === "artist" ? "Date Released" : "Date Added"}</span>
-        <span>
+        <div>#</div>
+        <div>Title</div>
+        <div>Album</div>
+        <div>{props.page === "artist" ? "Date Released" : "Date Added"}</div>
+        <div>
           <Icon name="duration" height={16} width={16} color="#b3b3b3" />
-        </span>
+        </div>
       </div>
       <div className={styles.playlist}>
         {props.songs
@@ -28,8 +28,8 @@ const SongList = (props) => {
                   <div className={styles["index-icon"]}>
                     <Icon
                       name="player-play"
-                      width={16}
-                      height={16}
+                      width={12}
+                      height={12}
                       color="#fff"
                     />
                   </div>
@@ -76,7 +76,7 @@ const SongList = (props) => {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className={styles.album}>
                   {props.page === "artist"
                     ? song.album.name
                     : song.track.album.name}

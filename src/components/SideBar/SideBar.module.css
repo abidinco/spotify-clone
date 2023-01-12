@@ -4,10 +4,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  min-height: 0;
   position: relative;
-  width: 241px;
-  z-index: 3;
   padding-top: 24px;
   font-weight: 400;
 }
@@ -46,6 +43,7 @@
   white-space: nowrap;
   overflow: hidden;
   display: block;
+  font-weight: 400;
 }
 
 .playlists a:hover {

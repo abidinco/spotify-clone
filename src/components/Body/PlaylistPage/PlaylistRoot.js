@@ -148,23 +148,36 @@ const PlaylistRoot = () => {
         }
         listeners={artist && artist.followers.total}
       />
-      <div className={styles.actions}>
-        <div className={styles.icon}>
-          <Icon name="player-play" width={24} height={24} color="#000" />
+      <div
+        style={{
+          background:
+            "linear-gradient(rgba(80, 56, 160, .4) 0%, rgba(255, 0, 0, 0) 16%)",
+          top: -64,
+          position: "relative",
+        }}
+      >
+        <div className={styles.actions}>
+          <div className={styles.icon}>
+            <Icon name="player-play" width={24} height={24} color="#000" />
+          </div>
         </div>
+        <SongList
+          page={
+            isLikedSongsPage
+              ? "likedSongs"
+              : isArtistPage
+              ? "artist"
+              : "playlist"
+          }
+          songs={
+            isLikedSongsPage
+              ? likedSongs && likedSongs.items
+              : isPlaylistPage
+              ? playlist && playlist.tracks.items
+              : artistTracks && artistTracks.tracks
+          }
+        />
       </div>
-      <SongList
-        page={
-          isLikedSongsPage ? "likedSongs" : isArtistPage ? "artist" : "playlist"
-        }
-        songs={
-          isLikedSongsPage
-            ? likedSongs && likedSongs.items
-            : isPlaylistPage
-            ? playlist && playlist.tracks.items
-            : artistTracks && artistTracks.tracks
-        }
-      />
     </div>
   );
 };

@@ -6,6 +6,8 @@ import AppContext from "../../store";
 import styles from "./HomePage.module.css";
 import Spotify from "../../spotify/api";
 
+import { welcomingMessage } from "../../utils";
+
 const HomePage = () => {
   const appCtx = useContext(AppContext);
   const [playlists, setPlaylists] = useState();
@@ -30,12 +32,6 @@ const HomePage = () => {
     setRecentlyPlayedTracks(listOfTracks);
   }, []);
 
-  const welcomingMessage = () => {
-    let date = new Date();
-    if (date.getHours() < 12) return "Good morning";
-    if (date.getHours() < 17) return "Good afternoon";
-    if (date.getHours() < 25) return "Good evening";
-  };
   useEffect(() => {
     appCtx.isLoggedIn && getCurrentUsersPlaylists();
     // getCurrentUserTopArtists();
@@ -99,21 +95,6 @@ const HomePage = () => {
                 ))
               : null}
           </div>
-          {/* I haven't top artists so it's not showing.
-                    <div className={styles.title}>Your top artists</div>
-                    <div className={styles['cards-container']}> 
-                         { topTracks
-                            ? topTracks.items.map((item, i) => (
-                                <PlayCard
-                                    key={}
-                                    cover={}
-                                    title={}
-                                    subtitle={} />
-                            ))
-                            : null
-                        } 
-                    </div>
-                    */}
         </React.Fragment>
       )}
       {!appCtx.isLoggedIn && (

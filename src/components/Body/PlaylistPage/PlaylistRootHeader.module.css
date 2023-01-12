@@ -6,6 +6,8 @@
   padding: 0 20px 20px 32px;
   position: relative;
   top: -64px;
+  overflow: hidden;
+  box-shadow: inset 0px -6px 1px -10px rgba(0, 0, 0, 0.1);
 }
 
 .header-image img {
@@ -32,14 +34,14 @@
 
 .header-info-name {
   font-size: 6rem;
-  line-height: 7.1rem;
+  line-height: 7.3rem;
   font-weight: 800;
   margin: 0 0 26px 0;
   letter-spacing: -4px;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 70vw;
+  overflow: hidden;
+  width: calc(100vw - 555px);
 }
 
 .header-info-bottom {
