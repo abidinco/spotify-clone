@@ -6,8 +6,9 @@ const PlaylistRootHeader = (props) => {
   return (
     <div
       className={styles.header}
-      style={{ backgroundColor: "rgb(80, 56, 160)" }}
+      style={{ backgroundColor: "rgb(var(--navbar-background-color))" }}
     >
+      <div className={styles.noise}></div>
       <div
         className={
           props.page === "artist"

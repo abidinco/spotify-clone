@@ -24,6 +24,7 @@
 
 .header-info {
   margin-left: 24px;
+  z-index: 1;
 }
 
 .header-info-type {
@@ -64,4 +65,15 @@
 .header-info-bottom > span:last-child {
   color: hsla(0, 0%, 100%, 0.7);
   font-weight: 300;
+}
+
+.noise {
+  background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+    var(--background-noise);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
 }

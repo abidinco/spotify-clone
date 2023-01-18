@@ -8,6 +8,7 @@ html {
   --fallback-fonts: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro,
     Meiryo, MS Gothic;
   user-select: none;
+  --background-noise: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1IiBkPSJNMCAwaDMwMHYzMDBIMHoiLz48L3N2Zz4=");
 }
 
 body {
@@ -158,13 +159,13 @@ body[display-now-playing="false"] #navbar-now-playing-wrapper {
 }
 
 body[navbar-opacity="1"] #navbar-root {
-  background: rgba(var(--background), 1);
+  background: rgba(var(--navbar-background-color), 1);
 }
 body[navbar-opacity="0.5"] #navbar-root {
-  background: rgba(var(--background), 0.5);
+  background: rgba(var(--navbar-background-color), 0.5);
 }
 body[navbar-opacity="0.25"] #navbar-root {
-  background: rgba(var(--background), 0.25);
+  background: rgba(var(--navbar-background-color), 0.25);
 }
 
 body[song-list-header-stuck="true"] div[class^="SongList_table-header"] {

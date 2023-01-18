@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Body.module.css";
 import { Routes, Route } from "react-router-dom";
-import { navbarBreakpoint } from "../../utils";
+import { triggerBreakpoints } from "../../utils";
 
 import Navbar from "../Navbar/Navbar";
 import HomePage from "./HomePage";
@@ -12,15 +12,12 @@ import CallbackPage from "../CallbackPage";
 import NotFoundPage from "../NotFoundPage";
 
 const Body = () => {
-  const storeScroll = (e) => {
-    document.body.setAttribute(
-      navbarBreakpoint(e.target.scrollTop).attribute,
-      navbarBreakpoint(e.target.scrollTop).value
-    );
+  const handleScroll = (e) => {
+    triggerBreakpoints(e.target.scrollTop);
   };
 
   return (
-    <div className={styles.body} onScroll={storeScroll}>
+    <div className={styles.body} onScroll={handleScroll}>
       <Navbar />
       <Routes className={styles.main}>
         <Route path="/" element={<HomePage />} />

@@ -54,36 +54,31 @@ const welcomingMessage = () => {
   if (date.getHours() < 25) return "Good evening";
 };
 
-const navbarBreakpoint = (top) => {
+const triggerBreakpoints = (top) => {
   const path = document.location.pathname;
+  const body = document.body;
   if (
     path.startsWith("/playlist") ||
     path.startsWith("/artist") ||
     path === "/collection/tracks"
   ) {
-    if (top >= 386 && !(top < 386)) {
-      return { attribute: "song-list-header-stuck", value: true };
-    } else if (top > 331) {
-      return { attribute: "song-list-header-stuck", value: false };
-    } else if (top >= 330) {
-      return { attribute: "display-now-playing", value: true };
-    } else if (top >= 300) {
-      return { attribute: "navbar-opacity", value: 1 };
-    } else if (top >= 200) {
-      return { attribute: "navbar-opacity", value: 0.5 };
-    } else if (top >= 150) {
-      return { attribute: "navbar-opacity", value: 0 };
-    } else {
-      return { attribute: "display-now-playing", value: false };
-    }
+    top >= 330
+      ? body.setAttribute("display-now-playing", true)
+      : body.setAttribute("display-now-playing", false);
+    top > 380
+      ? body.setAttribute("song-list-header-stuck", true)
+      : body.setAttribute("song-list-header-stuck", false);
+    top >= 300
+      ? body.setAttribute("navbar-opacity", 1)
+      : top >= 200
+      ? body.setAttribute("navbar-opacity", 0.5)
+      : body.setAttribute("navbar-opacity", 0);
   } else {
-    if (top >= 150) {
-      return { attribute: "navbar-opacity", value: 1 };
-    } else if (top >= 100) {
-      return { attribute: "navbar-opacity", value: 0.5 };
-    } else {
-      return { attribute: "navbar-opacity", value: 0 };
-    }
+    top >= 150
+      ? body.setAttribute("navbar-opacity", 1)
+      : top >= 100
+      ? body.setAttribute("navbar-opacity", 0.5)
+      : body.setAttribute("navbar-opacity", 0);
   }
 };
 
@@ -93,5 +88,5 @@ export {
   numberWithCommas,
   calculatePlaylistDuration,
   welcomingMessage,
-  navbarBreakpoint,
+  triggerBreakpoints,
 };

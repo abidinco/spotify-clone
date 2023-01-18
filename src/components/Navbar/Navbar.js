@@ -19,8 +19,8 @@ const Navbar = () => {
     : "7, 7, 7"; // other pages' navbarBackgroundColor is blackish
 
   useEffect(() => {
-    navbarElement.current.style.setProperty(
-      "--background",
+    document.body.style.setProperty(
+      "--navbar-background-color",
       navbarBackgroundColor
     );
   });

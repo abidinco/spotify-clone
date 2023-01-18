@@ -15,6 +15,7 @@ const PlaylistRoot = () => {
   const isPlaylistPage = pathname.startsWith("/playlist");
   const isLikedSongsPage = pathname === "/collection/tracks";
 
+  // This is for when user click on another-playlist-page-link on the playlist page
   const [pageKey, setPageKey] = useState(location.key);
 
   const [artist, setArtist] = useState(null);
@@ -59,24 +60,6 @@ const PlaylistRoot = () => {
       setLikedSongs(likedSongs);
     };
   }
-
-  // useEffect(() => {
-  //   // this func for stick to header of playlist when scroll
-  //   const pinHeader = () => {
-  //     let pageY = Math.abs(
-  //       document
-  //         .querySelector("#navbar-root")
-  //         .nextElementSibling.getBoundingClientRect().top - 64
-  //     );
-  //     if (isArtistPage && pageY >= 380) {
-  //       isArtistPage &&
-  //         tableHeaderElement.current.classList.remove("pinned-table-header");
-  //     } else if (!isArtistPage) {
-  //       tableHeaderElement.current.classList.add("pinned-table-header");
-  //     }
-  //   };
-  //   pinHeader();
-  // }, [isArtistPage]);
 
   useEffect(() => {
     setPageKey(location.key);
@@ -151,7 +134,7 @@ const PlaylistRoot = () => {
       <div
         style={{
           background:
-            "linear-gradient(rgba(80, 56, 160, .4) 0%, rgba(255, 0, 0, 0) 16%)",
+            "linear-gradient(rgba(var(--navbar-background-color), .4) 0%, rgba(255, 0, 0, 0) 16%)",
           top: -64,
           position: "relative",
         }}
