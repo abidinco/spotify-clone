@@ -131,14 +131,8 @@ const PlaylistRoot = () => {
         }
         listeners={artist && artist.followers.total}
       />
-      <div
-        style={{
-          background:
-            "linear-gradient(rgba(var(--navbar-background-color), .4) 0%, rgba(255, 0, 0, 0) 16%)",
-          top: -64,
-          position: "relative",
-        }}
-      >
+      <div className={styles.wrapper}>
+        <div className={styles.noise}></div>
         <div className={styles.actions}>
           <div className={styles.icon}>
             <Icon name="player-play" width={24} height={24} color="#000" />

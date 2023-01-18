@@ -15,7 +15,10 @@ const Navbar = () => {
   let navbarBackgroundColor = isLikedSongsPage
     ? "80, 56, 160" // purple for liked songs page
     : isPlaylistPage
-    ? "200, 48, 64" // any other playlist page's navbar background color
+    ? ` ${Math.floor(Math.random() * 255)},
+        ${Math.floor(Math.random() * 255)},
+        ${Math.floor(Math.random() * 255)}
+      ` // any other playlist page's navbar background color
     : "7, 7, 7"; // other pages' navbarBackgroundColor is blackish
 
   useEffect(() => {
