@@ -60,7 +60,7 @@ const SideBarLink = (props) => {
       : props.to;
 
   return (
-    <Link to={to} className={`popover-wrapper ${styles.link}`}>
+    <Link to={to} className={`popover-wrapper ${styles.link} ${props.className}`}>
       <IconElement />
       <span className="popover-title">{props.name}</span>
       {!appCtx.isLoggedIn && props.popoverContentTitle && (

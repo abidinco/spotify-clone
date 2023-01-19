@@ -35,6 +35,7 @@ const Sidebar = () => {
         />
         <div style={{ height: 24 }}></div>
         <SideBarLink
+          className="not-allowed"
           to="#"
           name="Create Playlist"
           icon="create-playlist"
@@ -49,16 +50,18 @@ const Sidebar = () => {
           popoverContentText="Log in to see all the songs you've liked in one easy playlist."
         />
       </div>
+      <div className={styles.divider}></div>
       {appCtx.isLoggedIn && (
-        <div className={styles.playlists}>
-          <div></div>
-          {playlists
-            ? playlists.items.map((playlist) => (
-                <Link key={playlist.id} to={`/playlist/${playlist.id}`}>
-                  {playlist.name}
-                </Link>
-              ))
-            : null}
+        <div className={styles["playlists-wrapper"]}>
+          <div className={styles.playlists}>
+            {playlists
+              ? playlists.items.map((playlist) => (
+                  <div key={playlist.id}>
+                    <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
       )}
       {!appCtx.isLoggedIn && (

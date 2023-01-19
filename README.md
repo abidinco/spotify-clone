@@ -13,8 +13,9 @@
   <h2>demo: 66th commit</h2>
 </div>
 <div align="center">
-  also available <a href="https://spotify-clone-rho-two.vercel.app/" target="_blank">on vercel 🡕</a> login the app with app-registered test-account:<br>
-  🙎‍♂️ udummy@bk.ru 🔑 testuser
+  also available <a href="https://spotify-clone-rho-two.vercel.app/" target="_blank">on vercel ↗</a> login the app with test-account registered-in-api:<br>
+  🙎‍♂️ udummy@bk.ru 🔑 testuser<br><br>
+  if you spot any bug or recommendation, <a href="mailto:sav.abidin@gmail.com?subject=about spotify clone&body=the app rocks, but..." target="_blank">informing me ✉</a> will be welcomed
 </div>
 <p></p>
 <p></p>

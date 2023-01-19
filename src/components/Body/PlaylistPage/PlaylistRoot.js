@@ -16,9 +16,6 @@ const PlaylistRoot = () => {
   const isPlaylistPage = pathname.startsWith("/playlist");
   const isLikedSongsPage = pathname === "/collection/tracks";
 
-  // This is for when user click on another-playlist-page-link on the playlist page
-  const [pageKey, setPageKey] = useState(location.key);
-
   const [artist, setArtist] = useState(null);
   const [playlist, setPlaylist] = useState(null);
   const [likedSongs, setLikedSongs] = useState(null);
@@ -68,7 +65,6 @@ const PlaylistRoot = () => {
   }
 
   useEffect(() => {
-    setPageKey(location.key);
     if (isPlaylistPage) {
       getPlaylist();
     } else if (isArtistPage) {
