@@ -22,7 +22,11 @@ const TracksList = () => {
             </div>
           </div>
           <div className={styles.meta}>
-            <img src="/browse-card-images/decades.jfif" alt="Song" />
+            <img
+              loading="lazy"
+              src="/browse-card-images/decades.jfif"
+              alt="Song"
+            />
             <div>
               <div className={styles["song-name"]}>Gnossienne No.1</div>
               <div>Erkan Oğur</div>

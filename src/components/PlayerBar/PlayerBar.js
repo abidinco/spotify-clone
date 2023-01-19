@@ -23,6 +23,7 @@ const PlayerBar = () => {
     <div className={styles.bar}>
       <div className={styles["now-playing"]}>
         <img
+          loading="lazy"
           className={styles["now-playing-cover"]}
           alt=""
           src={recentSong ? recentSong.track.album.images[0].url : "/blank.jpg"}

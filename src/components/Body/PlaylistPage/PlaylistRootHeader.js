@@ -16,7 +16,7 @@ const PlaylistRootHeader = (props) => {
             : styles["header-image"]
         }
       >
-        <img src={props.image} alt="Playlist Cover" />
+        <img loading="lazy" src={props.image} alt="Playlist Cover" />
       </div>
       <div className={styles["header-info"]}>
         {props.page !== "artist" && (
@@ -32,6 +32,7 @@ const PlaylistRootHeader = (props) => {
           ) : (
             <React.Fragment>
               <img
+                loading="lazy"
                 src={props.ownerPP}
                 width={24}
                 height={24}

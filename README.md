@@ -15,7 +15,7 @@
 <div align="center">
   also available <a href="https://spotify-clone-rho-two.vercel.app/" target="_blank">on vercel ↗</a> login the app with test-account registered-in-api:<br>
   🙎‍♂️ udummy@bk.ru 🔑 testuser<br><br>
-  if you spot any bug or recommendation, <a href="mailto:sav.abidin@gmail.com?subject=about spotify clone&body=the app rocks, but..." target="_blank">informing me ✉</a> will be welcomed
+  if you spot any bug or recommendation, <a href="mailto:sav.abidin@gmail.com?subject=about spotify clone&body=the app rocks, but... running the app on [BROWSER_NAME] with [WIDTHxHEIGHT] resolution at [PAGE_NAME / MODULE_NAME] crashes like hell, here is my log [CONSOLE_LOG]" target="_blank">informing me ✉</a> will be welcomed
 </div>
 <p></p>
 <p></p>

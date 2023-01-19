@@ -13,7 +13,7 @@ const SearchAll = () => {
         <div className={styles["top-result"]}>
           <div>Top result</div>
           <Link to="/" className={styles.card}>
-            <img src="/discover-weekly.jfif" alt="Top Result" />
+            <img loading="lazy" src="/discover-weekly.jfif" alt="Top Result" />
             <div>Top result name</div>
             <div className={styles.row}>
               <div onClick={() => navigate("")} className={styles["meta-link"]}>
@@ -33,7 +33,11 @@ const SearchAll = () => {
               <div className={styles.icon}>
                 <Icon name="player-play" color="white" width={16} height={16} />
               </div>
-              <img src="/discover-weekly.jfif" alt="Top Result" />
+              <img
+                loading="lazy"
+                src="/discover-weekly.jfif"
+                alt="Top Result"
+              />
               <div className={styles["meta-infos"]}>
                 <div>Aşk</div>
                 <Link to="" className={styles.artist}>

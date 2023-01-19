@@ -10,6 +10,7 @@ const PlayCard = (props) => {
       className={[props.className, styles.wrapper, "pointer"].join(" ")}
     >
       <img
+        loading="lazy"
         className={props.rounded ? styles.rounded : null}
         src={props.cover}
         alt="Cover"

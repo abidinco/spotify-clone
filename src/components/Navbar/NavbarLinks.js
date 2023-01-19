@@ -31,9 +31,10 @@ const NavbarLinks = () => {
       )}
       {appCtx.isLoggedIn && (
         <div className={styles.buttons}>
-          <div>Upgrade</div>
+          <div className="not-allowed">Upgrade</div>
           <div tabIndex={0}>
             <img
+              loading="lazy"
               src={
                 user
                   ? user.images[0]?.url

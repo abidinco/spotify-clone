@@ -36,6 +36,7 @@ const SongList = (props) => {
                 </div>
                 <div className={styles.meta}>
                   <img
+                    loading="lazy"
                     src={
                       props.page === "artist"
                         ? song.album.images[0].url
