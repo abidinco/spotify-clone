@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./PlaylistRoot.module.css";
 import Icon from "../../UI/Icon";
 import { useLocation } from "react-router-dom";
 import Spotify from "../../../spotify/api";
 import PlaylistRootHeader from "./PlaylistRootHeader";
 import SongList from "./SongList";
+import AppContext from "../../../store";
 
 import { calculatePlaylistDuration } from "../../../utils";
 
@@ -24,6 +25,8 @@ const PlaylistRoot = () => {
   const [artistTracks, setArtistTracks] = useState(null);
   const [currentUser, setCurrentUser] = useState();
 
+  const appCtx = useContext(AppContext);
+
   let getPlaylist = () => {};
   let getArtist = () => {};
   let getLikedSongs = () => {};
@@ -35,12 +38,14 @@ const PlaylistRoot = () => {
       let arr = pathname.split("/");
       const playlist = await Spotify.getPlaylist(arr[arr.length - 1]);
       setPlaylist(playlist);
+      appCtx.changeNavbarNowPlaying(playlist.name);
     };
   } else if (isArtistPage) {
     getArtist = async () => {
       let arr = pathname.split("/");
       const artist = await Spotify.getArtist(arr[arr.length - 1]);
       setArtist(artist);
+      appCtx.changeNavbarNowPlaying(artist.name);
     };
     getArtistTracks = async () => {
       let arr = pathname.split("/");
@@ -58,6 +63,7 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setLikedSongs(likedSongs);
+      appCtx.changeNavbarNowPlaying("Liked songs");
     };
   }
 

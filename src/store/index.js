@@ -6,6 +6,7 @@ const initialState = {
   isLoggedIn: false,
   searchText: "",
   isSearching: false,
+  navbarNowPlaying: "Liked songs",
 };
 
 const AppContext = createContext(initialState);
@@ -22,6 +23,8 @@ const reducer = (state, action) => {
         searchText: action.payload.searchText,
         isSearching: action.payload.isSearching,
       };
+    case "NAVBAR_NOW_PLAYING":
+      return { ...state, navbarNowPlaying: action.payload.navbarNowPlaying };
     case "SEARCH_CLEAR":
       return { ...state, searchText: "", isSearching: false };
     default:
@@ -68,6 +71,15 @@ export const AppContextProvider = (props) => {
     navigate(to);
   };
 
+  const changeNavbarNowPlaying = (playlistName) => {
+    dispatch({
+      type: "NAVBAR_NOW_PLAYING",
+      payload: {
+        navbarNowPlaying: playlistName,
+      },
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -78,6 +90,8 @@ export const AppContextProvider = (props) => {
         isLoggedIn: appState.isLoggedIn,
         searchText: appState.searchText,
         isSearching: appState.isSearching,
+        navbarNowPlaying: appState.navbarNowPlaying,
+        changeNavbarNowPlaying: changeNavbarNowPlaying,
       }}
     >
       {props.children}

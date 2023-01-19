@@ -7,13 +7,14 @@
   <img src="https://user-images.githubusercontent.com/71569044/188719435-e429ddea-6f68-404a-9f82-742d3ba433ba.gif" />
 </p>
 <p align="center">
-  <img src="https://progress-bar.dev/31" />
+  <img src="https://progress-bar.dev/36" />
 </p>
 <div align="center">
   <h2>demo: 66th commit</h2>
 </div>
 <div align="center">
-  also available <a href="https://spotify-clone-rho-two.vercel.app/" target="_blank">on vercel 🡕</a>
+  also available <a href="https://spotify-clone-rho-two.vercel.app/" target="_blank">on vercel 🡕</a> login the app with app-registered test-account:<br>
+  🙎‍♂️ udummy@bk.ru 🔑 testuser
 </div>
 <p></p>
 <p></p>
