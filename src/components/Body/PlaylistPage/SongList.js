@@ -46,11 +46,11 @@ const SongList = (props) => {
                     }
                     alt="Song"
                   />
-                  <div>
+                  <div className={styles["song-artist-column"]}>
                     <div className={styles["song-name"]}>
                       {props.page === "artist" ? song.name : song.track.name}
                     </div>
-                    <div>
+                    <div className={styles["artist-links"]}>
                       {props.page === "artist"
                         ? song.artists.map((artist, i) => (
                             <React.Fragment key={i}>

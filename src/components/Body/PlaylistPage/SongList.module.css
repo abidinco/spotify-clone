@@ -122,6 +122,11 @@
   margin-right: 16px;
 }
 
+.song-artist-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .song-name {
   font-size: 16px;
   margin-bottom: 8px;
@@ -130,6 +135,13 @@
   text-overflow: ellipsis;
   width: 29vw;
   overflow: hidden;
+}
+
+.artist-links {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 29vw;
 }
 
 .date,

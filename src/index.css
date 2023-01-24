@@ -169,7 +169,8 @@ body[navbar-opacity="0.25"] #navbar-root {
 }
 
 body[song-list-header-stuck="true"] div[class^="SongList_table-header"] {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1;
 }
 
 body[song-list-header-stuck="false"] div[class^="SongList_table-header"] {
