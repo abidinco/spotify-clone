@@ -82,6 +82,12 @@ const triggerBreakpoints = (top) => {
   }
 };
 
+const getRandomRGB = (max) => {
+  return `rgb(${Math.floor(Math.random() * max)},${Math.floor(
+    Math.random() * max
+  )},${Math.floor(Math.random() * max)})`;
+};
+
 export {
   formatDate,
   millisToMinutesAndSeconds,
@@ -89,4 +95,5 @@ export {
   calculatePlaylistDuration,
   welcomingMessage,
   triggerBreakpoints,
+  getRandomRGB,
 };

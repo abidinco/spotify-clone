@@ -7,10 +7,8 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 1;
-}
-
-.wrapper:hover {
-  cursor: not-allowed;
+  text-decoration: none;
+  color: inherit;
 }
 
 .wrapper > div {

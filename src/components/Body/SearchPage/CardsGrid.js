@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CardsGrid.module.css";
 import BrowseCard from "../../UI/BrowseCard";
 import { useParams } from "react-router-dom";
 import PlayCard from "../../UI/PlayCard";
-import GENRES from "./Genres";
+import Spotify from "../../../spotify/api";
+import { getRandomRGB } from "../../../utils";
 
 const Genres = (props) => {
   const { searchType } = useParams();
+  const [genres, setGenres] = useState(null);
   const isCoverRounded = searchType === "artists" || searchType === "users";
   const dontShowPlayButton =
     searchType === "podcastAndEpisodes" || searchType === "users";
-  // TODO: getBackground func renders every scroll :d
-  const getBackground = (max) => {
-    return `rgb(${Math.floor(Math.random() * max)},${Math.floor(
-      Math.random() * max
-    )},${Math.floor(Math.random() * max)})`;
+  const getGenres = async (limit) => {
+    const genresList = await Spotify.getFeaturedPlaylists(limit);
+    setGenres(genresList.playlists.items);
   };
+  useEffect(() => {
+    props.genres && getGenres(20);
+  }, [props.genres]);
   return (
     <div
       className={
@@ -26,13 +29,14 @@ const Genres = (props) => {
       <div className={styles["cards-container"]}>
         {props.genres && (
           <React.Fragment>
-            {GENRES
-              ? GENRES.map((genre, i) => (
+            {genres
+              ? genres.map((genre, i) => (
                   <BrowseCard
                     key={i}
+                    id={genre.id}
                     name={genre.name}
-                    color={getBackground(255)}
-                    image={genre.image}
+                    color={getRandomRGB(255)}
+                    image={genre.images[0].url}
                   />
                 ))
               : null}

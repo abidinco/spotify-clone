@@ -249,6 +249,38 @@ const Spotify = {
     let jsonResponse = await response.json();
     return jsonResponse;
   },
+  async getSeveralBrowseCategories(limit) {
+    let token = localStorage.getItem("accessToken");
+    let headers = {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json",
+    };
+    let response = await fetch(
+      `https://api.spotify.com/v1/browse/categories?country=TR&locale=tr_TR&limit=${limit}`,
+      {
+        headers: headers,
+        method: "GET",
+      }
+    );
+    let jsonResponse = await response.json();
+    return jsonResponse;
+  },
+  async getFeaturedPlaylists(limit) {
+    let token = localStorage.getItem("accessToken");
+    let headers = {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json",
+    };
+    let response = await fetch(
+      `	https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=tr_TR&limit=${limit}`,
+      {
+        headers: headers,
+        method: "GET",
+      }
+    );
+    let jsonResponse = await response.json();
+    return jsonResponse;
+  },
 };
 
 export default Spotify;
