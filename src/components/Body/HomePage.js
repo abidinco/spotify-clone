@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
 import TopItem from "../UI/TopItem";
 import PlayCard from "../UI/PlayCard";
+import BrowseCard from "../UI/BrowseCard";
 
 import AppContext from "../../store";
 import styles from "./HomePage.module.css";
 import Spotify from "../../spotify/api";
 
-import { welcomingMessage } from "../../utils";
+import { welcomingMessage, getRandomRGB } from "../../utils";
 
 const HomePage = () => {
   const appCtx = useContext(AppContext);
@@ -99,10 +100,39 @@ const HomePage = () => {
       )}
       {!appCtx.isLoggedIn && (
         <React.Fragment>
-          <div className={styles.title}>Login to see</div>
-          {
-            // TODO: Add fancy "login to see" thing here.
-          }
+          <div className={styles.title}>🙎‍♂️ udummy@bk.ru 🔑 testuser</div>
+          <div>
+            <span className="link" onClick={() => appCtx.handleLogin()}>
+              Login
+            </span>{" "}
+            the app with the spotify account created for test. Otherwise you
+            can't properly use, because of{" "}
+            <a
+              className="link"
+              href="https://developer.spotify.com/documentation/general/guides/authorization/#which-oauth-flow-should-i-use"
+              target="_blank"
+              rel="noreferrer"
+            >
+              oauth flows' restrictions
+            </a>
+          </div>
+          <div style={{ height: 100 }}></div>
+          <div className="divider-centered-text">
+            some UI elements to fill the home
+          </div>
+          <div className={styles["cards-container"]}>
+            <PlayCard
+              cover="/playlist-cover-liked-songs.png"
+              title="Liked Songs"
+              subtitle="Your liked songs"
+            />
+            <BrowseCard
+              image="/browse-card-images/pop.jfif"
+              name="Genre Cards"
+              color={getRandomRGB(255)}
+              className="not-allowed"
+            />
+          </div>
         </React.Fragment>
       )}
     </div>

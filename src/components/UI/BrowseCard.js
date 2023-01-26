@@ -5,7 +5,7 @@ import styles from "./BrowseCard.module.css";
 const BrowseCard = (props) => {
   return (
     <Link
-      to={`/playlist/${props.id}`}
+      to={props.id ? `/playlist/${props.id}` : null}
       className={styles.wrapper}
       style={{ backgroundColor: props.color }}
     >

@@ -4,6 +4,7 @@
 
 .wrapper > div {
   margin: 36px 0;
+  text-align: center;
 }
 
 .message {
@@ -24,26 +25,6 @@
     auto-fill,
     minmax(max(var(--min-column-width), 25%), 1fr)
   );
-}
-
-.title {
-  font-size: 24px;
-  letter-spacing: -1px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.title > a {
-  font-size: 12px;
-  color: #bebebe;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-}
-
-.title > a:hover {
-  text-decoration: underline;
 }
 
 .cards-container {
