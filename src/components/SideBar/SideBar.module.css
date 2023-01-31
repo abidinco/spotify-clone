@@ -26,6 +26,7 @@
 
 .playlists-wrapper {
   overflow-y: auto;
+  flex: 2 1;
 }
 
 .playlists-wrapper::-webkit-scrollbar {
@@ -44,9 +45,9 @@
   display: flex;
   flex: auto;
   flex-direction: column;
-  height: 100%;
-  max-height: 100%;
-  padding: 10px 2px 10px 24px;
+  height: 96%;
+  max-height: 96%;
+  padding: 10px 16px 10px 24px;
   font-size: 14px;
   font-weight: 300;
 }

@@ -45,6 +45,15 @@
   width: calc(100vw - 555px);
 }
 
+.header-info-description {
+  color: hsla(0, 0%, 100%, 0.7);
+  font-size: 0.875rem;
+  font-weight: 400;
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+
 .header-info-bottom {
   font-size: 14px;
   font-weight: 400;
@@ -62,11 +71,6 @@
   padding: 0 4px;
 }
 
-.header-info-bottom > span:last-child {
-  color: hsla(0, 0%, 100%, 0.7);
-  font-weight: 300;
-}
-
 .noise {
   background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
     var(--background-noise);
@@ -76,4 +80,45 @@
   left: 0;
   bottom: 0;
   z-index: 0;
+}
+
+@media only screen and (max-width: 770px) {
+  .header-info-name {
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 970px) {
+  .header-info-name {
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+  }
+}
+
+@media only screen and (min-width: 970px) and (max-width: 1300px) {
+  .header-info-name {
+    font-size: 2rem;
+    letter-spacing: -1px;
+  }
+}
+
+@media only screen and (min-width: 1300px) and (max-width: 1500px) {
+  .header-info-name {
+    font-size: 2.5rem;
+    letter-spacing: -2px;
+  }
+}
+
+@media only screen and (min-width: 1500px) and (max-width: 1700px) {
+  .header-info-name {
+    font-size: 3rem;
+    letter-spacing: -3px;
+  }
+}
+
+@media only screen and (min-width: 1700px) and (max-width: 1900px) {
+  .header-info-name {
+    font-size: 3.5rem;
+  }
 }

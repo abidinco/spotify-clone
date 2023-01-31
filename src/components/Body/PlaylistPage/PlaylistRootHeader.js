@@ -23,6 +23,9 @@ const PlaylistRootHeader = (props) => {
           <div className={styles["header-info-type"]}>Playlist</div>
         )}
         <div className={styles["header-info-name"]}>{props.name}</div>
+        <div className={styles["header-info-description"]}>
+          {props.description}
+        </div>
         <div className={styles["header-info-bottom"]}>
           {props.page === "artist" ? (
             <span>
@@ -38,8 +41,11 @@ const PlaylistRootHeader = (props) => {
                 height={24}
                 alt={`${props.owner}'s profile`}
               />{" "}
-              <span>{props.owner}</span> • {props.count} song
-              {props.count > 1 ? "s" : null}, <span>{props.duration}</span>
+              <span>{props.owner}</span>
+              {props.followers > 0 ? `${props.followers} likes • ` : null}{" "}
+              {props.count > 0 ? ` • ${props.count} song` : null}
+              {props.count > 1 ? "s" : null}
+              {props.count > 0 ? <span>, {props.duration}</span> : null}
             </React.Fragment>
           )}
         </div>

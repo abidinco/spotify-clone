@@ -36,6 +36,7 @@ const PlaylistRoot = () => {
       const playlist = await Spotify.getPlaylist(arr[arr.length - 1]);
       setPlaylist(playlist);
       appCtx.changeNavbarNowPlaying(playlist.name);
+      console.log(playlist);
     };
   } else if (isArtistPage) {
     getArtist = async () => {
@@ -117,6 +118,7 @@ const PlaylistRoot = () => {
               : "/blank.jpg"
             : "/blank.jpg"
         }
+        followers={isPlaylistPage ? playlist && playlist.followers.total : null}
         count={
           isLikedSongsPage
             ? likedSongs && likedSongs.total
