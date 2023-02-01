@@ -42,7 +42,7 @@ const PlaylistRootHeader = (props) => {
                 alt={`${props.owner}'s profile`}
               />{" "}
               <span>{props.owner}</span>
-              {props.followers > 0 ? `${props.followers} likes • ` : null}{" "}
+              {props.followers > 0 ? ` • ${props.followers} likes` : null}{" "}
               {props.count > 0 ? ` • ${props.count} song` : null}
               {props.count > 1 ? "s" : null}
               {props.count > 0 ? <span>, {props.duration}</span> : null}

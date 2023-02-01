@@ -34,7 +34,6 @@ const Spotify = {
     let now = new Date();
     return now.getTime();
   },
-  // TODO: Too much repetitive functions going on here. Will be fixed.
   getAccessToken() {
     let accessToken = window.location.hash.match(/access_token=([^&]*)/);
     let expiresIn = window.location.hash.match(/expires_in=([^&]*)/);
@@ -49,6 +48,23 @@ const Spotify = {
       window.location.assign(LOGIN_URL);
       return "";
     }
+  },
+  // TODO: Too much repetitive functions going on here. Will be fixed.
+  async search(query, type, limit) {
+    let token = localStorage.getItem("accessToken");
+    let headers = {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json",
+    };
+    let response = await fetch(
+      `https://api.spotify.com/v1/search?q=${query}&type=${type}&market=TR&limit=${limit}`,
+      {
+        headers: headers,
+        method: "GET",
+      }
+    );
+    let jsonResponse = await response.json();
+    return jsonResponse;
   },
   async getUserId(token) {
     let headers = {
