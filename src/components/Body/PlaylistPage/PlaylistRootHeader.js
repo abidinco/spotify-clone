@@ -19,9 +19,11 @@ const PlaylistRootHeader = (props) => {
         <img loading="lazy" src={props.image} alt="Playlist Cover" />
       </div>
       <div className={styles["header-info"]}>
-        {props.page !== "artist" && (
+        {props.page === "album" ? (
+          <div className={styles["header-info-type"]}>Album</div>
+        ) : props.page !== "artist" ? (
           <div className={styles["header-info-type"]}>Playlist</div>
-        )}
+        ) : null}
         <div className={styles["header-info-name"]}>{props.name}</div>
         <div className={styles["header-info-description"]}>
           {props.description}

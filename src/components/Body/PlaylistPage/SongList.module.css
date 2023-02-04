@@ -169,3 +169,13 @@
   width: 8vw;
   overflow: hidden;
 }
+
+.album a {
+  color: #a7a7a7;
+  text-decoration: none;
+}
+
+.album a:hover {
+  text-decoration: underline;
+  color: white;
+}

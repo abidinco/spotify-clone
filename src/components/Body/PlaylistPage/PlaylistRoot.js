@@ -14,11 +14,13 @@ const PlaylistRoot = () => {
   const location = useLocation();
   const isArtistPage = pathname.startsWith("/artist");
   const isPlaylistPage = pathname.startsWith("/playlist");
+  const isAlbumPage = pathname.startsWith("/album");
   const isLikedSongsPage = pathname === "/collection/tracks";
 
   const [artist, setArtist] = useState(null);
   const [playlist, setPlaylist] = useState(null);
   const [likedSongs, setLikedSongs] = useState(null);
+  const [album, setAlbum] = useState(null);
   const [artistTracks, setArtistTracks] = useState(null);
   const [currentUser, setCurrentUser] = useState();
 
@@ -26,6 +28,7 @@ const PlaylistRoot = () => {
 
   let getPlaylist = () => {};
   let getArtist = () => {};
+  let getAlbum = () => {};
   let getLikedSongs = () => {};
   let getCurrentUser = () => {};
   let getArtistTracks = () => {};
@@ -62,6 +65,13 @@ const PlaylistRoot = () => {
       setLikedSongs(likedSongs);
       appCtx.changeNavbarNowPlaying("Liked songs");
     };
+  } else if (isAlbumPage) {
+    getAlbum = async () => {
+      let arr = pathname.split("/");
+      const album = await Spotify.getAlbum(arr[arr.length - 1]);
+      setAlbum(album);
+      appCtx.changeNavbarNowPlaying(album.name);
+    };
   }
 
   useEffect(() => {
@@ -73,14 +83,28 @@ const PlaylistRoot = () => {
     } else if (isLikedSongsPage) {
       getCurrentUser();
       getLikedSongs();
+    } else if (isAlbumPage) {
+      getAlbum();
     }
-  }, [isArtistPage, isLikedSongsPage, isPlaylistPage, location.key]);
+  }, [
+    isAlbumPage,
+    isArtistPage,
+    isLikedSongsPage,
+    isPlaylistPage,
+    location.key,
+  ]);
 
   return (
     <div>
       <PlaylistRootHeader
         page={
-          isLikedSongsPage ? "likedSongs" : isArtistPage ? "artist" : "playlist"
+          isLikedSongsPage
+            ? "likedSongs"
+            : isArtistPage
+            ? "artist"
+            : isAlbumPage
+            ? "album"
+            : "playlist"
         }
         image={
           isLikedSongsPage
@@ -91,6 +115,8 @@ const PlaylistRoot = () => {
                 ? playlist.images[0].url
                 : "/blank.jpg"
               : "/blank.jpg"
+            : isAlbumPage
+            ? album && album.images[0].url
             : artist && artist.images[0]
             ? artist.images[0].url
             : "/blank.jpg"
@@ -100,6 +126,8 @@ const PlaylistRoot = () => {
             ? "Liked Songs"
             : isPlaylistPage
             ? playlist && playlist.name
+            : isAlbumPage
+            ? album && album.name
             : artist && artist.name
         }
         description={isPlaylistPage ? playlist && playlist.description : null}
@@ -123,6 +151,8 @@ const PlaylistRoot = () => {
             ? likedSongs && likedSongs.total
             : isPlaylistPage
             ? playlist && playlist.tracks.total
+            : isAlbumPage
+            ? album && album.total_tracks
             : null
         }
         duration={
@@ -147,6 +177,8 @@ const PlaylistRoot = () => {
               ? "likedSongs"
               : isArtistPage
               ? "artist"
+              : isAlbumPage
+              ? "album"
               : "playlist"
           }
           songs={
@@ -154,6 +186,8 @@ const PlaylistRoot = () => {
               ? likedSongs && likedSongs.items
               : isPlaylistPage
               ? playlist && playlist.tracks.items
+              : isAlbumPage
+              ? album && album.tracks.items
               : artistTracks && artistTracks.tracks
           }
         />

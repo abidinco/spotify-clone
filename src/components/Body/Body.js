@@ -44,6 +44,7 @@ const Body = () => {
         />
         <Route path="/playlist/:playlistId" element={<PlaylistRoot />} />
         <Route path="/artist/:artistId" element={<PlaylistRoot />} />
+        <Route path="/album/:albumId" element={<PlaylistRoot />} />
         <Route path="/callback" element={<CallbackPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
