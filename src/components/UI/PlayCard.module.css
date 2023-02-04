@@ -14,6 +14,7 @@
 
 .wrapper img {
   width: 100%;
+  aspect-ratio: 1;
   border-radius: clamp(4px, (var(--column-width, 0px) - 32px) * 0.025, 8px);
   margin-bottom: 16px;
 }

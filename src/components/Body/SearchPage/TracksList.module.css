@@ -101,3 +101,27 @@
   display: flex;
   justify-content: center;
 }
+
+.song-artists a {
+  text-decoration: none;
+  color: #b3b3b3;
+}
+
+.song-artists a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.song-artists > a:not(:last-child):after {
+  content: ",";
+  margin-right: 4px;
+}
+
+.song-album {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}

@@ -27,7 +27,7 @@
 }
 
 .list > div {
-  display: inline-flex;
+  display: contents;
   font-weight: 400;
   text-align: justify;
 }

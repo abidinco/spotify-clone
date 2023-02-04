@@ -50,14 +50,16 @@ const Spotify = {
     }
   },
   // TODO: Too much repetitive functions going on here. Will be fixed.
-  async search(query, type, limit) {
+  async search(query, type, limit, offset) {
     let token = localStorage.getItem("accessToken");
     let headers = {
       Authorization: `Bearer ${token}`,
       "content-type": "application/json",
     };
     let response = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=${type}&market=TR&limit=${limit}`,
+      `https://api.spotify.com/v1/search?q=${query}&type=${type}&market=TR${
+        limit ? "&limit=" + limit : ""
+      }${offset ? "&offset=" + offset : ""}`,
       {
         headers: headers,
         method: "GET",

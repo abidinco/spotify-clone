@@ -53,8 +53,17 @@
 .meta-link {
   font-size: 14px;
   color: #b3b3b3;
-  text-decoration: none;
   font-weight: 300;
+}
+
+.meta-link span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.meta-link span:not(:last-child):after {
+  content: ",";
+  padding-right: 4px;
 }
 
 .chip {
@@ -66,10 +75,6 @@
   border-radius: 48px;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 8px 16px;
-}
-
-.meta-link:hover {
-  text-decoration: underline;
 }
 
 .button-wrapper {
@@ -100,7 +105,7 @@
 .card:hover .button-wrapper {
   opacity: 1;
   transform: translateY(0px);
-  cursor: default;
+  cursor: pointer;
 }
 
 .songs > div:first-child {
@@ -150,15 +155,24 @@
   font-size: 16px;
 }
 
-.artist {
+.meta-infos-artists {
+  display: flex;
+}
+
+.meta-infos-artists a {
   font-size: 14px;
   text-decoration: none;
   color: #b3b3b3;
   font-weight: 400;
 }
 
-.artist:hover {
+.meta-infos-artists a:hover {
   text-decoration: underline;
+}
+
+.meta-infos-artists a:not(:last-child):after {
+  content: ", ";
+  padding-right: 2px;
 }
 
 .item img {

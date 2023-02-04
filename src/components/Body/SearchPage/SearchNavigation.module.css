@@ -5,7 +5,7 @@
   align-items: center;
   top: 64px;
   background-color: #121212;
-  z-index: 10;
+  z-index: 1;
 }
 
 .tabs a {

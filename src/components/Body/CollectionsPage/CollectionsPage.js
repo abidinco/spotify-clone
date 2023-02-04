@@ -23,6 +23,7 @@ const CollectionsPage = ({ tab }) => {
         {isArtistsTab && <ArtistsTab />}
         {isAlbumsTab && <AlbumsTab />}
       </div>
+      <div style={{ height: 50 }}></div>
     </div>
   );
 };
