@@ -107,7 +107,7 @@ const SongList = (props) => {
                 )}
                 {props.page === "artist" ? (
                   <div className={styles.date}>
-                    formatDate(song.album.release_date)
+                    {formatDate(song.album.release_date)}
                   </div>
                 ) : (
                   props.page !== "album" && (

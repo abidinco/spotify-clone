@@ -49,7 +49,6 @@
   max-height: 96%;
   padding: 10px 16px 10px 24px;
   font-size: 14px;
-  font-weight: 300;
 }
 
 .playlists a {
@@ -61,7 +60,7 @@
   white-space: nowrap;
   overflow: hidden;
   display: block;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .playlists a:hover {

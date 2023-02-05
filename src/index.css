@@ -170,12 +170,12 @@ body[navbar-opacity="0.25"] #navbar-root {
 }
 
 body[song-list-header-stuck="true"] div[class^="SongList_table-header"] {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #101010;
   z-index: 1;
 }
 
 body[song-list-header-stuck="false"] div[class^="SongList_table-header"] {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
 }
 
 .pinned-table-header {

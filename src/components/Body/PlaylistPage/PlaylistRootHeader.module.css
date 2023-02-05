@@ -34,7 +34,7 @@
 }
 
 .header-info-name {
-  font-size: 6rem;
+  font-size: clamp(2.5rem, 3vw, 5rem);
   line-height: 7.3rem;
   font-weight: 800;
   margin: 0 0 26px 0;
@@ -89,41 +89,30 @@
 
 @media only screen and (max-width: 770px) {
   .header-info-name {
-    font-size: 1rem;
     letter-spacing: 0;
   }
 }
 
 @media only screen and (min-width: 770px) and (max-width: 970px) {
   .header-info-name {
-    font-size: 1.5rem;
     letter-spacing: -1px;
   }
 }
 
 @media only screen and (min-width: 970px) and (max-width: 1300px) {
   .header-info-name {
-    font-size: 2rem;
     letter-spacing: -1px;
   }
 }
 
 @media only screen and (min-width: 1300px) and (max-width: 1500px) {
   .header-info-name {
-    font-size: 2.5rem;
     letter-spacing: -2px;
   }
 }
 
 @media only screen and (min-width: 1500px) and (max-width: 1700px) {
   .header-info-name {
-    font-size: 3rem;
     letter-spacing: -3px;
-  }
-}
-
-@media only screen and (min-width: 1700px) and (max-width: 1900px) {
-  .header-info-name {
-    font-size: 3.5rem;
   }
 }
