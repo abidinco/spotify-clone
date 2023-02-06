@@ -18,9 +18,9 @@ const AlbumsTab = () => {
       {albums
         ? albums.items.map((album, i) => (
             <PlayCard
+              href={`/album/${album.album.id}`}
               key={i}
               className="not-allowed"
-              href=""
               cover={
                 album.album.images[0] ? album.album.images[0].url : "/blank.jpg"
               }

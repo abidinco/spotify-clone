@@ -133,8 +133,8 @@
   color: white;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 29vw;
   overflow: hidden;
+  width: 32vw;
 }
 
 .artist-links {

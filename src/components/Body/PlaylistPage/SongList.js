@@ -7,7 +7,7 @@ import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
 
 const SongList = (props) => {
   const tableHeaderElement = useRef(null);
-
+  // TODO: Too much conditional statements going on here, will be fixed.
   return (
     <div className={styles.table}>
       <div className={styles["table-header"]} ref={tableHeaderElement}>

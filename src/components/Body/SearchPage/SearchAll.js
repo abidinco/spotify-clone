@@ -117,6 +117,7 @@ const SearchAll = () => {
               <PlayCard
                 cover={album.images[0] ? album.images[0].url : "/blank.jpg"}
                 title={album.name}
+                href={`/album/${album.id}`}
                 key={index}
                 subtitle={
                   album.artists

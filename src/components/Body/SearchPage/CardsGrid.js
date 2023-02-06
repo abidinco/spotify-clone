@@ -117,6 +117,7 @@ const Genres = (props) => {
                   <PlayCard
                     key={i}
                     id={album.id}
+                    href={`/album/${album.id}`}
                     cover={
                       album.images.length > 0
                         ? album.images[0].url

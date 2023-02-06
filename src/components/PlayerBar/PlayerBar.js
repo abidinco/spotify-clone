@@ -63,7 +63,7 @@ const PlayerBar = () => {
         </div>
       </div>
       <div className={styles["player-controls"]}>
-        <div className={styles["player-control-buttons"]}>
+        {/* <div className={styles["player-control-buttons"]}>
           <Icon
             name="player-shuffle"
             color="rgb(255, 255, 255, .7)"
@@ -105,7 +105,7 @@ const PlayerBar = () => {
             />
           </div>
           <div className={styles["player-control-duration"]}>9:40</div>
-        </div>
+        </div> */}
       </div>
       <div className={styles.controls}>
         <Icon
