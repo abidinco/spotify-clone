@@ -26,7 +26,7 @@ const Navbar = () => {
       "--navbar-background-color",
       navbarBackgroundColor
     );
-  });
+  }, [location]);
 
   return (
     <div className={styles.navbar} ref={navbarElement} id="navbar-root">
