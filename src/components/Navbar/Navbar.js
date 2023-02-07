@@ -11,10 +11,11 @@ const Navbar = () => {
   const location = useLocation().pathname;
   const isLikedSongsPage = location === "/collection/tracks";
   const isPlaylistPage = location.startsWith("/playlist");
+  const isAlbumPage = location.startsWith("/album");
 
   let navbarBackgroundColor = isLikedSongsPage
     ? "80, 56, 160" // purple for liked songs page
-    : isPlaylistPage
+    : isPlaylistPage || isAlbumPage
     ? ` ${Math.floor(Math.random() * 255)},
         ${Math.floor(Math.random() * 255)},
         ${Math.floor(Math.random() * 255)}
