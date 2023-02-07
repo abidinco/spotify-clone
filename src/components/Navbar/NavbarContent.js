@@ -13,7 +13,8 @@ const NavbarContent = () => {
   const showPlayButton =
     location.startsWith("/playlist") ||
     location === "/collection/tracks" ||
-    location.startsWith("/artist");
+    location.startsWith("/artist") ||
+    location.startsWith("/album");
 
   return (
     <div>

@@ -60,7 +60,8 @@ const triggerBreakpoints = (top) => {
   if (
     path.startsWith("/playlist") ||
     path.startsWith("/artist") ||
-    path === "/collection/tracks"
+    path === "/collection/tracks" ||
+    path.startsWith("/album")
   ) {
     top >= 330
       ? body.setAttribute("display-now-playing", true)
