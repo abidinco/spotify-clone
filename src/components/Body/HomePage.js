@@ -74,7 +74,7 @@ const HomePage = () => {
               ? recentlyPlayedTracks.items.map((item, i) => (
                   <PlayCard
                     key={i}
-                    cover={item.track.album.images[0].url}
+                    cover={item.track?.album?.images[0].url}
                     title={item.track.name}
                     subtitle={item.track.artists.map(
                       (artist) => artist.name + " "

@@ -3,6 +3,7 @@ import styles from "./PlayerBar.module.css";
 import Icon from "../UI/Icon";
 import { Link } from "react-router-dom";
 import AppContext from "../../store/index.js";
+import ReactPlayer from "react-player";
 
 import Spotify from "../../spotify/api";
 
@@ -63,6 +64,14 @@ const PlayerBar = () => {
         </div>
       </div>
       <div className={styles["player-controls"]}>
+        <ReactPlayer
+          url="http://212.75.0.236:8250/Music/Anugama%20-%20Shamanic%20Dream%20-%2003%20-%20Mystical%20Trance.mp3"
+          className="react-player"
+          width="100%"
+          height="100%"
+          controls
+          preload="none"
+        />
         {/* <div className={styles["player-control-buttons"]}>
           <Icon
             name="player-shuffle"
