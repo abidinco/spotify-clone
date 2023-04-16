@@ -187,22 +187,25 @@ const Spotify = {
     let jsonResponse = await response.json();
     return jsonResponse;
   },
-  async getCurrentUserRecentlyPlayedTracks() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/me/player/recently-played`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
+  // Disabling this endpoint
+  // It crashes app with too many requests message
+  // Checked dashboard: Over 20k requested by this func.
+  // async getCurrentUserRecentlyPlayedTracks() {
+  //   let token = localStorage.getItem("accessToken");
+  //   let headers = {
+  //     Authorization: `Bearer ${token}`,
+  //     "content-type": "application/json",
+  //   };
+  //   let response = await fetch(
+  //     `https://api.spotify.com/v1/me/player/recently-played`,
+  //     {
+  //       headers: headers,
+  //       method: "GET",
+  //     }
+  //   );
+  //   let jsonResponse = await response.json();
+  //   return jsonResponse;
+  // },
   async getPlaylist(playlist_id) {
     let token = localStorage.getItem("accessToken");
     let headers = {

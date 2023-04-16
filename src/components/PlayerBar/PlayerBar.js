@@ -1,29 +1,28 @@
-import React, { useEffect, useState, useCallback, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./PlayerBar.module.css";
 import Icon from "../UI/Icon";
 import { Link } from "react-router-dom";
 import AppContext from "../../store/index.js";
-import ReactPlayer from "react-player";
 
 import Spotify from "../../spotify/api";
 
 const PlayerBar = () => {
   const appCtx = useContext(AppContext);
   const [recentSong, setRecentSong] = useState();
-  const getRecentPlayedTrack = useCallback(async () => {
-    const listOfTracks = await Spotify.getCurrentUserRecentlyPlayedTracks();
-    setRecentSong(listOfTracks && listOfTracks.items[0]);
-  }, []);
+  // const getRecentPlayedTrack = async () => {
+  //   const listOfTracks = await Spotify.getCurrentUserRecentlyPlayedTracks();
+  //   setRecentSong(listOfTracks && listOfTracks.items[0]);
+  // };
 
   useEffect(() => {
     window.addInputRangeStyle();
-    appCtx.isLoggedIn && getRecentPlayedTrack();
-  }, [appCtx.isLoggedIn, getRecentPlayedTrack]);
+    // appCtx.isLoggedIn && getRecentPlayedTrack();
+  }, [/* appCtx.isLoggedIn, getRecentPlayedTrack */]);
 
   return (
     <div className={styles.bar}>
       <div className={styles["now-playing"]}>
-        <img
+        {/* <img
           loading="lazy"
           className={styles["now-playing-cover"]}
           alt=""
@@ -45,7 +44,7 @@ const PlayerBar = () => {
                 ))
               : "..."}
           </div>
-        </div>
+        </div> */}
         <div className={styles["now-playing-action-button"]}>
           <Icon
             name="player-heart"
@@ -63,15 +62,7 @@ const PlayerBar = () => {
           />
         </div>
       </div>
-      <div className={styles["player-controls"]}>
-        {/* <ReactPlayer
-          url="http://212.75.0.236:8250/Music/Anugama%20-%20Shamanic%20Dream%20-%2003%20-%20Mystical%20Trance.mp3"
-          className="react-player"
-          width="100%"
-          height="100%"
-          controls
-          preload="none"
-        /> */}
+      <div className={styles["player-wrapper"]}>
         {/* <div className={styles["player-control-buttons"]}>
           <Icon
             name="player-shuffle"

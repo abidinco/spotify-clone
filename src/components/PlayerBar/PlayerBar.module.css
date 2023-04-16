@@ -33,7 +33,7 @@
     -webkit-transform 0.25s cubic-bezier(0.3, 0, 0, 1);
 }
 
-.player-controls {
+.player-wrapper {
   max-width: 722px;
   width: 40%;
   display: flex;
