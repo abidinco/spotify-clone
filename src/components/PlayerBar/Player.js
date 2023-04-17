@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import styles from "./Player.module.css";
 import Icon from "../UI/Icon";
 
 const Player = () => {
+  const audioPlayer = useRef();
+  const [playing, setPlaying] = useState(false);
+  const playTrack = () => {
+    audioPlayer.current.audioEl.current.play();
+    setPlaying(true);
+  };
+  const pauseTrack = () => {
+    audioPlayer.current.audioEl.current.pause();
+    setPlaying(false);
+  };
   return (
     <div className={styles["player-wrapper"]}>
       <ReactAudioPlayer
         id="player"
+        ref={audioPlayer}
         src={"/soolokisa.mp3"}
         width={0}
         height={0}
         playing={true}
+        autoPlay={playing}
         controls={false}
         light={false}
-        autoPlay={true}
         loop={false}
         playbackRate={1.0}
-        volume={0.8}
+        volume={0.2}
         muted={false}
         onReady={(e) => console.log("onReady", e)}
         onStart={(e) => console.log("onStart", e)}
@@ -47,9 +58,13 @@ const Player = () => {
         />
         <div
           className={styles["player-control-play"]}
-          onClick={() => document.getElementById("player").play()}
+          onClick={playing ? pauseTrack : playTrack}
         >
-          <Icon name="player-play" color="black" width={16} height={16} />
+          {playing ? (
+            <Icon name="player-pause" color="black" width={16} height={16} />
+          ) : (
+            <Icon name="player-play" color="black" width={16} height={16} />
+          )}
         </div>
         <Icon
           name="player-skip-forward"
