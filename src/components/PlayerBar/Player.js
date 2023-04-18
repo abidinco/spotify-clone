@@ -6,12 +6,24 @@ import Icon from "../UI/Icon";
 const Player = () => {
   const audioPlayer = useRef();
   const [playing, setPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [durationValue, setDurationValue] = useState(0);
   const playTrack = () => {
     audioPlayer.current.audioEl.current.play();
     setPlaying(true);
   };
   const pauseTrack = () => {
     audioPlayer.current.audioEl.current.pause();
+    setPlaying(false);
+  };
+  const onPlaying = () => {
+    const duration = audioPlayer.current.audioEl.current.duration;
+    const currentTime = audioPlayer.current.audioEl.current.currentTime;
+    const durationValue = (currentTime / duration) * 100;
+    setDurationValue(durationValue);
+    setCurrentTime(currentTime);
+  };
+  const onEnded = () => {
     setPlaying(false);
   };
   return (
@@ -23,7 +35,6 @@ const Player = () => {
         width={0}
         height={0}
         playing={true}
-        autoPlay={playing}
         controls={false}
         light={false}
         loop={false}
@@ -32,15 +43,17 @@ const Player = () => {
         muted={false}
         onReady={(e) => console.log("onReady", e)}
         onStart={(e) => console.log("onStart", e)}
-        onPlay={(e) => console.log("onPlay", e)}
+        onPlay={onPlaying}
+        onListen={onPlaying}
+        listenInterval={100}
         onEnablePIP={(e) => console.log("onEnablePIP", e)}
         onDisablePIP={(e) => console.log("onDisablePIP", e)}
         onPause={(e) => console.log("handlePause", e)}
         onBuffer={(e) => console.log("onBuffer", e)}
         onSeek={(e) => console.log("onSeek", e)}
-        onEnded={(e) => console.log("onEnded", e)}
+        onEnded={onEnded}
         onError={(e) => console.log("onError", e)}
-        onProgress={(e) => console.log("onProgress", e)}
+        onProgress={onPlaying}
         onDuration={(e) => console.log("onDuration", e)}
       />
       <div className={styles["player-control-buttons"]}>
@@ -85,10 +98,16 @@ const Player = () => {
           <input
             className={styles["player-control-progress-input"]}
             type="range"
-            min={0}
-            max={100}
-            step={2}
-            defaultValue={0}
+            min="0"
+            max="100"
+            step="1"
+            value={currentTime}
+            onChange={(e) => {
+              const duration = audioPlayer.current.audioEl.current.duration;
+              audioPlayer.current.audioEl.current.currentTime =
+                (e.target.value * duration) / 100;
+              setDurationValue(e.target.value);
+            }}
           />
         </div>
         <div className={styles["player-control-duration"]}>9:40</div>
