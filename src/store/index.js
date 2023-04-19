@@ -7,6 +7,8 @@ const initialState = {
   searchText: "",
   isSearching: false,
   navbarNowPlaying: "Liked songs",
+  playerVolume: 0.5,
+  playerMuted: false,
 };
 
 const AppContext = createContext(initialState);
@@ -27,6 +29,10 @@ const reducer = (state, action) => {
       return { ...state, navbarNowPlaying: action.payload.navbarNowPlaying };
     case "SEARCH_CLEAR":
       return { ...state, searchText: "", isSearching: false };
+    case "PLAYER_VOLUME":
+      return { ...state, playerVolume: action.payload.playerVolume };
+    case "PLAYER_MUTE":
+      return { ...state, playerMuted: action.payload.playerMuted };
     default:
       return state;
   }
@@ -80,6 +86,24 @@ export const AppContextProvider = (props) => {
     });
   };
 
+  const setVolume = (volume) => {
+    dispatch({
+      type: "PLAYER_VOLUME",
+      payload: {
+        playerVolume: volume,
+      },
+    });
+  };
+
+  const mutePlayer = (willBeMute) => {
+    dispatch({
+      type: "PLAYER_MUTE",
+      payload: {
+        playerMuted: willBeMute
+      }
+    })
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -92,6 +116,10 @@ export const AppContextProvider = (props) => {
         isSearching: appState.isSearching,
         navbarNowPlaying: appState.navbarNowPlaying,
         changeNavbarNowPlaying: changeNavbarNowPlaying,
+        playerVolume: appState.playerVolume,
+        setVolume: setVolume,
+        mutePlayer: mutePlayer,
+        playerMuted: appState.playerMuted,
       }}
     >
       {props.children}

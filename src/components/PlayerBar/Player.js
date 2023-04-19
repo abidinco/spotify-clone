@@ -1,14 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import styles from "./Player.module.css";
 import Icon from "../UI/Icon";
 import { convertFloatToTime } from "../../utils";
+import AppContext from "../../store";
 
 const Player = () => {
   const audioPlayer = useRef();
+  const appCtx = useContext(AppContext);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [durationValue, setDurationValue] = useState(0);
+
   const playTrack = () => {
     audioPlayer.current.audioEl.current.play();
     setPlaying(true);
@@ -24,13 +27,12 @@ const Player = () => {
     setDurationValue(durationValue);
     setCurrentTime(currentTime);
   };
-  const onEnded = () => {
+  const endTrack = () => {
     setPlaying(false);
   };
   return (
     <div className={styles["player-wrapper"]}>
       <ReactAudioPlayer
-        id="player"
         ref={audioPlayer}
         src={"/soolokisa.mp3"}
         width={0}
@@ -39,23 +41,23 @@ const Player = () => {
         controls={false}
         light={false}
         loop={false}
-        playbackRate={1.0}
-        volume={0.2}
-        muted={false}
-        onReady={(e) => console.log("onReady", e)}
+        muted={appCtx.playerMuted}
+        volume={appCtx.playerVolume}
+        // onVolumeChanged={(e) => console.log("onVolumeChanged", e)}
+        // onReady={(e) => console.log("onReady", e)}
         onStart={(e) => console.log("onStart", e)}
-        onPlay={onPlaying}
+        // onPlay={onPlaying}
         onListen={onPlaying}
-        listenInterval={100}
-        onEnablePIP={(e) => console.log("onEnablePIP", e)}
-        onDisablePIP={(e) => console.log("onDisablePIP", e)}
-        onPause={(e) => console.log("handlePause", e)}
-        onBuffer={(e) => console.log("onBuffer", e)}
-        onSeek={(e) => console.log("onSeek", e)}
-        onEnded={onEnded}
+        listenInterval={500}
+        // onEnablePIP={(e) => console.log("onEnablePIP", e)}
+        // onDisablePIP={(e) => console.log("onDisablePIP", e)}
+        // onPause={(e) => console.log("handlePause", e)}
+        // onBuffer={(e) => console.log("onBuffer", e)}
+        onSeeked={(e) => e}
+        onEnded={endTrack}
         onError={(e) => console.log("onError", e)}
-        onProgress={onPlaying}
-        onDuration={(e) => console.log("onDuration", e)}
+        // onProgress={onPlaying}
+        // onDuration={(e) => console.log("onDuration", e)}
       />
       <div className={styles["player-control-buttons"]}>
         <Icon

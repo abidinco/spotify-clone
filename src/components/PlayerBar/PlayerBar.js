@@ -1,29 +1,25 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import styles from "./PlayerBar.module.css";
 import Icon from "../UI/Icon";
 import { Link } from "react-router-dom";
 import AppContext from "../../store/index.js";
 
-import Spotify from "../../spotify/api";
+// import Spotify from "../../spotify/api";
 import Player from "./Player";
 
 const PlayerBar = () => {
   const appCtx = useContext(AppContext);
-  const [recentSong, setRecentSong] = useState();
+
+  // const [recentSong, setRecentSong] = useState();
   // const getRecentPlayedTrack = async () => {
   //   const listOfTracks = await Spotify.getCurrentUserRecentlyPlayedTracks();
   //   setRecentSong(listOfTracks && listOfTracks.items[0]);
   // };
 
-  useEffect(
-    () => {
-      // window.addInputRangeStyle();
-      // appCtx.isLoggedIn && getRecentPlayedTrack();
-    },
-    [
-      /* appCtx.isLoggedIn, getRecentPlayedTrack */
-    ]
-  );
+  // useEffect(() => {
+  //   window.addInputRangeStyle();
+  //   appCtx.isLoggedIn && getRecentPlayedTrack();
+  // },[appCtx.isLoggedIn, getRecentPlayedTrack]);
 
   return (
     <div className={styles.bar}>
@@ -86,19 +82,36 @@ const PlayerBar = () => {
           width={16}
           height={16}
         />
-        <Icon
-          name="player-volume-off"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
+        <div onClick={() => appCtx.mutePlayer(!appCtx.playerMuted)}>
+          <Icon
+            name={`player-volume-${
+              appCtx.playerVolume === 0 || appCtx.playerMuted
+                ? "off"
+                : appCtx.playerVolume < 0.31
+                ? "low"
+                : appCtx.playerVolume < 0.62
+                ? "medium"
+                : "high"
+            }`}
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
         <div className={styles["player-volume-bar"]}>
           <input
             className={styles["player-control-progress-input"]}
             type="range"
             min={0}
-            max={100}
-            step={1}
+            max={1}
+            step={0.1}
+            value={appCtx.playerMuted ? 0 : appCtx.playerVolume}
+            onChange={(e) =>
+              appCtx.playerMuted
+                ? appCtx.mutePlayer(false) &&
+                  appCtx.setVolume(e.target.valueAsNumber)
+                : appCtx.setVolume(e.target.valueAsNumber)
+            }
           />
         </div>
       </div>
