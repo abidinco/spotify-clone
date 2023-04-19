@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import styles from "./Player.module.css";
 import Icon from "../UI/Icon";
+import { convertFloatToTime } from "../../utils";
 
 const Player = () => {
   const audioPlayer = useRef();
@@ -93,15 +94,16 @@ const Player = () => {
         />
       </div>
       <div className={styles["player-control-bar"]}>
-        <div className={styles["player-control-position"]}>7:51</div>
+        <div className={styles["player-control-position"]}>
+          {convertFloatToTime(currentTime)}
+        </div>
         <div className={styles["player-control-progress"]}>
           <input
-            className={styles["player-control-progress-input"]}
             type="range"
             min="0"
             max="100"
             step="1"
-            value={currentTime}
+            value={durationValue}
             onChange={(e) => {
               const duration = audioPlayer.current.audioEl.current.duration;
               audioPlayer.current.audioEl.current.currentTime =
@@ -110,7 +112,13 @@ const Player = () => {
             }}
           />
         </div>
-        <div className={styles["player-control-duration"]}>9:40</div>
+        <div className={styles["player-control-duration"]}>
+          {convertFloatToTime(
+            audioPlayer.current
+              ? audioPlayer.current.audioEl.current.duration
+              : "0.0"
+          )}
+        </div>
       </div>
     </div>
   );

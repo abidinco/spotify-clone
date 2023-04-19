@@ -17,7 +17,7 @@ const PlayerBar = () => {
 
   useEffect(
     () => {
-      window.addInputRangeStyle();
+      // window.addInputRangeStyle();
       // appCtx.isLoggedIn && getRecentPlayedTrack();
     },
     [

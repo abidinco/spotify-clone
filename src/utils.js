@@ -89,10 +89,20 @@ const getRandomRGB = (max) => {
   )},${Math.floor(Math.random() * max)})`;
 };
 
+const convertFloatToTime = (time) => {
+  let minutes = Math.floor(Math.trunc(time) / 60);
+  let seconds = Math.trunc(time) % 60;
+  return `${minutes.length > 1 ? minutes : "0" + minutes}:${
+    seconds.length > 0 ? seconds : seconds.toString().padStart(2, "0")
+  }`;
+};
+
 export {
   formatDate,
   millisToMinutesAndSeconds,
   numberWithCommas,
+  convertFloatToTime,
+  convertMsToTime,
   calculatePlaylistDuration,
   welcomingMessage,
   triggerBreakpoints,

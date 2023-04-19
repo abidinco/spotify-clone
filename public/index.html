@@ -34,22 +34,22 @@
     // chrome doesnt support input[type='range'] styles for played part of range
     // firefox has -moz-range-track and IE has fill-lower but chrome doesnt have
     // copied from https://codepen.io/duplich/pen/qjYQEZ
-    function addInputRangeStyle() {
-      document.querySelector("input[type='range']").addEventListener("input", function () {
-        document.querySelector("input[type='range']").style.background
-          = "linear-gradient(to right, white 0%, white " + this.value + "%, hsla(0,0%,100%,.3)" + this.value + "%, hsla(0,0%,100%,.3) 100%)"
+    // function addInputRangeStyle() {
+    //   document.querySelector("input[type='range']").addEventListener("input", function () {
+    //     document.querySelector("input[type='range']").style.background
+    //       = "linear-gradient(to right, white 0%, white " + this.value + "%, hsla(0,0%,100%,.3)" + this.value + "%, hsla(0,0%,100%,.3) 100%)"
 
-        // added these lines styling for hover
-        document.querySelector("input[type='range']").addEventListener('mouseover', () => {
-          document.querySelector("input[type='range']").style.background
-            = "linear-gradient(to right, #1db954 0%, #1db954 " + this.value + "%, hsla(0,0%,100%,.3)" + this.value + "%, hsla(0,0%,100%,.3) 100%)"
-        });
-        document.querySelector("input[type='range']").addEventListener('mouseout', () => {
-          document.querySelector("input[type='range']").style.background
-            = "linear-gradient(to right, white 0%, white " + this.value + "%, hsla(0,0%,100%,.3)" + this.value + "%, hsla(0,0%,100%,.3) 100%)"
-        });
-      });
-    }
+    //     // added these lines styling for hover
+    //     document.querySelector("input[type='range']").addEventListener('mouseover', () => {
+    //       document.querySelector("input[type='range']").style.background
+    //         = "linear-gradient(to right, #1db954 0%, #1db954 " + this.value + "%, hsla(0,0%,100%,.3)" + this.value + "%, hsla(0,0%,100%,.3) 100%)"
+    //     });
+    //     document.querySelector("input[type='range']").addEventListener('mouseout', () => {
+    //       document.querySelector("input[type='range']").style.background
+    //         = "linear-gradient(to right, white 0%, white " + this.value + "%, hsla(0,0%,100%,.3)" + this.value + "%, hsla(0,0%,100%,.3) 100%)"
+    //     });
+    //   });
+    // }
   </script>
 </head>
 
