@@ -40,7 +40,7 @@ const Player = () => {
         playing={true}
         controls={false}
         light={false}
-        loop={false}
+        loop={appCtx.playerRepeated}
         muted={appCtx.playerMuted}
         volume={appCtx.playerVolume}
         // onVolumeChanged={(e) => console.log("onVolumeChanged", e)}
@@ -60,18 +60,22 @@ const Player = () => {
         // onDuration={(e) => console.log("onDuration", e)}
       />
       <div className={styles["player-control-buttons"]}>
-        <Icon
-          name="player-shuffle"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
-        <Icon
-          name="player-skip-back"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
+        <div>
+          <Icon
+            name="player-shuffle"
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
+        <div>
+          <Icon
+            name="player-skip-back"
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
         <div
           className={styles["player-control-play"]}
           onClick={playing ? pauseTrack : playTrack}
@@ -82,18 +86,22 @@ const Player = () => {
             <Icon name="player-play" color="black" width={16} height={16} />
           )}
         </div>
-        <Icon
-          name="player-skip-forward"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
-        <Icon
-          name="player-repeat"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
+        <div>
+          <Icon
+            name="player-skip-forward"
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
+        <div className="repeat" onClick={() => appCtx.repeatPlayer(!appCtx.playerRepeated)}>
+          <Icon
+            name={`player-repeat${appCtx.playerRepeated ? "-active" : ""}`}
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
       </div>
       <div className={styles["player-control-bar"]}>
         <div className={styles["player-control-position"]}>

@@ -9,6 +9,7 @@ const initialState = {
   navbarNowPlaying: "Liked songs",
   playerVolume: 0.5,
   playerMuted: false,
+  playerRepeated: false,
 };
 
 const AppContext = createContext(initialState);
@@ -33,6 +34,8 @@ const reducer = (state, action) => {
       return { ...state, playerVolume: action.payload.playerVolume };
     case "PLAYER_MUTE":
       return { ...state, playerMuted: action.payload.playerMuted };
+    case "PLAYER_REPEAT":
+      return { ...state, playerRepeated: action.payload.playerRepeated };
     default:
       return state;
   }
@@ -99,10 +102,19 @@ export const AppContextProvider = (props) => {
     dispatch({
       type: "PLAYER_MUTE",
       payload: {
-        playerMuted: willBeMute
-      }
-    })
-  }
+        playerMuted: willBeMute,
+      },
+    });
+  };
+
+  const repeatPlayer = (willBeRepeated) => {
+    dispatch({
+      type: "PLAYER_REPEAT",
+      payload: {
+        playerRepeated: willBeRepeated,
+      },
+    });
+  };
 
   return (
     <AppContext.Provider
@@ -120,6 +132,8 @@ export const AppContextProvider = (props) => {
         setVolume: setVolume,
         mutePlayer: mutePlayer,
         playerMuted: appState.playerMuted,
+        repeatPlayer: repeatPlayer,
+        playerRepeated: appState.playerRepeated,
       }}
     >
       {props.children}

@@ -11,12 +11,16 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   gap: 24px;
   margin-bottom: 12px;
 }
 
-.player-control-buttons *:hover {
+/* TODO
+When repeat-button is active, hovering element fills it white instead of green.
+not selector below this, isnt working.
+*/
+.player-control-buttons > div:not(.repeat):hover > svg {
   fill: white;
 }
 

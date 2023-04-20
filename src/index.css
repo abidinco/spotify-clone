@@ -250,3 +250,7 @@ body[song-list-header-stuck="false"] div[class^="SongList_table-header"] {
 .divider-centered-text:not(:empty)::after {
   margin-left: 0.25em;
 }
+
+svg.icon-player-repeat-active {
+  fill: #1fdf64;
+}
