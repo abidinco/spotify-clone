@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, forwardRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import styles from "./Player.module.css";
 import Icon from "../UI/Icon";
@@ -8,17 +8,17 @@ import AppContext from "../../store";
 const Player = () => {
   const audioPlayer = useRef();
   const appCtx = useContext(AppContext);
-  const [playing, setPlaying] = useState(false);
+  // const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [durationValue, setDurationValue] = useState(0);
 
   const playTrack = () => {
     audioPlayer.current.audioEl.current.play();
-    setPlaying(true);
+    appCtx.handlePlayerPlay();
   };
   const pauseTrack = () => {
     audioPlayer.current.audioEl.current.pause();
-    setPlaying(false);
+    appCtx.handlePlayerPause();
   };
   const onPlaying = () => {
     const duration = audioPlayer.current.audioEl.current.duration;
@@ -28,25 +28,25 @@ const Player = () => {
     setCurrentTime(currentTime);
   };
   const endTrack = () => {
-    setPlaying(false);
+    appCtx.handlePlayerPause();
   };
   return (
     <div className={styles["player-wrapper"]}>
       <ReactAudioPlayer
-        id="player"
-        ref={audioPlayer}
-        src={appCtx.playerTrackSrc}
-        width={0}
-        height={0}
-        playing={true}
+        id="audio-player"
         controls={false}
         light={false}
+        height={0}
+        width={0}
+        ref={audioPlayer}
+        src={appCtx.playerTrackSrc}
+        playing={appCtx.playerIsPlaying}
         loop={appCtx.playerLooped}
         muted={appCtx.playerMuted}
         volume={appCtx.playerVolume}
         // onVolumeChanged={(e) => console.log("onVolumeChanged", e)}
         // onReady={(e) => console.log("onReady", e)}
-        onStart={(e) => console.log("onStart", e)}
+        onStart={appCtx.handlePlayerPlay}
         onListen={onPlaying}
         listenInterval={500}
         // onEnablePIP={(e) => console.log("onEnablePIP", e)}
@@ -78,9 +78,9 @@ const Player = () => {
         </div>
         <div
           className={styles["player-control-play"]}
-          onClick={playing ? pauseTrack : playTrack}
+          onClick={appCtx.playerIsPlaying ? pauseTrack : playTrack}
         >
-          {playing ? (
+          {appCtx.playerIsPlaying ? (
             <Icon name="player-pause" color="black" width={16} height={16} />
           ) : (
             <Icon name="player-play" color="black" width={16} height={16} />

@@ -11,6 +11,7 @@ const initialState = {
   playerMuted: false,
   playerLooped: false,
   playerTrackSrc: "/soolokisa.mp3",
+  playerIsPlaying: false,
 };
 
 const AppContext = createContext(initialState);
@@ -41,7 +42,15 @@ const reducer = (state, action) => {
     case "PLAYER_LOOP":
       return { ...state, playerLooped: action.payload.playerLooped };
     case "PLAYER_CHANGE_TRACK":
-      return { ...state, playerTrackSrc: action.payload.playerTrackSrc };
+      return {
+        ...state,
+        playerTrackSrc: action.payload.playerTrackSrc,
+        playerIsPlaying: action.payload.playerIsPlaying,
+      };
+    case "PLAYER_PLAY":
+      return { ...state, playerIsPlaying: true };
+    case "PLAYER_PAUSE":
+      return { ...state, playerIsPlaying: false };
     default:
       return state;
   }
@@ -127,6 +136,28 @@ export const AppContextProvider = (props) => {
       type: "PLAYER_CHANGE_TRACK",
       payload: {
         playerTrackSrc: trackUrl,
+        playerIsPlaying: true,
+      },
+    });
+    setTimeout(() => {
+      document.querySelector("#audio-player").play();
+    }, 50);
+  };
+
+  const handlePlayerPlay = () => {
+    dispatch({
+      type: "PLAYER_PLAY",
+      payload: {
+        playerIsPlaying: true,
+      },
+    });
+  };
+
+  const handlePlayerPause = () => {
+    dispatch({
+      type: "PLAYER_PAUSE",
+      payload: {
+        playerIsPlaying: false,
       },
     });
   };
@@ -151,6 +182,9 @@ export const AppContextProvider = (props) => {
         playerMuted: appState.playerMuted,
         handlePlayerLoop: handlePlayerLoop,
         playerLooped: appState.playerLooped,
+        handlePlayerPlay: handlePlayerPlay,
+        handlePlayerPause: handlePlayerPause,
+        playerIsPlaying: appState.playerIsPlaying,
       }}
     >
       {props.children}
