@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, forwardRef } from "react";
+import React, { useRef, useState, useContext } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import styles from "./Player.module.css";
 import Icon from "../UI/Icon";
@@ -8,18 +8,9 @@ import AppContext from "../../store";
 const Player = () => {
   const audioPlayer = useRef();
   const appCtx = useContext(AppContext);
-  // const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [durationValue, setDurationValue] = useState(0);
 
-  const playTrack = () => {
-    audioPlayer.current.audioEl.current.play();
-    appCtx.handlePlayerPlay();
-  };
-  const pauseTrack = () => {
-    audioPlayer.current.audioEl.current.pause();
-    appCtx.handlePlayerPause();
-  };
   const onPlaying = () => {
     const duration = audioPlayer.current.audioEl.current.duration;
     const currentTime = audioPlayer.current.audioEl.current.currentTime;
@@ -27,9 +18,7 @@ const Player = () => {
     setDurationValue(durationValue);
     setCurrentTime(currentTime);
   };
-  const endTrack = () => {
-    appCtx.handlePlayerPause();
-  };
+
   return (
     <div className={styles["player-wrapper"]}>
       <ReactAudioPlayer
@@ -54,7 +43,7 @@ const Player = () => {
         // onPause={(e) => console.log("handlePause", e)}
         // onBuffer={(e) => console.log("onBuffer", e)}
         onSeeked={(e) => e}
-        onEnded={endTrack}
+        onEnded={() => appCtx.handlePlayerPause()}
         onError={(e) => console.log("onError", e)}
         // onProgress={onPlaying}
         // onDuration={(e) => console.log("onDuration", e)}
@@ -78,7 +67,11 @@ const Player = () => {
         </div>
         <div
           className={styles["player-control-play"]}
-          onClick={appCtx.playerIsPlaying ? pauseTrack : playTrack}
+          onClick={
+            appCtx.playerIsPlaying
+              ? appCtx.handlePlayerPause
+              : appCtx.handlePlayerPlay
+          }
         >
           {appCtx.playerIsPlaying ? (
             <Icon name="player-pause" color="black" width={16} height={16} />

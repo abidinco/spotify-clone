@@ -145,6 +145,7 @@ export const AppContextProvider = (props) => {
   };
 
   const handlePlayerPlay = () => {
+    document.querySelector("#audio-player").play();
     dispatch({
       type: "PLAYER_PLAY",
       payload: {
@@ -154,6 +155,7 @@ export const AppContextProvider = (props) => {
   };
 
   const handlePlayerPause = () => {
+    document.querySelector("#audio-player").pause();
     dispatch({
       type: "PLAYER_PAUSE",
       payload: {

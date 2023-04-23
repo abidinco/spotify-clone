@@ -29,108 +29,103 @@ const SongList = (props) => {
       </div>
       <div className={styles.playlist}>
         {props.songs
-          ? props.songs.map((song, index) => (
-              <div className={styles.item} key={index}>
-                <div className={styles.index}>
-                  <div className={styles["index-number"]}>{index + 1}</div>
-                  <div
-                    className={styles["index-icon"]}
-                    onClick={() => appCtx.handlePlayerChangeTrack(song.track.preview_url)}
-                  >
-                    <Icon
-                      name="player-play"
-                      width={12}
-                      height={12}
-                      color="#fff"
-                    />
+          ? props.songs.map((song, index) => {
+              let track =
+                props.page === "artist" || props.page === "album"
+                  ? song
+                  : song.track;
+              return (
+                <div className={styles.item} key={index}>
+                  <div className={styles.index}>
+                    {track.preview_url ? (
+                      <React.Fragment>
+                        {track.preview_url === appCtx.playerTrackSrc ? (
+                          appCtx.playerIsPlaying ? (
+                            <img
+                              src="/playing.gif"
+                              width="15"
+                              height="15"
+                              alt="Track is playing"
+                              className={styles["index-number"]}
+                            />
+                          ) : (
+                            <Icon name="track-paused" width={16} height={16} />
+                          )
+                        ) : (
+                          <div className={styles["index-number"]}>
+                            {index + 1}
+                          </div>
+                        )}
+                        <div
+                          className={styles["index-icon"]}
+                          onClick={() =>
+                            appCtx.handlePlayerChangeTrack(track.preview_url)
+                          }
+                        >
+                          <Icon
+                            name="player-play"
+                            width={12}
+                            height={12}
+                            color="#fff"
+                          />
+                        </div>
+                      </React.Fragment>
+                    ) : (
+                      // If track hasn't "preview_url" show unavailable symbol
+                      <div title="Preview track is unavailable">🚫</div>
+                    )}
                   </div>
-                </div>
-                <div className={styles.meta}>
-                  {props.page !== "album" ? (
+                  <div className={styles.meta}>
                     <img
                       loading="lazy"
                       src={
-                        props.page === "artist"
-                          ? song.album.images[0].url
-                          : song.track.album.images[0].url
-                          ? song.track.album.images[0].url
-                          : "/blank.jpg"
+                        track.album ? track.album.images[0].url : "/blank.jpg"
                       }
                       alt="Song"
                     />
-                  ) : null}
-                  <div className={styles["song-artist-column"]}>
-                    <div className={styles["song-name"]}>
-                      {props.page === "artist"
-                        ? song.name
-                        : props.page === "album"
-                        ? song.name
-                        : song.track.name}
-                    </div>
-                    <div className={styles["artist-links"]}>
-                      {props.page === "artist"
-                        ? song.artists.map((artist, i) => (
-                            <React.Fragment key={i}>
-                              <Link
-                                className={styles["song-link"]}
-                                to={`/artist/${artist.id}`}
-                              >
-                                {artist.name}
-                              </Link>
-                              {song.artists.length - 2 < i ? null : ", "}
-                            </React.Fragment>
-                          ))
-                        : props.page !== "album" &&
-                          song.track.artists.map((artist, i) => (
-                            <React.Fragment key={i}>
-                              <Link
-                                className={styles["song-link"]}
-                                to={`/artist/${artist.id}`}
-                              >
-                                {artist.name}
-                              </Link>
-                              {song.track.artists.length - 2 < i ? null : ", "}
-                            </React.Fragment>
-                          ))}
+                    <div className={styles["song-artist-column"]}>
+                      <div className={styles["song-name"]}>{track.name}</div>
+                      <div className={styles["artist-links"]}>
+                        {track.artists
+                          ? track.artists.map((artist, i) => (
+                              <React.Fragment key={i}>
+                                <Link
+                                  className={styles["song-link"]}
+                                  to={`/artist/${artist.id}`}
+                                >
+                                  {artist.name}
+                                </Link>
+                                {track.artists.length - 2 < i ? null : ", "}
+                              </React.Fragment>
+                            ))
+                          : null}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {props.page === "artist" ? (
-                  <div className={styles.album}>
-                    <Link to={`/album/${song.album.id}`}>
-                      {song.album.name}
-                    </Link>
-                  </div>
-                ) : (
-                  props.page !== "album" && (
+                  {track.album ? (
                     <div className={styles.album}>
-                      <Link to={`/album/${song.track.album.id}`}>
-                        {song.track.album.name}
+                      <Link to={`/album/${track.album.id}`}>
+                        {track.album.name}
                       </Link>
                     </div>
-                  )
-                )}
-                {props.page === "artist" ? (
-                  <div className={styles.date}>
-                    {formatDate(song.album.release_date)}
-                  </div>
-                ) : (
-                  props.page !== "album" && (
+                  ) : null}
+                  {props.page === "artist" ? (
                     <div className={styles.date}>
-                      {formatDate(song.added_at)}
+                      {formatDate(track.album.release_date)}
                     </div>
-                  )
-                )}
-                <div className={styles.duration}>
-                  <span>
-                    {props.page === "artist" || props.page === "album"
-                      ? millisToMinutesAndSeconds(song.duration_ms)
-                      : props.page !== "album" &&
-                        millisToMinutesAndSeconds(song.track.duration_ms)}
-                  </span>
+                  ) : (
+                    props.page !== "album" && (
+                      <div className={styles.date}>
+                        {formatDate(track.added_at)}
+                      </div>
+                    )
+                  )}
+                  <div className={styles.duration}>
+                    <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           : null}
       </div>
     </div>
