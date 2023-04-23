@@ -70,18 +70,22 @@ const PlayerBar = () => {
       </div>
       <Player />
       <div className={styles.controls}>
-        <Icon
-          name="player-queue"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
-        <Icon
-          name="player-devices"
-          color="rgb(255, 255, 255, .7)"
-          width={16}
-          height={16}
-        />
+        <div className="not-allowed">
+          <Icon
+            name="player-queue"
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
+        <div className="not-allowed">
+          <Icon
+            name="player-devices"
+            color="rgb(255, 255, 255, .7)"
+            width={16}
+            height={16}
+          />
+        </div>
         <div onClick={() => appCtx.mutePlayer(!appCtx.playerMuted)}>
           <Icon
             name={`player-volume-${

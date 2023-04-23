@@ -33,8 +33,9 @@ const Player = () => {
   return (
     <div className={styles["player-wrapper"]}>
       <ReactAudioPlayer
+        id="player"
         ref={audioPlayer}
-        src={"/soolokisa.mp3"}
+        src={appCtx.playerTrack}
         width={0}
         height={0}
         playing={true}
@@ -46,7 +47,6 @@ const Player = () => {
         // onVolumeChanged={(e) => console.log("onVolumeChanged", e)}
         // onReady={(e) => console.log("onReady", e)}
         onStart={(e) => console.log("onStart", e)}
-        // onPlay={onPlaying}
         onListen={onPlaying}
         listenInterval={500}
         // onEnablePIP={(e) => console.log("onEnablePIP", e)}
@@ -60,7 +60,7 @@ const Player = () => {
         // onDuration={(e) => console.log("onDuration", e)}
       />
       <div className={styles["player-control-buttons"]}>
-        <div>
+        <div className={styles["hover-white"]}>
           <Icon
             name="player-shuffle"
             color="rgb(255, 255, 255, .7)"
@@ -68,7 +68,7 @@ const Player = () => {
             height={16}
           />
         </div>
-        <div>
+        <div className={styles["hover-white"]}>
           <Icon
             name="player-skip-back"
             color="rgb(255, 255, 255, .7)"
@@ -86,7 +86,7 @@ const Player = () => {
             <Icon name="player-play" color="black" width={16} height={16} />
           )}
         </div>
-        <div>
+        <div className={styles["hover-white"]}>
           <Icon
             name="player-skip-forward"
             color="rgb(255, 255, 255, .7)"
@@ -94,7 +94,7 @@ const Player = () => {
             height={16}
           />
         </div>
-        <div className="repeat" onClick={() => appCtx.repeatPlayer(!appCtx.playerRepeated)}>
+        <div onClick={() => appCtx.repeatPlayer(!appCtx.playerRepeated)}>
           <Icon
             name={`player-repeat${appCtx.playerRepeated ? "-active" : ""}`}
             color="rgb(255, 255, 255, .7)"

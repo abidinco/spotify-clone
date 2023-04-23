@@ -36,6 +36,8 @@ const reducer = (state, action) => {
       return { ...state, playerMuted: action.payload.playerMuted };
     case "PLAYER_REPEAT":
       return { ...state, playerRepeated: action.payload.playerRepeated };
+    case "PLAYER_CHANGE_TRACK":
+      return { ...state, playerTrack: action.payload.playerTrack };
     default:
       return state;
   }
@@ -116,6 +118,15 @@ export const AppContextProvider = (props) => {
     });
   };
 
+  const changeTrack = (trackUrl) => {
+    dispatch({
+      type: "PLAYER_CHANGE_TRACK",
+      payload: {
+        playerTrack: trackUrl,
+      },
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -134,6 +145,8 @@ export const AppContextProvider = (props) => {
         playerMuted: appState.playerMuted,
         repeatPlayer: repeatPlayer,
         playerRepeated: appState.playerRepeated,
+        changeTrack: changeTrack,
+        playerTrack: appState.playerTrack,
       }}
     >
       {props.children}

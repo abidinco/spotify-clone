@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import styles from "./SongList.module.css";
 import Icon from "../../UI/Icon";
 import { Link } from "react-router-dom";
+import AppContext from "../../../store";
 
 import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
 
 const SongList = (props) => {
+  const appCtx = useContext(AppContext);
   const tableHeaderElement = useRef(null);
   // TODO: Too much conditional statements going on here, will be fixed.
   return (
@@ -31,7 +33,10 @@ const SongList = (props) => {
               <div className={styles.item} key={index}>
                 <div className={styles.index}>
                   <div className={styles["index-number"]}>{index + 1}</div>
-                  <div className={styles["index-icon"]}>
+                  <div
+                    className={styles["index-icon"]}
+                    onClick={() => appCtx.changeTrack(song.track.preview_url)}
+                  >
                     <Icon
                       name="player-play"
                       width={12}
