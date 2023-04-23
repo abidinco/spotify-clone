@@ -54,7 +54,7 @@ const SideBarLink = (props) => {
 
   // auth-user clicks link go to link / non-auth-user clicks 'library or liked songs' change href to #
   const to =
-    !appCtx.isLoggedIn &&
+    !appCtx.isUserLoggedIn &&
     (props.name === "Your Library" || props.name === "Liked Songs")
       ? "#"
       : props.to;
@@ -63,7 +63,7 @@ const SideBarLink = (props) => {
     <Link to={to} className={`popover-wrapper ${styles.link} ${props.className}`}>
       <IconElement />
       <span className="popover-title">{props.name}</span>
-      {!appCtx.isLoggedIn && props.popoverContentTitle && (
+      {!appCtx.isUserLoggedIn && props.popoverContentTitle && (
         <div className="popover-content">
           <div className="popover-content-title">
             {props.popoverContentTitle}
@@ -71,7 +71,7 @@ const SideBarLink = (props) => {
           <div className="popover-content-text">{props.popoverContentText}</div>
           <div className="popover-content-actions">
             <div onClick={resetFocus}>Not now</div>
-            <div onClick={appCtx.handleLogin}>Log in</div>
+            <div onClick={appCtx.handleUserLogin}>Log in</div>
           </div>
         </div>
       )}

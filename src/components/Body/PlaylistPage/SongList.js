@@ -35,7 +35,7 @@ const SongList = (props) => {
                   <div className={styles["index-number"]}>{index + 1}</div>
                   <div
                     className={styles["index-icon"]}
-                    onClick={() => appCtx.changeTrack(song.track.preview_url)}
+                    onClick={() => appCtx.handlePlayerChangeTrack(song.track.preview_url)}
                   >
                     <Icon
                       name="player-play"

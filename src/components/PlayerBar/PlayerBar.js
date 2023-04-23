@@ -86,7 +86,7 @@ const PlayerBar = () => {
             height={16}
           />
         </div>
-        <div onClick={() => appCtx.mutePlayer(!appCtx.playerMuted)}>
+        <div onClick={() => appCtx.handlePlayerMute(!appCtx.playerMuted)}>
           <Icon
             name={`player-volume-${
               appCtx.playerVolume === 0 || appCtx.playerMuted
@@ -112,9 +112,9 @@ const PlayerBar = () => {
             value={appCtx.playerMuted ? 0 : appCtx.playerVolume}
             onChange={(e) =>
               appCtx.playerMuted
-                ? appCtx.mutePlayer(false) &&
-                  appCtx.setVolume(e.target.valueAsNumber)
-                : appCtx.setVolume(e.target.valueAsNumber)
+                ? appCtx.handlePlayerMute(false) &&
+                  appCtx.handlePlayerVolume(e.target.valueAsNumber)
+                : appCtx.handlePlayerVolume(e.target.valueAsNumber)
             }
           />
         </div>

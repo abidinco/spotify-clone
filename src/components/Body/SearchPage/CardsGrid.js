@@ -44,11 +44,11 @@ const Genres = (props) => {
   };
 
   useEffect(() => {
-    appCtx.isLoggedIn && props.genres && getGenres(20);
-    appCtx.isLoggedIn && searchType === "artists" && getArtists();
-    appCtx.isLoggedIn && searchType === "playlists" && getPlaylists();
-    appCtx.isLoggedIn && searchType === "albums" && getAlbums();
-    appCtx.isLoggedIn && searchType === "podcastAndEpisodes" && getShows();
+    appCtx.isUserLoggedIn && props.genres && getGenres(20);
+    appCtx.isUserLoggedIn && searchType === "artists" && getArtists();
+    appCtx.isUserLoggedIn && searchType === "playlists" && getPlaylists();
+    appCtx.isUserLoggedIn && searchType === "albums" && getAlbums();
+    appCtx.isUserLoggedIn && searchType === "podcastAndEpisodes" && getShows();
   }, [props.genres, searchType]);
   return (
     <div

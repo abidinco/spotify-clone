@@ -35,13 +35,13 @@ const Player = () => {
       <ReactAudioPlayer
         id="player"
         ref={audioPlayer}
-        src={appCtx.playerTrack}
+        src={appCtx.playerTrackSrc}
         width={0}
         height={0}
         playing={true}
         controls={false}
         light={false}
-        loop={appCtx.playerRepeated}
+        loop={appCtx.playerLooped}
         muted={appCtx.playerMuted}
         volume={appCtx.playerVolume}
         // onVolumeChanged={(e) => console.log("onVolumeChanged", e)}
@@ -94,9 +94,9 @@ const Player = () => {
             height={16}
           />
         </div>
-        <div onClick={() => appCtx.repeatPlayer(!appCtx.playerRepeated)}>
+        <div onClick={() => appCtx.handlePlayerLoop(!appCtx.playerLooped)}>
           <Icon
-            name={`player-repeat${appCtx.playerRepeated ? "-active" : ""}`}
+            name={`player-repeat${appCtx.playerLooped ? "-active" : ""}`}
             color="rgb(255, 255, 255, .7)"
             width={16}
             height={16}

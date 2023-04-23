@@ -15,8 +15,8 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    appCtx.isLoggedIn && getPlaylists();
-  }, [appCtx.isLoggedIn]);
+    appCtx.isUserLoggedIn && getPlaylists();
+  }, [appCtx.isUserLoggedIn]);
 
   return (
     <div className={styles.sidebar}>
@@ -51,7 +51,7 @@ const Sidebar = () => {
         />
       </div>
       <div className={styles.divider}></div>
-      {appCtx.isLoggedIn && (
+      {appCtx.isUserLoggedIn && (
         <div className={styles["playlists-wrapper"]}>
           <div className={styles.playlists}>
             {playlists
@@ -64,7 +64,7 @@ const Sidebar = () => {
           </div>
         </div>
       )}
-      {!appCtx.isLoggedIn && (
+      {!appCtx.isUserLoggedIn && (
         <div className={styles.footer}>
           <span>Cookies</span>
           <span>Privacy</span>

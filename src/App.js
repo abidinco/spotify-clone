@@ -14,9 +14,9 @@ function App() {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("accessTokenExpiry");
     } else if (localStorage.getItem("accessToken")) {
-      appCtx.handleLogin();
+      appCtx.handleUserLogin();
     }
-  }, []);
+  }, [appCtx.userLoggedIn]);
 
   return <Layout />;
 }

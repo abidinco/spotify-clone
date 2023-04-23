@@ -34,19 +34,19 @@ const HomePage = () => {
   // }, []);
 
   useEffect(() => {
-    appCtx.isLoggedIn && getCurrentUsersPlaylists();
+    appCtx.isUserLoggedIn && getCurrentUsersPlaylists();
     // getCurrentUserTopArtists();
-    appCtx.isLoggedIn && getCurrentUserTopTracks();
+    appCtx.isUserLoggedIn && getCurrentUserTopTracks();
     // appCtx.isLoggedIn && getCurrentUserRecentlyPlayedTracks();
   }, [
-    appCtx.isLoggedIn,
+    appCtx.isUserLoggedIn,
     /* getCurrentUserRecentlyPlayedTracks, */
     getCurrentUserTopTracks,
     getCurrentUsersPlaylists,
   ]);
   return (
     <div className={styles.wrapper}>
-      {appCtx.isLoggedIn && (
+      {appCtx.isUserLoggedIn && (
         <React.Fragment>
           <div className={styles.message}>{welcomingMessage()}</div>
           <div className={styles["top-items"]}>
@@ -98,11 +98,11 @@ const HomePage = () => {
           </div>
         </React.Fragment>
       )}
-      {!appCtx.isLoggedIn && (
+      {!appCtx.isUserLoggedIn && (
         <React.Fragment>
           <div className={styles.title}>🙎‍♂️ udummy@bk.ru 🔑 testuser</div>
           <div>
-            <span className="link" onClick={() => appCtx.handleLogin()}>
+            <span className="link" onClick={() => appCtx.handleUserLogin()}>
               Login
             </span>{" "}
             the app with the spotify account created for test. Otherwise you

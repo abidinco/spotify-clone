@@ -3,41 +3,45 @@ import { useNavigate } from "react-router-dom";
 import Spotify from "../spotify/api";
 
 const initialState = {
-  isLoggedIn: false,
-  searchText: "",
+  isUserLoggedIn: false,
   isSearching: false,
-  navbarNowPlaying: "Liked songs",
+  searchText: "",
+  navbarNowPlayingText: "Liked songs",
   playerVolume: 0.5,
   playerMuted: false,
-  playerRepeated: false,
+  playerLooped: false,
+  playerTrackSrc: "/soolokisa.mp3",
 };
 
 const AppContext = createContext(initialState);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "LOGIN":
-      return { ...state, isLoggedIn: true };
-    case "LOGOUT":
-      return { ...state, isLoggedIn: false };
+    case "USER_LOGIN":
+      return { ...state, isUserLoggedIn: true };
+    case "USER_LOGOUT":
+      return { ...state, isUserLoggedIn: false };
     case "SEARCH":
       return {
         ...state,
         searchText: action.payload.searchText,
         isSearching: action.payload.isSearching,
       };
-    case "NAVBAR_NOW_PLAYING":
-      return { ...state, navbarNowPlaying: action.payload.navbarNowPlaying };
     case "SEARCH_CLEAR":
       return { ...state, searchText: "", isSearching: false };
-    case "PLAYER_VOLUME":
+    case "NAVBAR_CHANGE_NOW_PLAYING":
+      return {
+        ...state,
+        navbarNowPlayingText: action.payload.navbarNowPlayingText,
+      };
+    case "PLAYER_SET_VOLUME":
       return { ...state, playerVolume: action.payload.playerVolume };
     case "PLAYER_MUTE":
       return { ...state, playerMuted: action.payload.playerMuted };
-    case "PLAYER_REPEAT":
-      return { ...state, playerRepeated: action.payload.playerRepeated };
+    case "PLAYER_LOOP":
+      return { ...state, playerLooped: action.payload.playerLooped };
     case "PLAYER_CHANGE_TRACK":
-      return { ...state, playerTrack: action.payload.playerTrack };
+      return { ...state, playerTrackSrc: action.payload.playerTrackSrc };
     default:
       return state;
   }
@@ -47,17 +51,17 @@ export const AppContextProvider = (props) => {
   const [appState, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleUserLogin = () => {
     if (localStorage.getItem("accessToken")) {
-      dispatch({ type: "LOGIN" });
+      dispatch({ type: "USER_LOGIN" });
     } else {
       Spotify.getAccessToken();
     }
   };
 
-  const handleLogout = () => {
+  const handleUserLogout = () => {
     localStorage.removeItem("accessToken");
-    dispatch({ type: "LOGOUT" });
+    dispatch({ type: "USER_LOGOUT" });
     setTimeout(() => {
       navigate("/");
     }, 100);
@@ -74,7 +78,7 @@ export const AppContextProvider = (props) => {
     navigateToSearchTerm("/search/" + text.trim());
   };
 
-  const handleResetSearch = () => {
+  const handleSearchClear = () => {
     dispatch({ type: "SEARCH_CLEAR" });
   };
 
@@ -82,47 +86,47 @@ export const AppContextProvider = (props) => {
     navigate(to);
   };
 
-  const changeNavbarNowPlaying = (playlistName) => {
+  const handleChangeNavbarNowPlayingText = (playlistName) => {
     dispatch({
-      type: "NAVBAR_NOW_PLAYING",
+      type: "NAVBAR_CHANGE_NOW_PLAYING",
       payload: {
-        navbarNowPlaying: playlistName,
+        navbarNowPlayingText: playlistName,
       },
     });
   };
 
-  const setVolume = (volume) => {
+  const handlePlayerVolume = (volumeLevel) => {
     dispatch({
-      type: "PLAYER_VOLUME",
+      type: "PLAYER_SET_VOLUME",
       payload: {
-        playerVolume: volume,
+        playerVolume: volumeLevel,
       },
     });
   };
 
-  const mutePlayer = (willBeMute) => {
+  const handlePlayerMute = (willBeMuted) => {
     dispatch({
       type: "PLAYER_MUTE",
       payload: {
-        playerMuted: willBeMute,
+        playerMuted: willBeMuted,
       },
     });
   };
 
-  const repeatPlayer = (willBeRepeated) => {
+  const handlePlayerLoop = (willBeLooped) => {
     dispatch({
-      type: "PLAYER_REPEAT",
+      type: "PLAYER_LOOP",
       payload: {
-        playerRepeated: willBeRepeated,
+        playerLooped: willBeLooped,
       },
     });
   };
 
-  const changeTrack = (trackUrl) => {
+  const handlePlayerChangeTrack = (trackUrl) => {
     dispatch({
       type: "PLAYER_CHANGE_TRACK",
       payload: {
-        playerTrack: trackUrl,
+        playerTrackSrc: trackUrl,
       },
     });
   };
@@ -130,23 +134,23 @@ export const AppContextProvider = (props) => {
   return (
     <AppContext.Provider
       value={{
-        handleLogin: handleLogin,
-        handleLogout: handleLogout,
+        handleUserLogin: handleUserLogin,
+        handleUserLogout: handleUserLogout,
         handleSearch: handleSearch,
-        resetSearch: handleResetSearch,
-        isLoggedIn: appState.isLoggedIn,
+        handleSearchClear: handleSearchClear,
+        isUserLoggedIn: appState.isUserLoggedIn,
         searchText: appState.searchText,
         isSearching: appState.isSearching,
-        navbarNowPlaying: appState.navbarNowPlaying,
-        changeNavbarNowPlaying: changeNavbarNowPlaying,
+        handleChangeNavbarNowPlayingText: handleChangeNavbarNowPlayingText,
+        navbarNowPlayingText: appState.navbarNowPlayingText,
+        handlePlayerVolume: handlePlayerVolume,
         playerVolume: appState.playerVolume,
-        setVolume: setVolume,
-        mutePlayer: mutePlayer,
+        handlePlayerChangeTrack: handlePlayerChangeTrack,
+        playerTrackSrc: appState.playerTrackSrc,
+        handlePlayerMute: handlePlayerMute,
         playerMuted: appState.playerMuted,
-        repeatPlayer: repeatPlayer,
-        playerRepeated: appState.playerRepeated,
-        changeTrack: changeTrack,
-        playerTrack: appState.playerTrack,
+        handlePlayerLoop: handlePlayerLoop,
+        playerLooped: appState.playerLooped,
       }}
     >
       {props.children}

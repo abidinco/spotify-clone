@@ -14,22 +14,22 @@ const NavbarLinks = () => {
   }, []);
 
   useEffect(() => {
-    appCtx.isLoggedIn && getCurrentUser();
-  }, [appCtx.isLoggedIn, getCurrentUser]);
+    appCtx.isUserLoggedIn && getCurrentUser();
+  }, [appCtx.isUserLoggedIn, getCurrentUser]);
 
   return (
     <div>
-      {!appCtx.isLoggedIn && (
+      {!appCtx.isUserLoggedIn && (
         <div className={styles.links}>
           <div>Premium</div>
           <div>Support</div>
           <div>Download</div>
           <div className={styles.divider}></div>
           <div>Sign up</div>
-          <div onClick={appCtx.handleLogin}>Log in</div>
+          <div onClick={appCtx.handleUserLogin}>Log in</div>
         </div>
       )}
-      {appCtx.isLoggedIn && (
+      {appCtx.isUserLoggedIn && (
         <div className={styles.buttons}>
           <div className="not-allowed">Upgrade</div>
           <div tabIndex={0}>
@@ -71,7 +71,7 @@ const NavbarLinks = () => {
                 </span>
               </div>
               <div className="not-allowed">Settings</div>
-              <div onClick={appCtx.handleLogout} className="pointer">
+              <div onClick={appCtx.handleUserLogout} className="pointer">
                 Log out
               </div>
             </div>

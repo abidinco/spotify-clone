@@ -36,7 +36,7 @@ const SearchBox = () => {
   };
 
   const resetHandler = () => {
-    appCtx.resetSearch();
+    appCtx.handleSearchClear();
     inputRef.current.value = "";
   };
 

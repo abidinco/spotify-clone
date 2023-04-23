@@ -10,7 +10,7 @@ const NowPlaying = () => {
       <div className={styles.icon}>
         <Icon name="player-play" color="#000" width={20} height={20} />
       </div>
-      <div className={styles.text}>{appCtx.navbarNowPlaying}</div>
+      <div className={styles.text}>{appCtx.navbarNowPlayingText}</div>
     </div>
   );
 };

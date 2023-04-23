@@ -16,7 +16,7 @@ const TracksList = () => {
   };
 
   useEffect(() => {
-    appCtx.isLoggedIn && getSongs();
+    appCtx.isUserLoggedIn && getSongs();
   }, [appCtx.searchText]);
 
   return (

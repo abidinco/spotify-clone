@@ -26,8 +26,8 @@ const SearchAll = () => {
   };
 
   useEffect(() => {
-    appCtx.isLoggedIn && getAlbums();
-    appCtx.isLoggedIn && getSongs();
+    appCtx.isUserLoggedIn && getAlbums();
+    appCtx.isUserLoggedIn && getSongs();
   }, [appCtx.searchText]);
 
   return (

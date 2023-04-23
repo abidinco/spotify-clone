@@ -7,9 +7,9 @@ const CallbackPage = () => {
     if (localStorage.getItem("accessToken")) {
       window.location.replace("/");
     } else {
-      appCtx.handleLogin();
+      appCtx.handleUserLogin();
     }
-  }, []);
+  }, [appCtx.isUserLoggedIn]);
   return <div></div>;
 };
 

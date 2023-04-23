@@ -38,14 +38,14 @@ const PlaylistRoot = () => {
       let arr = pathname.split("/");
       const playlist = await Spotify.getPlaylist(arr[arr.length - 1]);
       setPlaylist(playlist);
-      appCtx.changeNavbarNowPlaying(playlist.name);
+      appCtx.handleChangeNavbarNowPlayingText(playlist.name);
     };
   } else if (isArtistPage) {
     getArtist = async () => {
       let arr = pathname.split("/");
       const artist = await Spotify.getArtist(arr[arr.length - 1]);
       setArtist(artist);
-      appCtx.changeNavbarNowPlaying(artist.name);
+      appCtx.handleChangeNavbarNowPlayingText(artist.name);
     };
     getArtistTracks = async () => {
       let arr = pathname.split("/");
@@ -63,14 +63,14 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setLikedSongs(likedSongs);
-      appCtx.changeNavbarNowPlaying("Liked songs");
+      appCtx.handleChangeNavbarNowPlayingText("Liked songs");
     };
   } else if (isAlbumPage) {
     getAlbum = async () => {
       let arr = pathname.split("/");
       const album = await Spotify.getAlbum(arr[arr.length - 1]);
       setAlbum(album);
-      appCtx.changeNavbarNowPlaying(album.name);
+      appCtx.handleChangeNavbarNowPlayingText(album.name);
     };
   }
 
