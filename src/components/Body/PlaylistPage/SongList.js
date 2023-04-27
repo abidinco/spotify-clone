@@ -109,16 +109,10 @@ const SongList = (props) => {
                       </Link>
                     </div>
                   ) : null}
-                  {props.page === "artist" ? (
+                  {props.page !== "album" && (
                     <div className={styles.date}>
                       {formatDate(track.album.release_date)}
                     </div>
-                  ) : (
-                    props.page !== "album" && (
-                      <div className={styles.date}>
-                        {formatDate(track.added_at)}
-                      </div>
-                    )
                   )}
                   <div className={styles.duration}>
                     <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>

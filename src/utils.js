@@ -1,3 +1,5 @@
+// Converts "2011-07-12" to Jul 12, 2011
+// Used at artist page to show date_released
 const months = [
   "Jan",
   "Feb",
@@ -21,16 +23,23 @@ const formatDate = (date) => {
   return month + " " + day + ", " + year;
 };
 
+// Converts 521354 to 8:41
+// Used at playlist pages to show track_duration
 const millisToMinutesAndSeconds = (millis) => {
   var minutes = Math.floor(millis / 60000);
   var seconds = ((millis % 60000) / 1000).toFixed(0);
   return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 };
 
+// Converts 2105769 to 2,105,769
+// Used at /artist page header to show monthly listeners
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
+// 12345 to "about 0 min 12 sec"
+// 123456 to "about 2 min 3 sec"
+// 12345678 to "about 3 hr 25 min" to show playlist_duration
 const convertMsToTime = (ms) => {
   let seconds = Math.floor(ms / 1000);
   let minutes = Math.floor(seconds / 60);
@@ -41,7 +50,7 @@ const convertMsToTime = (ms) => {
     hours === 0 ? seconds + " sec" : ""
   }`;
 };
-
+// Sums songs' duration_in_ms and pass this to convertMsToTime()
 const calculatePlaylistDuration = (items) => {
   let durations = items.map((item) => item.track.duration_ms);
   return convertMsToTime(durations.reduce((acc, val) => acc + val, 0));
@@ -54,6 +63,9 @@ const welcomingMessage = () => {
   if (date.getHours() < 25) return "Good evening";
 };
 
+// In Body.js:15 eventListener added, for handling scroll
+// Used like this: triggerBreakpoints(scrollFromTopValue)
+// For navbar-opacity, display_now_playing_button at navbar etc.
 const triggerBreakpoints = (top) => {
   const path = document.location.pathname;
   const body = document.body;
@@ -83,12 +95,18 @@ const triggerBreakpoints = (top) => {
   }
 };
 
+// In Body/SearchPage/CardsGrid.js, getting random RGB by this func
+// For /UI/<BrowseCard /> components' background color
 const getRandomRGB = (max) => {
-  return `rgb(${Math.floor(Math.random() * max)},${Math.floor(
-    Math.random() * max
-  )},${Math.floor(Math.random() * max)})`;
+  return `rgb(
+  ${Math.floor(Math.random() * max)},
+  ${Math.floor(Math.random() * max)},
+  ${Math.floor(Math.random() * max)})`;
 };
 
+// Used react-audio-player package, in this project.
+// It returns a float value to show trackPlayedTime
+// Converts 5.395755 to '00:05' _OR_ 25.668905 to '00:25'
 const convertFloatToTime = (time) => {
   let minutes = Math.floor(Math.trunc(time) / 60);
   let seconds = Math.trunc(time) % 60;

@@ -99,6 +99,7 @@ const Player = () => {
       <div className={styles["player-control-bar"]}>
         <div className={styles["player-control-position"]}>
           {convertFloatToTime(currentTime)}
+          { console.log(currentTime) }
         </div>
         <div className={styles["player-control-progress"]}>
           <input
