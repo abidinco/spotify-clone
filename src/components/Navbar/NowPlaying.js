@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import AppContext from "../../store";
 import Icon from "../UI/Icon";
 import styles from "./NowPlaying.module.css";
-import AppContext from "../../store";
 
 const NowPlaying = () => {
   const appCtx = useContext(AppContext);

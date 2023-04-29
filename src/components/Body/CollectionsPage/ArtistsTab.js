@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
-import PlayCard from "../../UI/PlayCard";
-
 import Spotify from "../../../spotify/api";
+
+import PlayCard from "../../UI/PlayCard";
 
 const ArtistsTab = () => {
   const [artists, setArtists] = useState();

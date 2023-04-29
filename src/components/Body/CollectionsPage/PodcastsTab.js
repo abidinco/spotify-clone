@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback, useState } from "react";
+import Spotify from "../../../spotify/api";
+
 import PlayCard from "../../UI/PlayCard";
 import HeroCard from "../../UI/HeroCard";
-
-import Spotify from "../../../spotify/api";
 
 const PodcastsTab = () => {
   const [podcasts, setPodcasts] = useState();

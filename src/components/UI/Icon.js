@@ -1,6 +1,6 @@
 import React from "react";
-import Icons from "./icons.svg"; // Path to your icons.svg
 import PropTypes from "prop-types";
+import Icons from "./icons.svg"; // Path to your icons.svg
 
 const Icon = ({ name, color, width, height }) => (
   <svg

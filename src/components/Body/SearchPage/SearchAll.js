@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
-import styles from "./SearchAll.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import Icon from "../../UI/Icon";
 import Spotify from "../../../spotify/api";
 import AppContext from "../../../store";
-import PlayCard from "../../UI/PlayCard";
 import { millisToMinutesAndSeconds } from "../../../utils";
+import PlayCard from "../../UI/PlayCard";
+import Icon from "../../UI/Icon";
+import styles from "./SearchAll.module.css";
 
 const SearchAll = () => {
   const navigate = useNavigate();

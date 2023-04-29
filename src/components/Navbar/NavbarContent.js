@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-
 import LibraryTabs from "./LibraryTabs";
 import SearchBox from "./SearchBox";
 import NowPlaying from "./NowPlaying";

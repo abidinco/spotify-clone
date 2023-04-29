@@ -50,6 +50,7 @@ const convertMsToTime = (ms) => {
     hours === 0 ? seconds + " sec" : ""
   }`;
 };
+
 // Sums songs' duration_in_ms and pass this to convertMsToTime()
 const calculatePlaylistDuration = (items) => {
   let durations = items.map((item) => item.track.duration_ms);
@@ -63,7 +64,7 @@ const welcomingMessage = () => {
   if (date.getHours() < 25) return "Good evening";
 };
 
-// In Body.js:15 eventListener added, for handling scroll
+// In Body.js:15 adding eventListener, for handling scroll
 // Used like this: triggerBreakpoints(scrollFromTopValue)
 // For navbar-opacity, display_now_playing_button at navbar etc.
 const triggerBreakpoints = (top) => {
@@ -104,8 +105,8 @@ const getRandomRGB = (max) => {
   ${Math.floor(Math.random() * max)})`;
 };
 
-// Used react-audio-player package, in this project.
-// It returns a float value to show trackPlayedTime
+// Used react-audio-player package for playing audio.
+// Package returns a float value to show trackPlayedTime
 // Converts 5.395755 to '00:05' _OR_ 25.668905 to '00:25'
 const convertFloatToTime = (time) => {
   let minutes = Math.floor(Math.trunc(time) / 60);

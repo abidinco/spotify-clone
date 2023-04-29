@@ -1,8 +1,8 @@
 import React from "react";
-import PlayerBar from "./PlayerBar/PlayerBar";
-import SideBar from "./SideBar/SideBar";
-import Body from "./Body/Body";
 import styles from "./Layout.module.css";
+import Body from "./Body/Body";
+import SideBar from "./SideBar/SideBar";
+import PlayerBar from "./PlayerBar/PlayerBar";
 
 const Layout = () => {
   return (

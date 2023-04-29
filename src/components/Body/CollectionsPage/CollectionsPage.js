@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import styles from "./CollectionsPage.module.css";
 
 import PlaylistsTab from "./PlaylistsTab";
 import PodcastsTab from "./PodcastsTab";
 import ArtistsTab from "./ArtistsTab";
 import AlbumsTab from "./AlbumsTab";
+import styles from "./CollectionsPage.module.css";
 
 const CollectionsPage = ({ tab }) => {
   const { pathname } = useLocation();

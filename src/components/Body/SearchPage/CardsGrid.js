@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
-import styles from "./CardsGrid.module.css";
-import BrowseCard from "../../UI/BrowseCard";
 import { useParams } from "react-router-dom";
-import PlayCard from "../../UI/PlayCard";
 import Spotify from "../../../spotify/api";
-import { getRandomRGB } from "../../../utils";
 import AppContext from "../../../store";
+import { getRandomRGB } from "../../../utils";
+import BrowseCard from "../../UI/BrowseCard";
+import PlayCard from "../../UI/PlayCard";
+import styles from "./CardsGrid.module.css";
 
 const Genres = (props) => {
   const appCtx = useContext(AppContext);

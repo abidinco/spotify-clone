@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./NotFoundPage.module.css";
-import Icon from "./UI/Icon";
 import { Link } from "react-router-dom";
+import Icon from "./UI/Icon";
+import styles from "./NotFoundPage.module.css";
 
 const NotFoundPage = () => {
   return (

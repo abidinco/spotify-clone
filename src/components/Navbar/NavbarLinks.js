@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
-import styles from "./NavbarLinks.module.css";
-import Icon from "../UI/Icon";
-import AppContext from "../../store";
 import Spotify from "../../spotify/api";
+import AppContext from "../../store";
+import Icon from "../UI/Icon";
+import styles from "./NavbarLinks.module.css";
 
 const NavbarLinks = () => {
   const appCtx = useContext(AppContext);

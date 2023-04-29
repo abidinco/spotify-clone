@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./TopItem.module.css";
-import Icon from "./Icon";
 import { Link } from "react-router-dom";
+import Icon from "./Icon";
+import styles from "./TopItem.module.css";
 
 const TopItem = (props) => {
   return (

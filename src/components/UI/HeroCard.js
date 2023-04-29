@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./HeroCard.module.css";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
+import styles from "./HeroCard.module.css";
 
 const HeroCard = (props) => {
   return (

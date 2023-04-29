@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
+import Spotify from "../../spotify/api";
+
 import TopItem from "../UI/TopItem";
 import PlayCard from "../UI/PlayCard";
 import BrowseCard from "../UI/BrowseCard";
-
 import AppContext from "../../store";
 import styles from "./HomePage.module.css";
-import Spotify from "../../spotify/api";
 
 import { welcomingMessage, getRandomRGB } from "../../utils";
 

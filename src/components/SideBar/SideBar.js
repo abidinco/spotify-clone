@@ -1,10 +1,10 @@
-import styles from "./SideBar.module.css";
-import Icon from "../UI/Icon";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../../store";
-import SideBarLink from "./SideBarLink";
 import Spotify from "../../spotify/api";
+import SideBarLink from "./SideBarLink";
+import Icon from "../UI/Icon";
+import styles from "./SideBar.module.css";
 
 const Sidebar = () => {
   const appCtx = useContext(AppContext);

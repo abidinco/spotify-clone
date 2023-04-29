@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./LibraryTabs.module.css";
 import { Link, useLocation } from "react-router-dom";
+import styles from "./LibraryTabs.module.css";
 
 const LibraryTabs = () => {
   const location = useLocation();

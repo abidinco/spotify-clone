@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import styles from "./PlayerBar.module.css";
-import Icon from "../UI/Icon";
 import { Link } from "react-router-dom";
 import AppContext from "../../store/index.js";
+import Icon from "../UI/Icon";
+import styles from "./PlayerBar.module.css";
 
 // import Spotify from "../../spotify/api";
 import Player from "./Player";

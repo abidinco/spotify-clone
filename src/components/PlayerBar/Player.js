@@ -1,9 +1,9 @@
 import React, { useRef, useState, useContext } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import styles from "./Player.module.css";
-import Icon from "../UI/Icon";
-import { convertFloatToTime } from "../../utils";
 import AppContext from "../../store";
+import { convertFloatToTime } from "../../utils";
+import Icon from "../UI/Icon";
+import styles from "./Player.module.css";
 
 const Player = () => {
   const audioPlayer = useRef();

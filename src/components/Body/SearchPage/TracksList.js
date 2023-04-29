@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import styles from "./TracksList.module.css";
-import Icon from "../../UI/Icon";
+import { Link } from "react-router-dom";
 import Spotify from "../../../spotify/api";
 import AppContext from "../../../store";
-import { Link } from "react-router-dom";
+import Icon from "../../UI/Icon";
+import styles from "./TracksList.module.css";
 
 const TracksList = () => {
   const appCtx = useContext(AppContext);

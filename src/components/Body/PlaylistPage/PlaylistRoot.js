@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import styles from "./PlaylistRoot.module.css";
-import Icon from "../../UI/Icon";
 import { useLocation } from "react-router-dom";
 import Spotify from "../../../spotify/api";
+import AppContext from "../../../store";
+import { calculatePlaylistDuration } from "../../../utils";
+
 import PlaylistRootHeader from "./PlaylistRootHeader";
 import SongList from "./SongList";
-import AppContext from "../../../store";
 
-import { calculatePlaylistDuration } from "../../../utils";
+import Icon from "../../UI/Icon";
+import styles from "./PlaylistRoot.module.css";
+
 
 const PlaylistRoot = () => {
   const { pathname } = useLocation();

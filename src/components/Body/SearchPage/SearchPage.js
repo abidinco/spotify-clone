@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import AppContext from "../../../store";
 import { useParams } from "react-router-dom";
+import AppContext from "../../../store";
+
 import SearchNavigation from "./SearchNavigation";
 import CardsGrid from "./CardsGrid";
 import TracksList from "./TracksList";

@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./PlayCard.module.css";
-import Icon from "./Icon";
 import { Link } from "react-router-dom";
+import Icon from "./Icon";
+import styles from "./PlayCard.module.css";
 
 const PlayCard = (props) => {
   return (

@@ -1,10 +1,11 @@
 import React, { useRef, useContext } from "react";
-import styles from "./SongList.module.css";
-import Icon from "../../UI/Icon";
 import { Link } from "react-router-dom";
 import AppContext from "../../../store";
-
 import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
+
+import Icon from "../../UI/Icon";
+import styles from "./SongList.module.css";
+
 
 const SongList = (props) => {
   const appCtx = useContext(AppContext);

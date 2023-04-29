@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./PlaylistRootHeader.module.css";
 import { numberWithCommas } from "../../../utils";
+import styles from "./PlaylistRootHeader.module.css";
 
 const PlaylistRootHeader = (props) => {
   return (

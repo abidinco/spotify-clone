@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
-import styles from "./SearchBox.module.css";
-import Icon from "../UI/Icon";
 import AppContext from "../../store";
+import Icon from "../UI/Icon";
+import styles from "./SearchBox.module.css";
 
 function debounce(fn, time) {
   let timeoutId;
