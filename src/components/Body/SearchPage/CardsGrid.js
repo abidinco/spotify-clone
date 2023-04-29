@@ -22,33 +22,35 @@ const Genres = (props) => {
     searchType === "podcastAndEpisodes" || searchType === "users";
 
   const getGenres = async (limit) => {
-    const genresList = await Spotify.getFromSpotify("FEATURED_PLAYLISTS");
+    const genresList = await Spotify.getFromSpotify(
+      "FEATURED_PLAYLISTS",
+      limit
+    );
     setGenres(genresList.playlists.items);
   };
-  // TODO: Repetitive functions going on here. Will be fixed!
-  const getArtists = async () => {
-    const results = await Spotify.search(appCtx.searchText, "artist");
-    setArtists(results.artists.items);
-  };
-  const getPlaylists = async () => {
-    const results = await Spotify.search(appCtx.searchText, "playlist");
-    setPlaylists(results.playlists.items);
-  };
-  const getAlbums = async () => {
-    const results = await Spotify.search(appCtx.searchText, "album");
-    setAlbums(results.albums.items);
-  };
-  const getShows = async () => {
-    const results = await Spotify.search(appCtx.searchText, "show");
-    setShows(results.shows.items);
+
+  const getSearchByType = async (type) => {
+    if (type === "artists") {
+      const results = await Spotify.search(appCtx.searchText, "artist");
+      setArtists(results.artists.items);
+    }
+    if (type === "playlists") {
+      const results = await Spotify.search(appCtx.searchText, "playlist");
+      setPlaylists(results.playlists.items);
+    }
+    if (type === "albums") {
+      const results = await Spotify.search(appCtx.searchText, "album");
+      setAlbums(results.albums.items);
+    }
+    if (type === "podcastAndEpisodes") {
+      const results = await Spotify.search(appCtx.searchText, "show");
+      setShows(results.shows.items);
+    }
   };
 
   useEffect(() => {
     appCtx.isUserLoggedIn && props.genres && getGenres(20);
-    appCtx.isUserLoggedIn && searchType === "artists" && getArtists();
-    appCtx.isUserLoggedIn && searchType === "playlists" && getPlaylists();
-    appCtx.isUserLoggedIn && searchType === "albums" && getAlbums();
-    appCtx.isUserLoggedIn && searchType === "podcastAndEpisodes" && getShows();
+    appCtx.isUserLoggedIn && getSearchByType(searchType);
   }, [props.genres, searchType]);
   return (
     <div
@@ -73,7 +75,9 @@ const Genres = (props) => {
               : "You should login first"}
           </React.Fragment>
         )}
-
+        {
+          // TODO: .map functions repetitive, will be fixed!
+        }
         {!props.genres && (
           <React.Fragment>
             {searchType === "artists" && artists

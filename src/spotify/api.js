@@ -1,6 +1,7 @@
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+const API_ENDPOINT = "https://api.spotify.com/v1";
 
 let spotifyAccessToken;
 
@@ -33,35 +34,35 @@ export const LOGIN_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=$
 const generateEndPoint = (type, param) => {
   switch (type) {
     case "CURRENT_USER":
-      return "https://api.spotify.com/v1/me/";
+      return `${API_ENDPOINT}/me/`;
     case "CURRENT_USER_PLAYLISTS":
-      return "https://api.spotify.com/v1/me/playlists";
+      return `${API_ENDPOINT}/me/playlists`;
     case "CURRENT_USER_SAVED_TRACKS":
-      return "https://api.spotify.com/v1/me/tracks";
+      return `${API_ENDPOINT}/me/tracks`;
     case "CURRENT_USER_SAVED_SHOWS":
-      return "https://api.spotify.com/v1/me/shows";
+      return `${API_ENDPOINT}/me/shows`;
     case "CURRENT_USER_SAVED_ALBUMS":
-      return "https://api.spotify.com/v1/me/albums";
+      return `${API_ENDPOINT}/me/albums`;
     case "CURRENT_USER_TOP_ARTISTS":
-      return "https://api.spotify.com/v1/me/top/artists";
+      return `${API_ENDPOINT}/me/top/artists`;
     case "CURRENT_USER_TOP_TRACKS":
-      return "https://api.spotify.com/v1/me/top/tracks";
+      return `${API_ENDPOINT}/me/top/tracks`;
     case "CURRENT_USER_FOLLOWED_ARTISTS":
-      return "https://api.spotify.com/v1/me/following?type=artist";
+      return `${API_ENDPOINT}/me/following?type=artist`;
     case "PLAYLIST_BY_ID":
-      return `https://api.spotify.com/v1/playlists/${param}`;
+      return `${API_ENDPOINT}/playlists/${param}`;
     case "PLAYLIST_ITEMS_BY_ID":
-      return `https://api.spotify.com/v1/playlists/${param}/tracks`;
+      return `${API_ENDPOINT}/playlists/${param}/tracks`;
     case "ARTIST_BY_ID":
-      return `https://api.spotify.com/v1/artists/${param}/`;
+      return `${API_ENDPOINT}/artists/${param}/`;
     case "ARTIST_TOP_TRACKS_BY_ID":
-      return `https://api.spotify.com/v1/artists/${param}/top-tracks?market=TR`;
+      return `${API_ENDPOINT}/artists/${param}/top-tracks?market=TR`;
     case "ALBUM_BY_ID":
-      return `https://api.spotify.com/v1/albums/${param}`;
+      return `${API_ENDPOINT}/albums/${param}`;
     case "SEVERAL_BROWSE_CATEGORIES":
-      return `https://api.spotify.com/v1/browse/categories?country=TR&locale=tr_TR&limit=${param}`;
+      return `${API_ENDPOINT}/browse/categories?country=TR&locale=tr_TR&limit=${param}`;
     case "FEATURED_PLAYLISTS":
-      return `https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=tr_TR&limit=${param}`;
+      return `${API_ENDPOINT}/browse/featured-playlists?country=TR&locale=tr_TR&limit=${param}`;
     default:
       throw new Error(
         ">>> Endpoint_type for SpotifyAPI isn't matching. Pass an available endpoint_type. <<<"
@@ -100,7 +101,7 @@ const Spotify = {
       "content-type": "application/json",
     };
     let response = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=${type}&market=TR${
+      `${API_ENDPOINT}/search?q=${query}&type=${type}&market=TR${
         limit ? "&limit=" + limit : ""
       }${offset ? "&offset=" + offset : ""}`,
       {
@@ -116,7 +117,7 @@ const Spotify = {
       Authorization: `Bearer ${token}`,
     };
     let userId;
-    let response = await fetch("https://api.spotify.com/v1/me", {
+    let response = await fetch(`${API_ENDPOINT}/me`, {
       headers: headers,
     });
     let jsonResponse = await response.json();
@@ -150,7 +151,7 @@ const Spotify = {
   //     "content-type": "application/json",
   //   };
   //   let response = await fetch(
-  //     `https://api.spotify.com/v1/me/player/recently-played`,
+  //     `${API_ENDPOINT}/v1/me/player/recently-played`,
   //     {
   //       headers: headers,
   //       method: "GET",
