@@ -6,7 +6,6 @@ import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
 import Icon from "../../UI/Icon";
 import styles from "./SongList.module.css";
 
-
 const SongList = (props) => {
   const appCtx = useContext(AppContext);
   const tableHeaderElement = useRef(null);

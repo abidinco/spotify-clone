@@ -3,6 +3,7 @@ const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 
 let spotifyAccessToken;
+
 const scopes = [
   "ugc-image-upload",
   "user-read-playback-state",
@@ -29,7 +30,50 @@ export const LOGIN_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=$
   "%20"
 )}&response_type=token`;
 
+const generateEndPoint = (type, param) => {
+  switch (type) {
+    case "CURRENT_USER":
+      return "https://api.spotify.com/v1/me/";
+    case "CURRENT_USER_PLAYLISTS":
+      return "https://api.spotify.com/v1/me/playlists";
+    case "CURRENT_USER_SAVED_TRACKS":
+      return "https://api.spotify.com/v1/me/tracks";
+    case "CURRENT_USER_SAVED_SHOWS":
+      return "https://api.spotify.com/v1/me/shows";
+    case "CURRENT_USER_SAVED_ALBUMS":
+      return "https://api.spotify.com/v1/me/albums";
+    case "CURRENT_USER_TOP_ARTISTS":
+      return "https://api.spotify.com/v1/me/top/artists";
+    case "CURRENT_USER_TOP_TRACKS":
+      return "https://api.spotify.com/v1/me/top/tracks";
+    case "CURRENT_USER_FOLLOWED_ARTISTS":
+      return "https://api.spotify.com/v1/me/following?type=artist";
+    case "PLAYLIST_BY_ID":
+      return `https://api.spotify.com/v1/playlists/${param}`;
+    case "PLAYLIST_ITEMS_BY_ID":
+      return `https://api.spotify.com/v1/playlists/${param}/tracks`;
+    case "ARTIST_BY_ID":
+      return `https://api.spotify.com/v1/artists/${param}/`;
+    case "ARTIST_TOP_TRACKS_BY_ID":
+      return `https://api.spotify.com/v1/artists/${param}/top-tracks?market=TR`;
+    case "ALBUM_BY_ID":
+      return `https://api.spotify.com/v1/albums/${param}`;
+    case "SEVERAL_BROWSE_CATEGORIES":
+      return `https://api.spotify.com/v1/browse/categories?country=TR&locale=tr_TR&limit=${param}`;
+    case "FEATURED_PLAYLISTS":
+      return `https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=tr_TR&limit=${param}`;
+    default:
+      throw new Error(
+        ">>> Endpoint_type for SpotifyAPI isn't matching. Pass an available endpoint_type. <<<"
+      );
+  }
+};
+
 const Spotify = {
+  // The app stores access_token_expiry_time in local storage.
+  // To determine when is expiry_time;
+  // We sum up now_in_milliseconds and expiry_time_in_milliseconds,
+  // Then, checking is it expired or not at /App.js:14
   getNow() {
     let now = new Date();
     return now.getTime();
@@ -49,7 +93,6 @@ const Spotify = {
       return "";
     }
   },
-  // TODO: Too much repetitive functions going on here. Will be fixed.
   async search(query, type, limit, offset) {
     let token = localStorage.getItem("accessToken");
     let headers = {
@@ -80,113 +123,23 @@ const Spotify = {
     if (jsonResponse) userId = jsonResponse.id;
     return userId;
   },
-  async getCurrentUser() {
+  async getFromSpotify(type, param) {
+    if (!localStorage.getItem("accessToken")) {
+      return null;
+    }
     let token = localStorage.getItem("accessToken");
     let headers = {
       Authorization: `Bearer ${token}`,
       "content-type": "application/json",
     };
-    let response = await fetch(`https://api.spotify.com/v1/me/`, {
+    let response = await fetch(generateEndPoint(type, param), {
       headers: headers,
       method: "GET",
     });
     let jsonResponse = await response.json();
     return jsonResponse;
   },
-  async getCurrentUsersPlaylists() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getCurrentUserSavedTracks() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(`https://api.spotify.com/v1/me/tracks`, {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getCurrentUserSavedShows() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(`https://api.spotify.com/v1/me/shows`, {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getCurrentUserFollowedArtists() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/me/following?type=artist`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getCurrentUserSavedAlbums() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(`https://api.spotify.com/v1/me/albums`, {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getCurrentUserTopArtists() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getCurrentUserTopTracks() {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(`https://api.spotify.com/v1/me/top/tracks`, {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
+
   // Disabling this endpoint
   // It crashes app with too many requests message
   // Checked dashboard: Over 20k requested by this func.
@@ -206,118 +159,6 @@ const Spotify = {
   //   let jsonResponse = await response.json();
   //   return jsonResponse;
   // },
-  async getPlaylist(playlist_id) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/playlists/${playlist_id}`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getPlaylistItems(playlist_id) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getArtist(artist_id) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/artists/${artist_id}`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getAlbum(album_id) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/albums/${album_id}`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getArtistsTopTracks(artist_id) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/artists/${artist_id}/top-tracks?market=TR`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getSeveralBrowseCategories(limit) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `https://api.spotify.com/v1/browse/categories?country=TR&locale=tr_TR&limit=${limit}`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
-  async getFeaturedPlaylists(limit) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `	https://api.spotify.com/v1/browse/featured-playlists?country=TR&locale=tr_TR&limit=${limit}`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
-  },
 };
 
 export default Spotify;

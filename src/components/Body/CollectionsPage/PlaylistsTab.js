@@ -8,11 +8,11 @@ const PlaylistsTab = () => {
   const [playlists, setPlaylists] = useState();
   const [likedSongs, setLikedSongs] = useState();
   const getCurrentUsersPlaylists = useCallback(async () => {
-    let listOfPlaylist = await Spotify.getCurrentUsersPlaylists();
+    let listOfPlaylist = await Spotify.getFromSpotify("CURRENT_USER_PLAYLISTS");
     setPlaylists(listOfPlaylist);
   }, []);
   const getCurrentUserSavedTracks = useCallback(async () => {
-    let listOfSongs = await Spotify.getCurrentUserSavedTracks();
+    let listOfSongs = await Spotify.getFromSpotify("CURRENT_USER_SAVED_TRACKS");
     setLikedSongs(listOfSongs);
   }, []);
   useEffect(() => {

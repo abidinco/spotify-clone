@@ -10,7 +10,7 @@ const Sidebar = () => {
   const appCtx = useContext(AppContext);
   const [playlists, setPlaylists] = useState();
   const getPlaylists = async () => {
-    const playlists = await Spotify.getCurrentUsersPlaylists();
+    const playlists = await Spotify.getFromSpotify("CURRENT_USER_PLAYLISTS");
     setPlaylists(playlists);
   };
 

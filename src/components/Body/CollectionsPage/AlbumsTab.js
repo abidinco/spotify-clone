@@ -6,7 +6,7 @@ import PlayCard from "../../UI/PlayCard";
 const AlbumsTab = () => {
   const [albums, setAlbums] = useState();
   const getCurrentUserSavedAlbums = useCallback(async () => {
-    let listOfAlbums = await Spotify.getCurrentUserSavedAlbums();
+    let listOfAlbums = await Spotify.getFromSpotify("CURRENT_USER_SAVED_ALBUMS");
     setAlbums(listOfAlbums);
   }, []);
   useEffect(() => {

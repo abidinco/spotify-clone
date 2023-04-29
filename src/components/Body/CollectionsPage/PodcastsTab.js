@@ -7,7 +7,7 @@ import HeroCard from "../../UI/HeroCard";
 const PodcastsTab = () => {
   const [podcasts, setPodcasts] = useState();
   const getCurrentUsersPodcasts = useCallback(async () => {
-    let listOfShows = await Spotify.getCurrentUserSavedShows();
+    let listOfShows = await Spotify.getFromSpotify("CURRENT_USER_SAVED_SHOWS");
     setPodcasts(listOfShows);
   }, []);
   useEffect(() => {

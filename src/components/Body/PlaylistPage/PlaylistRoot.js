@@ -10,7 +10,6 @@ import SongList from "./SongList";
 import Icon from "../../UI/Icon";
 import styles from "./PlaylistRoot.module.css";
 
-
 const PlaylistRoot = () => {
   const { pathname } = useLocation();
   const location = useLocation();
@@ -38,31 +37,39 @@ const PlaylistRoot = () => {
   if (isPlaylistPage) {
     getPlaylist = async () => {
       let arr = pathname.split("/");
-      const playlist = await Spotify.getPlaylist(arr[arr.length - 1]);
+      const playlist = await Spotify.getFromSpotify(
+        "PLAYLIST_BY_ID",
+        arr[arr.length - 1]
+      );
       setPlaylist(playlist);
       appCtx.handleChangeNavbarNowPlayingText(playlist.name);
     };
   } else if (isArtistPage) {
     getArtist = async () => {
       let arr = pathname.split("/");
-      const artist = await Spotify.getArtist(arr[arr.length - 1]);
+      const artist = await Spotify.getFromSpotify(
+        "ARTIST_BY_ID",
+        arr[arr.length - 1]
+      );
       setArtist(artist);
       appCtx.handleChangeNavbarNowPlayingText(artist.name);
     };
     getArtistTracks = async () => {
       let arr = pathname.split("/");
-      const artist = await Spotify.getArtistsTopTracks(arr[arr.length - 1]);
+      const artist = await Spotify.getFromSpotify(
+        "ARTIST_TOP_TRACKS_BY_ID",
+        arr[arr.length - 1]
+      );
       setArtistTracks(artist);
     };
   } else if (isLikedSongsPage) {
     getCurrentUser = async () => {
-      let currentUser = await Spotify.getCurrentUser();
+      let currentUser = await Spotify.getFromSpotify("CURRENT_USER");
       setCurrentUser(currentUser);
     };
     getLikedSongs = async () => {
-      let arr = pathname.split("/");
-      const likedSongs = await Spotify.getCurrentUserSavedTracks(
-        arr[arr.length - 1]
+      const likedSongs = await Spotify.getFromSpotify(
+        "CURRENT_USER_SAVED_TRACKS"
       );
       setLikedSongs(likedSongs);
       appCtx.handleChangeNavbarNowPlayingText("Liked songs");
@@ -70,7 +77,10 @@ const PlaylistRoot = () => {
   } else if (isAlbumPage) {
     getAlbum = async () => {
       let arr = pathname.split("/");
-      const album = await Spotify.getAlbum(arr[arr.length - 1]);
+      const album = await Spotify.getFromSpotify(
+        "ALBUM_BY_ID",
+        arr[arr.length - 1]
+      );
       setAlbum(album);
       appCtx.handleChangeNavbarNowPlayingText(album.name);
     };
@@ -95,7 +105,6 @@ const PlaylistRoot = () => {
     isPlaylistPage,
     location.key,
   ]);
-
   return (
     <div>
       <PlaylistRootHeader
@@ -141,8 +150,8 @@ const PlaylistRoot = () => {
             : null
         }
         ownerPP={
-          isLikedSongsPage
-            ? currentUser && currentUser.images[0]
+          isLikedSongsPage && currentUser !== null
+            ? currentUser?.images[0]
               ? currentUser.images[0].url
               : "/blank.jpg"
             : "/blank.jpg"

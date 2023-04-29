@@ -6,7 +6,7 @@ import PlayCard from "../../UI/PlayCard";
 const ArtistsTab = () => {
   const [artists, setArtists] = useState();
   const getCurrentUserFollowedArtists = useCallback(async () => {
-    let listOfArtists = await Spotify.getCurrentUserFollowedArtists();
+    let listOfArtists = await Spotify.getFromSpotify("CURRENT_USER_FOLLOWED_ARTISTS");
     setArtists(listOfArtists);
   }, []);
   useEffect(() => {

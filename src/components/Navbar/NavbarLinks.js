@@ -9,7 +9,7 @@ const NavbarLinks = () => {
   const [user, setUser] = useState();
 
   const getCurrentUser = useCallback(async () => {
-    let currentUser = await Spotify.getCurrentUser();
+    let currentUser = await Spotify.getFromSpotify("CURRENT_USER");
     setUser(currentUser);
   }, []);
 

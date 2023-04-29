@@ -17,7 +17,7 @@ const HomePage = () => {
   // const [recentlyPlayedTracks, setRecentlyPlayedTracks] = useState();
 
   const getCurrentUsersPlaylists = useCallback(async () => {
-    let listOfPlaylist = await Spotify.getCurrentUsersPlaylists();
+    let listOfPlaylist = await Spotify.getFromSpotify("CURRENT_USER_PLAYLISTS");
     setPlaylists(listOfPlaylist);
   }, []);
   // const getCurrentUserTopArtists = useCallback(async () => {
@@ -25,7 +25,7 @@ const HomePage = () => {
   //     setTopArtists(listOfArtists);
   // }, []);
   const getCurrentUserTopTracks = useCallback(async () => {
-    let listOfTracks = await Spotify.getCurrentUserTopTracks();
+    let listOfTracks = await Spotify.getFromSpotify("CURRENT_USER_TOP_TRACKS");
     setTopTracks(listOfTracks);
   }, []);
   // const getCurrentUserRecentlyPlayedTracks = useCallback(async () => {
@@ -100,7 +100,17 @@ const HomePage = () => {
       )}
       {!appCtx.isUserLoggedIn && (
         <React.Fragment>
-          <div className={styles.title}>🙎‍♂️ udummy@bk.ru 🔑 testuser</div>
+          <div className={styles.title}>
+            🙎‍♂️{" "}
+            <span
+              className="pointer"
+              title="Copy to clipboard"
+              onClick={() => navigator.clipboard.writeText("udummy@bk.ru")}
+            >
+              udummy@bk.ru
+            </span>{" "}
+            🔑 testuser
+          </div>
           <div>
             <span className="link" onClick={() => appCtx.handleUserLogin()}>
               Login

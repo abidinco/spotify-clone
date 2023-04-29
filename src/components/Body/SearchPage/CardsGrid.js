@@ -22,7 +22,7 @@ const Genres = (props) => {
     searchType === "podcastAndEpisodes" || searchType === "users";
 
   const getGenres = async (limit) => {
-    const genresList = await Spotify.getFeaturedPlaylists(limit);
+    const genresList = await Spotify.getFromSpotify("FEATURED_PLAYLISTS");
     setGenres(genresList.playlists.items);
   };
   // TODO: Repetitive functions going on here. Will be fixed!
