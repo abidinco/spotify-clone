@@ -68,9 +68,9 @@ const HomePage = () => {
                 ))
               : null}
           </div>
-          <div className={styles.title}>Recently played tracks</div>
+          {/* <div className={styles.title}>Recently played tracks</div>
           <div className={styles["cards-container"]}>
-            {/* {recentlyPlayedTracks
+            {recentlyPlayedTracks
               ? recentlyPlayedTracks.items.map((item, i) => (
                   <PlayCard
                     key={i}
@@ -81,8 +81,8 @@ const HomePage = () => {
                     )}
                   />
                 ))
-              : null} */}
-          </div>
+              : null}
+          </div> */}
           <div className={styles.title}>Your top tracks</div>
           <div className={styles["cards-container"]}>
             {topTracks

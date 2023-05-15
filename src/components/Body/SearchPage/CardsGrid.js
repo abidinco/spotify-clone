@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+
 import Spotify from "../../../spotify/api";
 import AppContext from "../../../store";
 import { getRandomRGB } from "../../../utils";
+
 import BrowseCard from "../../UI/BrowseCard";
 import PlayCard from "../../UI/PlayCard";
 import styles from "./CardsGrid.module.css";
@@ -11,46 +13,58 @@ const Genres = (props) => {
   const appCtx = useContext(AppContext);
   const { searchType } = useParams();
 
-  const [genres, setGenres] = useState(null);
-  const [artists, setArtists] = useState(null);
-  const [playlists, setPlaylists] = useState(null);
-  const [albums, setAlbums] = useState(null);
-  const [shows, setShows] = useState(null);
+  const [list, setList] = useState({
+    genres: null,
+    artists: null,
+    playlists: null,
+    albums: null,
+    shows: null,
+  });
 
   const isCoverRounded = searchType === ("artists" || "users");
-  const dontShowPlayButton =
-    searchType === "podcastAndEpisodes" || searchType === "users";
+  const dontShowPlayButton = searchType === ("podcastAndEpisodes" || "users");
 
   const getGenres = async (limit) => {
     const genresList = await Spotify.getFromSpotify(
       "FEATURED_PLAYLISTS",
       limit
     );
-    setGenres(genresList.playlists.items);
+    setList({ ...list, genres: genresList.playlists.items });
+    // setGenres(genresList.playlists.items);
   };
 
-  const getSearchByType = async (type) => {
+  // const [genres, setGenres] = useState(null);
+  // const [artists, setArtists] = useState(null);
+  // const [playlists, setPlaylists] = useState(null);
+  // const [albums, setAlbums] = useState(null);
+  // const [shows, setShows] = useState(null);
+
+  const getResultsBySearchType = async (type) => {
     if (type === "artists") {
       const results = await Spotify.search(appCtx.searchText, "artist");
-      setArtists(results.artists.items);
+      setList((list) => ({ ...list, artists: results.artists.items }));
+      // setArtists(results.artists.items);
     }
     if (type === "playlists") {
       const results = await Spotify.search(appCtx.searchText, "playlist");
-      setPlaylists(results.playlists.items);
+      setList((list) => ({ ...list, playlists: results.playlists.items }));
+      // setPlaylists(results.playlists.items);
     }
     if (type === "albums") {
       const results = await Spotify.search(appCtx.searchText, "album");
-      setAlbums(results.albums.items);
+      setList((list) => ({ ...list, albums: results.albums.items }));
+      // setAlbums(results.albums.items);
     }
     if (type === "podcastAndEpisodes") {
       const results = await Spotify.search(appCtx.searchText, "show");
-      setShows(results.shows.items);
+      setList((list) => ({ ...list, shows: results.shows.items }));
+      // setShows(results.shows.items);
     }
   };
 
   useEffect(() => {
     appCtx.isUserLoggedIn && props.genres && getGenres(20);
-    appCtx.isUserLoggedIn && getSearchByType(searchType);
+    appCtx.isUserLoggedIn && getResultsBySearchType(searchType);
   }, [props.genres, searchType]);
   return (
     <div
@@ -62,8 +76,8 @@ const Genres = (props) => {
       <div className={styles["cards-container"]}>
         {props.genres && (
           <React.Fragment>
-            {genres
-              ? genres.map((genre, i) => (
+            {list.genres
+              ? list.genres.map((genre, i) => (
                   <BrowseCard
                     key={i}
                     id={genre.id}
@@ -80,8 +94,8 @@ const Genres = (props) => {
         }
         {!props.genres && (
           <React.Fragment>
-            {searchType === "artists" && artists
-              ? artists.map((artist, i) => (
+            {searchType === "artists" && list.artists
+              ? list.artists.map((artist, i) => (
                   <PlayCard
                     key={i}
                     id={artist.id}
@@ -98,8 +112,8 @@ const Genres = (props) => {
                   />
                 ))
               : null}
-            {searchType === "playlists" && playlists
-              ? playlists.map((playlist, i) => (
+            {searchType === "playlists" && list.playlists
+              ? list.playlists.map((playlist, i) => (
                   <PlayCard
                     key={i}
                     id={playlist.id}
@@ -116,8 +130,8 @@ const Genres = (props) => {
                   />
                 ))
               : null}
-            {searchType === "albums" && albums
-              ? albums.map((album, i) => (
+            {searchType === "albums" && list.albums
+              ? list.albums.map((album, i) => (
                   <PlayCard
                     key={i}
                     id={album.id}
@@ -134,8 +148,8 @@ const Genres = (props) => {
                   />
                 ))
               : null}
-            {searchType === "podcastAndEpisodes" && shows
-              ? shows.map((show, i) => (
+            {searchType === "podcastAndEpisodes" && list.shows
+              ? list.shows.map((show, i) => (
                   <PlayCard
                     key={i}
                     id={show.id}

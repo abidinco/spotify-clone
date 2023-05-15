@@ -84,14 +84,15 @@ export const AppContextProvider = (props) => {
         isSearching: text.trim() === "" ? false : true,
       },
     });
-    navigateToSearchTerm("/search/" + text.trim());
+    navigateTo("/search/" + text.trim());
   };
 
   const handleSearchClear = () => {
     dispatch({ type: "SEARCH_CLEAR" });
+    navigateTo("/search/");
   };
 
-  const navigateToSearchTerm = (to) => {
+  const navigateTo = (to) => {
     navigate(to);
   };
 
