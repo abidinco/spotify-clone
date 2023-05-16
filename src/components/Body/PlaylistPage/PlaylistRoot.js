@@ -11,6 +11,8 @@ import Icon from "../../UI/Icon";
 import styles from "./PlaylistRoot.module.css";
 
 const PlaylistRoot = () => {
+  const appCtx = useContext(AppContext);
+
   const { pathname } = useLocation();
   const location = useLocation();
   const isArtistPage = pathname.startsWith("/artist");
@@ -25,7 +27,59 @@ const PlaylistRoot = () => {
   const [artistTracks, setArtistTracks] = useState(null);
   const [currentUser, setCurrentUser] = useState();
 
-  const appCtx = useContext(AppContext);
+  const generatePageName = () => {
+    if (isLikedSongsPage) return "likedSongs";
+    if (isArtistPage) return "artist";
+    if (isAlbumPage) return "album";
+    return "playlist";
+  };
+
+  const generatePlaylistImage = () => {
+    if (isLikedSongsPage) return "/playlist-cover-liked-songs.png";
+    if (isPlaylistPage)
+      return playlist && playlist.images[0]
+        ? playlist.images[0].url
+          ? playlist.images[0].url
+          : "/blank.jpg"
+        : "/blank.jpg";
+    if (isAlbumPage) return album && album.images[0].url;
+    if (isArtistPage) return artist && artist.images[0] && artist.images[0].url;
+    return "/blank.jpg";
+  };
+
+  const generatePlaylistName = () => {
+    if (isLikedSongsPage) return "Liked Songs";
+    if (isPlaylistPage) return playlist && playlist.name;
+    if (isAlbumPage) return album && album.name;
+    return artist && artist.name;
+  };
+
+  const generatePlaylistOwner = () => {
+    if (isLikedSongsPage) return currentUser && currentUser.display_name;
+    if (isPlaylistPage) return playlist && playlist.owner.display_name;
+    return null;
+  };
+
+  const generatePlaylistOwnerPP = () => {
+    if (isLikedSongsPage && currentUser !== null)
+      return currentUser?.images[0].url;
+    return "/blank.jpg";
+  };
+
+  const generatePlaylistCount = () => {
+    if (isLikedSongsPage) return likedSongs && likedSongs.total;
+    if (isPlaylistPage) return playlist && playlist.tracks.total;
+    if (isAlbumPage) return album && album.total_tracks;
+    return null;
+  };
+
+  const generateSongList = () => {
+    if (isLikedSongsPage) return likedSongs && likedSongs.items;
+    if (isPlaylistPage) return playlist && playlist.tracks.items;
+    if (isAlbumPage) return album && album.tracks.items;
+    if (isArtistPage) return artistTracks && artistTracks.tracks;
+    return null;
+  };
 
   let getPlaylist = () => {};
   let getArtist = () => {};
@@ -108,64 +162,14 @@ const PlaylistRoot = () => {
   return (
     <div>
       <PlaylistRootHeader
-        page={
-          isLikedSongsPage
-            ? "likedSongs"
-            : isArtistPage
-            ? "artist"
-            : isAlbumPage
-            ? "album"
-            : "playlist"
-        }
-        image={
-          isLikedSongsPage
-            ? "/playlist-cover-liked-songs.png"
-            : isPlaylistPage
-            ? playlist && playlist.images[0]
-              ? playlist.images[0].url
-                ? playlist.images[0].url
-                : "/blank.jpg"
-              : "/blank.jpg"
-            : isAlbumPage
-            ? album && album.images[0].url
-            : artist && artist.images[0]
-            ? artist.images[0].url
-            : "/blank.jpg"
-        }
-        name={
-          isLikedSongsPage
-            ? "Liked Songs"
-            : isPlaylistPage
-            ? playlist && playlist.name
-            : isAlbumPage
-            ? album && album.name
-            : artist && artist.name
-        }
+        page={generatePageName()}
+        image={generatePlaylistImage()}
+        name={generatePlaylistName()}
         description={isPlaylistPage ? playlist && playlist.description : null}
-        owner={
-          isLikedSongsPage
-            ? currentUser && currentUser.display_name
-            : isPlaylistPage
-            ? playlist && playlist.owner.display_name
-            : null
-        }
-        ownerPP={
-          isLikedSongsPage && currentUser !== null
-            ? currentUser?.images[0]
-              ? currentUser.images[0].url
-              : "/blank.jpg"
-            : "/blank.jpg"
-        }
+        owner={generatePlaylistOwner()}
+        ownerPP={generatePlaylistOwnerPP()}
         followers={isPlaylistPage ? playlist && playlist.followers.total : null}
-        count={
-          isLikedSongsPage
-            ? likedSongs && likedSongs.total
-            : isPlaylistPage
-            ? playlist && playlist.tracks.total
-            : isAlbumPage
-            ? album && album.total_tracks
-            : null
-        }
+        count={generatePlaylistCount()}
         duration={
           isLikedSongsPage
             ? likedSongs && calculatePlaylistDuration(likedSongs.items)
@@ -182,26 +186,7 @@ const PlaylistRoot = () => {
             <Icon name="player-play" width={24} height={24} color="#000" />
           </div>
         </div>
-        <SongList
-          page={
-            isLikedSongsPage
-              ? "likedSongs"
-              : isArtistPage
-              ? "artist"
-              : isAlbumPage
-              ? "album"
-              : "playlist"
-          }
-          songs={
-            isLikedSongsPage
-              ? likedSongs && likedSongs.items
-              : isPlaylistPage
-              ? playlist && playlist.tracks.items
-              : isAlbumPage
-              ? album && album.tracks.items
-              : artistTracks && artistTracks.tracks
-          }
-        />
+        <SongList page={generatePageName()} songs={generateSongList()} />
       </div>
     </div>
   );
