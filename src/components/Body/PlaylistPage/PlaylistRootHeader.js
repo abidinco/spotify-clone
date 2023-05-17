@@ -48,7 +48,7 @@ const PlaylistRootHeader = (props) => {
               {props.followers > 1 ? "s" : null}
               {props.count > 0 ? ` • ${props.count} song` : null}
               {props.count > 1 ? "s" : null}
-              {props.count > 0 ? <span>, {props.duration}</span> : null}
+              {props.count > 0 && props.duration ? <span>, {props.duration}</span> : null}
             </React.Fragment>
           )}
         </div>

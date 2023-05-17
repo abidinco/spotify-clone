@@ -57,6 +57,10 @@ const PlaylistRoot = () => {
   const generatePlaylistOwner = () => {
     if (isLikedSongsPage) return currentUser && currentUser.display_name;
     if (isPlaylistPage) return playlist && playlist.owner.display_name;
+    if (isAlbumPage)
+      return (
+        album && `${album.artists[0].name} • ${album.release_date.substr(0, 4)}`
+      );
     return null;
   };
 
