@@ -92,6 +92,7 @@ const HomePage = () => {
                     cover={item.album.images[0].url}
                     title={item.name}
                     subtitle={item.artists.map((artist) => artist.name + " ")}
+                    trackUrl={item.preview_url}
                   />
                 ))
               : null}
