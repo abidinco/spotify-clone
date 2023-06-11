@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React from "react"; // , { useContext }
 import { Link } from "react-router-dom";
-import AppContext from "../../store/index.js";
+// import AppContext from "../../store/index.js";
 import Icon from "../UI/Icon";
 import styles from "./PlayerBar.module.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { mute, setVolume } from "../../store/reducers/playerReducer";
 // import Spotify from "../../spotify/api";
 import Player from "./Player";
 
 const PlayerBar = () => {
-  const appCtx = useContext(AppContext);
+  const playerMuted = useSelector((state) => state.player.muted);
+  const playerVolume = useSelector((state) => state.player.volume);
+  const dispatch = useDispatch();
+
+  // const appCtx = useContext(AppContext);
 
   // const [recentSong, setRecentSong] = useState();
   // const getRecentPlayedTrack = async () => {
@@ -86,14 +91,14 @@ const PlayerBar = () => {
             height={16}
           />
         </div>
-        <div onClick={() => appCtx.handlePlayerMute(!appCtx.playerMuted)}>
+        <div onClick={() => dispatch(mute(!playerMuted))}>
           <Icon
             name={`player-volume-${
-              appCtx.playerVolume === 0 || appCtx.playerMuted
+              playerVolume === 0 || playerMuted
                 ? "off"
-                : appCtx.playerVolume < 0.31
+                : playerVolume < 0.31
                 ? "low"
-                : appCtx.playerVolume < 0.62
+                : playerVolume < 0.62
                 ? "medium"
                 : "high"
             }`}
@@ -109,12 +114,12 @@ const PlayerBar = () => {
             min={0}
             max={1}
             step={0.1}
-            value={appCtx.playerMuted ? 0 : appCtx.playerVolume}
+            value={playerMuted ? 0 : playerVolume}
             onChange={(e) =>
-              appCtx.playerMuted
-                ? appCtx.handlePlayerMute(false) &&
-                  appCtx.handlePlayerVolume(e.target.valueAsNumber)
-                : appCtx.handlePlayerVolume(e.target.valueAsNumber)
+              playerMuted
+                ? dispatch(mute(false)) &&
+                  dispatch(setVolume(e.target.valueAsNumber))
+                : dispatch(setVolume(e.target.valueAsNumber))
             }
           />
         </div>

@@ -1,13 +1,27 @@
-import React, { useRef, useState, useContext } from "react";
+import React, {
+  useRef,
+  useState,
+  // , useContext
+} from "react";
 import ReactAudioPlayer from "react-audio-player";
-import AppContext from "../../store";
+// import AppContext from "../../store";
 import { convertFloatToTime } from "../../utils";
 import Icon from "../UI/Icon";
 import styles from "./Player.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { play, pause, loop } from "../../store/reducers/playerReducer";
 
 const Player = () => {
   const audioPlayer = useRef();
-  const appCtx = useContext(AppContext);
+
+  const playerVolume = useSelector((state) => state.player.volume);
+  const playerMuted = useSelector((state) => state.player.muted);
+  const playerLooped = useSelector((state) => state.player.looped);
+  const playerTrackSrc = useSelector((state) => state.player.trackSrc);
+  const playerIsPlaying = useSelector((state) => state.player.isPlaying);
+  const dispatch = useDispatch();
+
+  // const appCtx = useContext(AppContext);
   const [currentTime, setCurrentTime] = useState(0);
   const [durationValue, setDurationValue] = useState(0);
 
@@ -28,14 +42,14 @@ const Player = () => {
         height={0}
         width={0}
         ref={audioPlayer}
-        src={appCtx.playerTrackSrc}
-        playing={appCtx.playerIsPlaying}
-        loop={appCtx.playerLooped}
-        muted={appCtx.playerMuted}
-        volume={appCtx.playerVolume}
+        src={playerTrackSrc}
+        playing={playerIsPlaying}
+        loop={playerLooped}
+        muted={playerMuted}
+        volume={playerVolume}
         // onVolumeChanged={(e) => console.log("onVolumeChanged", e)}
         // onReady={(e) => console.log("onReady", e)}
-        onStart={appCtx.handlePlayerPlay}
+        onStart={() => dispatch(play())}
         onListen={onPlaying}
         listenInterval={500}
         // onEnablePIP={(e) => console.log("onEnablePIP", e)}
@@ -43,7 +57,7 @@ const Player = () => {
         // onPause={(e) => console.log("handlePause", e)}
         // onBuffer={(e) => console.log("onBuffer", e)}
         onSeeked={(e) => e}
-        onEnded={() => appCtx.handlePlayerPause()}
+        onEnded={() => dispatch(pause())}
         onError={(e) => console.log("onError", e)}
         // onProgress={onPlaying}
         // onDuration={(e) => console.log("onDuration", e)}
@@ -67,13 +81,9 @@ const Player = () => {
         </div>
         <div
           className={styles["player-control-play"]}
-          onClick={
-            appCtx.playerIsPlaying
-              ? appCtx.handlePlayerPause
-              : appCtx.handlePlayerPlay
-          }
+          onClick={playerIsPlaying ? () => dispatch(pause()) : () => dispatch(play())}
         >
-          {appCtx.playerIsPlaying ? (
+          {playerIsPlaying ? (
             <Icon name="player-pause" color="black" width={16} height={16} />
           ) : (
             <Icon name="player-play" color="black" width={16} height={16} />
@@ -87,9 +97,9 @@ const Player = () => {
             height={16}
           />
         </div>
-        <div onClick={() => appCtx.handlePlayerLoop(!appCtx.playerLooped)}>
+        <div onClick={() => dispatch(loop(!playerLooped))}>
           <Icon
-            name={`player-repeat${appCtx.playerLooped ? "-active" : ""}`}
+            name={`player-repeat${playerLooped ? "-active" : ""}`}
             color="rgb(255, 255, 255, .7)"
             width={16}
             height={16}

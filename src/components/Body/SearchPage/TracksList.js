@@ -1,23 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  // , useContext
+} from "react";
 import { Link } from "react-router-dom";
 import Spotify from "../../../spotify/api";
-import AppContext from "../../../store";
+// import AppContext from "../../../store";
 import Icon from "../../UI/Icon";
 import styles from "./TracksList.module.css";
+import { useSelector } from "react-redux";
 
 const TracksList = () => {
-  const appCtx = useContext(AppContext);
-
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const searchText = useSelector((state) => state.search.searchText);
   const [songs, setSongs] = useState(null);
 
   const getSongs = async () => {
-    const results = await Spotify.search(appCtx.searchText, "track");
+    const results = await Spotify.search(searchText, "track");
     setSongs(results.tracks.items);
   };
 
   useEffect(() => {
-    appCtx.isUserLoggedIn && getSongs();
-  }, [appCtx.searchText]);
+    userLoggedIn && getSongs();
+  }, [searchText]);
 
   return (
     <div className={styles.table}>

@@ -1,11 +1,21 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, {
+  // useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import Spotify from "../../spotify/api";
-import AppContext from "../../store";
+// import AppContext from "../../store";
 import Icon from "../UI/Icon";
 import styles from "./NavbarLinks.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../../store/reducers/authReducer";
 
 const NavbarLinks = () => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState();
 
   const getCurrentUser = useCallback(async () => {
@@ -14,22 +24,22 @@ const NavbarLinks = () => {
   }, []);
 
   useEffect(() => {
-    appCtx.isUserLoggedIn && getCurrentUser();
-  }, [appCtx.isUserLoggedIn, getCurrentUser]);
+    userLoggedIn && getCurrentUser();
+  }, [userLoggedIn, getCurrentUser]);
 
   return (
     <div>
-      {!appCtx.isUserLoggedIn && (
+      {!userLoggedIn && (
         <div className={styles.links}>
           <div>Premium</div>
           <div>Support</div>
           <div>Download</div>
           <div className={styles.divider}></div>
           <div>Sign up</div>
-          <div onClick={appCtx.handleUserLogin}>Log in</div>
+          <div onClick={() => dispatch(login())}>Log in</div>
         </div>
       )}
-      {appCtx.isUserLoggedIn && (
+      {userLoggedIn && (
         <div className={styles.buttons}>
           <div className="not-allowed">Upgrade</div>
           <div tabIndex={0}>
@@ -71,7 +81,7 @@ const NavbarLinks = () => {
                 </span>
               </div>
               <div className="not-allowed">Settings</div>
-              <div onClick={appCtx.handleUserLogout} className="pointer">
+              <div onClick={() => dispatch(logout())} className="pointer">
                 Log out
               </div>
             </div>

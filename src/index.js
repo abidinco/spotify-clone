@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { AppContextProvider } from "./store";
+import { Provider } from "react-redux";
+// import { AppContextProvider } from "./store";
+import store from "./store";
 import App from "./App";
 import "./index.css";
 
@@ -11,11 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppContextProvider>
-        <App />
-        {/* used for resetFocus() like this: ("#empty").focus() at SideBarLink.js:51 */}
-        <div id="empty" tabIndex="-1" />
-      </AppContextProvider>
+      <Provider store={store}>
+        {/* <AppContextProvider> */}
+          <App />
+          {/* used for resetFocus() like this: ("#empty").focus() at SideBarLink.js:51 */}
+          <div id="empty" tabIndex="-1" />
+        {/* </AppContextProvider> */}
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

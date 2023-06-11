@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React from "react"; // , { useContext }
 import { Link } from "react-router-dom";
-import AppContext from "../../store";
+// import AppContext from "../../store";
+import { changeTrack } from "../../store/reducers/playerReducer";
+import { useDispatch } from "react-redux";
 
 import Icon from "./Icon";
 import styles from "./PlayCard.module.css";
 
 const PlayCard = (props) => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const dispatch = useDispatch();
   return (
     <Link
       to={props.href}
@@ -23,7 +26,7 @@ const PlayCard = (props) => {
       {!props.dontShowPlayButton && props.trackUrl && (
         <div
           className={styles["button-wrapper"]}
-          onClick={() => appCtx.handlePlayerChangeTrack(props.trackUrl)}
+          onClick={() => dispatch(changeTrack(props.trackUrl))}
         >
           <Icon name="player-play" color="black" width={18} height={18} />
         </div>

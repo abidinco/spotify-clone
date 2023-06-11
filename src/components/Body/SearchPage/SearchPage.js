@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
+import React from "react"; // , { useContext }
 import { useParams } from "react-router-dom";
-import AppContext from "../../../store";
+// import AppContext from "../../../store";
 
 import SearchNavigation from "./SearchNavigation";
 import CardsGrid from "./CardsGrid";
 import TracksList from "./TracksList";
 import SearchAll from "./SearchAll";
 
+import { useSelector } from "react-redux";
+
 const SearchPage = () => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const isSearching = useSelector((state) => state.search.isSearching);
+
   const { searchType } = useParams();
   return (
     <React.Fragment>
-      {appCtx.isSearching && (
+      {isSearching && (
         <div className="padding-0-32">
           <SearchNavigation />
           {searchType === undefined && <SearchAll />}
@@ -20,7 +24,7 @@ const SearchPage = () => {
           {searchType !== "tracks" && searchType !== undefined && <CardsGrid />}
         </div>
       )}
-      {!appCtx.isSearching && <CardsGrid genres />}
+      {!isSearching && <CardsGrid genres />}
     </React.Fragment>
   );
 };

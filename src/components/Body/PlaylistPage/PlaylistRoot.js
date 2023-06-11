@@ -1,8 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  // useContext,
+} from "react";
 import { useLocation } from "react-router-dom";
 import Spotify from "../../../spotify/api";
-import AppContext from "../../../store";
+// import AppContext from "../../../store";
 import { calculatePlaylistDuration } from "../../../utils";
+import { useDispatch } from "react-redux";
+import { changeNavbarNowPlayingText } from "../../../store/reducers/appReducer";
 
 import PlaylistRootHeader from "./PlaylistRootHeader";
 import SongList from "./SongList";
@@ -11,7 +17,9 @@ import Icon from "../../UI/Icon";
 import styles from "./PlaylistRoot.module.css";
 
 const PlaylistRoot = () => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
   const location = useLocation();
@@ -100,7 +108,8 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setPlaylist(playlist);
-      appCtx.handleChangeNavbarNowPlayingText(playlist.name);
+      dispatch(changeNavbarNowPlayingText(playlist.name));
+      // appCtx.handleChangeNavbarNowPlayingText(playlist.name);
     };
   } else if (isArtistPage) {
     getArtist = async () => {
@@ -110,7 +119,8 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setArtist(artist);
-      appCtx.handleChangeNavbarNowPlayingText(artist.name);
+      dispatch(changeNavbarNowPlayingText(artist.name));
+      // appCtx.handleChangeNavbarNowPlayingText(artist.name);
     };
     getArtistTracks = async () => {
       let arr = pathname.split("/");
@@ -130,7 +140,8 @@ const PlaylistRoot = () => {
         "CURRENT_USER_SAVED_TRACKS"
       );
       setLikedSongs(likedSongs);
-      appCtx.handleChangeNavbarNowPlayingText("Liked songs");
+      dispatch(changeNavbarNowPlayingText("Liked Songs"));
+      // appCtx.handleChangeNavbarNowPlayingText("Liked songs");
     };
   } else if (isAlbumPage) {
     getAlbum = async () => {
@@ -140,7 +151,8 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setAlbum(album);
-      appCtx.handleChangeNavbarNowPlayingText(album.name);
+      dispatch(changeNavbarNowPlayingText(album.name));
+      // appCtx.handleChangeNavbarNowPlayingText(album.name);
     };
   }
 

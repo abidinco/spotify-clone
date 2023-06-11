@@ -1,16 +1,26 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, {
+  // useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import Spotify from "../../spotify/api";
 
 import TopItem from "../UI/TopItem";
 import PlayCard from "../UI/PlayCard";
 import BrowseCard from "../UI/BrowseCard";
-import AppContext from "../../store";
+// import AppContext from "../../store";
 import styles from "./HomePage.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../store/reducers/authReducer";
 
 import { welcomingMessage, getRandomRGB } from "../../utils";
 
 const HomePage = () => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const dispatch = useDispatch();
+
   const [playlists, setPlaylists] = useState();
   // const [topArtists, setTopArtists] = useState();
   const [topTracks, setTopTracks] = useState();
@@ -34,19 +44,19 @@ const HomePage = () => {
   // }, []);
 
   useEffect(() => {
-    appCtx.isUserLoggedIn && getCurrentUsersPlaylists();
+    userLoggedIn && getCurrentUsersPlaylists();
     // getCurrentUserTopArtists();
-    appCtx.isUserLoggedIn && getCurrentUserTopTracks();
+    userLoggedIn && getCurrentUserTopTracks();
     // appCtx.isLoggedIn && getCurrentUserRecentlyPlayedTracks();
   }, [
-    appCtx.isUserLoggedIn,
+    userLoggedIn,
     /* getCurrentUserRecentlyPlayedTracks, */
     getCurrentUserTopTracks,
     getCurrentUsersPlaylists,
   ]);
   return (
     <div className={styles.wrapper}>
-      {appCtx.isUserLoggedIn && (
+      {userLoggedIn && (
         <React.Fragment>
           <div className={styles.message}>{welcomingMessage()}</div>
           <div className={styles["top-items"]}>
@@ -99,7 +109,7 @@ const HomePage = () => {
           </div>
         </React.Fragment>
       )}
-      {!appCtx.isUserLoggedIn && (
+      {!userLoggedIn && (
         <React.Fragment>
           <div className={styles.title}>
             🙎‍♂️{" "}
@@ -113,7 +123,7 @@ const HomePage = () => {
             🔑 testuser
           </div>
           <div>
-            <span className="link" onClick={() => appCtx.handleUserLogin()}>
+            <span className="link" onClick={() => dispatch(login())}>
               Login
             </span>{" "}
             the app with the spotify account created for test. Otherwise you

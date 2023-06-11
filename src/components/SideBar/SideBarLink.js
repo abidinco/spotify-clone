@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React from "react"; // , { useContext }
 import { Link, useLocation } from "react-router-dom";
-import AppContext from "../../store";
+// import AppContext from "../../store";
 import Icon from "../UI/Icon";
 import styles from "./SideBarLink.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../store/reducers/authReducer";
 
 const SideBarLink = (props) => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const dispatch = useDispatch();
 
   const location = useLocation().pathname;
   // Change Icon Element
@@ -54,16 +58,19 @@ const SideBarLink = (props) => {
 
   // auth-user clicks link go to link / non-auth-user clicks 'library or liked songs' change href to #
   const to =
-    !appCtx.isUserLoggedIn &&
+    !userLoggedIn &&
     (props.name === "Your Library" || props.name === "Liked Songs")
       ? "#"
       : props.to;
 
   return (
-    <Link to={to} className={`popover-wrapper ${styles.link} ${props.className}`}>
+    <Link
+      to={to}
+      className={`popover-wrapper ${styles.link} ${props.className}`}
+    >
       <IconElement />
       <span className="popover-title">{props.name}</span>
-      {!appCtx.isUserLoggedIn && props.popoverContentTitle && (
+      {!userLoggedIn && props.popoverContentTitle && (
         <div className="popover-content">
           <div className="popover-content-title">
             {props.popoverContentTitle}
@@ -71,7 +78,7 @@ const SideBarLink = (props) => {
           <div className="popover-content-text">{props.popoverContentText}</div>
           <div className="popover-content-actions">
             <div onClick={resetFocus}>Not now</div>
-            <div onClick={appCtx.handleUserLogin}>Log in</div>
+            <div onClick={() => dispatch(login())}>Log in</div>
           </div>
         </div>
       )}

@@ -1,13 +1,22 @@
-import React, { useRef, useContext } from "react";
+import React, {
+  useRef,
+  // , useContext
+} from "react";
 import { Link } from "react-router-dom";
-import AppContext from "../../../store";
+// import AppContext from "../../../store";
 import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
+
+import { useDispatch, useSelector } from "react-redux";
+import { changeTrack } from "../../../store/reducers/playerReducer";
 
 import Icon from "../../UI/Icon";
 import styles from "./SongList.module.css";
 
 const SongList = (props) => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const trackSrc = useSelector((state) => state.player.trackSrc);
+  const isPlaying = useSelector((state) => state.player.isPlaying);
+  const dispatch = useDispatch();
   const tableHeaderElement = useRef(null);
   // TODO: Too much conditional statements going on here, will be fixed.
   return (
@@ -39,8 +48,8 @@ const SongList = (props) => {
                   <div className={styles.index}>
                     {track.preview_url ? (
                       <React.Fragment>
-                        {track.preview_url === appCtx.playerTrackSrc ? (
-                          appCtx.playerIsPlaying ? (
+                        {track.preview_url === trackSrc ? (
+                          isPlaying ? (
                             <img
                               src="/playing.gif"
                               width="15"
@@ -58,8 +67,9 @@ const SongList = (props) => {
                         )}
                         <div
                           className={styles["index-icon"]}
-                          onClick={() =>
-                            appCtx.handlePlayerChangeTrack(track.preview_url)
+                          onClick={
+                            () => dispatch(changeTrack(track.preview_url))
+                            // appCtx.handlePlayerChangeTrack(track.preview_url)
                           }
                         >
                           <Icon

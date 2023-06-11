@@ -1,8 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  // , useContext
+} from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Spotify from "../../../spotify/api";
-import AppContext from "../../../store";
+// import AppContext from "../../../store";
 import { getRandomRGB } from "../../../utils";
 
 import BrowseCard from "../../UI/BrowseCard";
@@ -10,7 +15,10 @@ import PlayCard from "../../UI/PlayCard";
 import styles from "./CardsGrid.module.css";
 
 const Genres = (props) => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const searchText = useSelector((state) => state.search.searchText);
+
   const { searchType } = useParams();
 
   const [list, setList] = useState({
@@ -41,30 +49,30 @@ const Genres = (props) => {
 
   const getResultsBySearchType = async (type) => {
     if (type === "artists") {
-      const results = await Spotify.search(appCtx.searchText, "artist");
+      const results = await Spotify.search(searchText, "artist");
       setList((list) => ({ ...list, artists: results.artists.items }));
       // setArtists(results.artists.items);
     }
     if (type === "playlists") {
-      const results = await Spotify.search(appCtx.searchText, "playlist");
+      const results = await Spotify.search(searchText, "playlist");
       setList((list) => ({ ...list, playlists: results.playlists.items }));
       // setPlaylists(results.playlists.items);
     }
     if (type === "albums") {
-      const results = await Spotify.search(appCtx.searchText, "album");
+      const results = await Spotify.search(searchText, "album");
       setList((list) => ({ ...list, albums: results.albums.items }));
       // setAlbums(results.albums.items);
     }
     if (type === "podcastAndEpisodes") {
-      const results = await Spotify.search(appCtx.searchText, "show");
+      const results = await Spotify.search(searchText, "show");
       setList((list) => ({ ...list, shows: results.shows.items }));
       // setShows(results.shows.items);
     }
   };
 
   useEffect(() => {
-    appCtx.isUserLoggedIn && props.genres && getGenres(20);
-    appCtx.isUserLoggedIn && getResultsBySearchType(searchType);
+    userLoggedIn && props.genres && getGenres(20);
+    userLoggedIn && getResultsBySearchType(searchType);
   }, [props.genres, searchType]);
   return (
     <div

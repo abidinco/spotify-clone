@@ -1,7 +1,12 @@
-import React, { useContext, useRef } from "react";
-import AppContext from "../../store";
+import React, {
+  // useContext,
+  useRef,
+} from "react";
+// import AppContext from "../../store";
 import Icon from "../UI/Icon";
 import styles from "./SearchBox.module.css";
+import { useDispatch } from "react-redux";
+import { search, clearSearch } from "../../store/reducers/searchReducer";
 
 function debounce(fn, time) {
   let timeoutId;
@@ -18,11 +23,13 @@ function debounce(fn, time) {
 }
 
 const SearchBox = () => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const dispatch = useDispatch();
   const inputRef = useRef("");
 
   const api = (val) => {
-    appCtx.handleSearch(val);
+    dispatch(search(val));
+    // appCtx.handleSearch(val);
   };
 
   const func = debounce((string) => api(string), 1000);
@@ -36,7 +43,8 @@ const SearchBox = () => {
   };
 
   const resetHandler = () => {
-    appCtx.handleSearchClear();
+    dispatch(clearSearch());
+    // appCtx.handleSearchClear();
     inputRef.current.value = "";
   };
 

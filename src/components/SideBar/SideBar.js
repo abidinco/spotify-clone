@@ -1,13 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  // useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
-import AppContext from "../../store";
+// import AppContext from "../../store";
 import Spotify from "../../spotify/api";
 import SideBarLink from "./SideBarLink";
 import Icon from "../UI/Icon";
 import styles from "./SideBar.module.css";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
   const [playlists, setPlaylists] = useState();
   const getPlaylists = async () => {
     const playlists = await Spotify.getFromSpotify("CURRENT_USER_PLAYLISTS");
@@ -15,8 +21,8 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    appCtx.isUserLoggedIn && getPlaylists();
-  }, [appCtx.isUserLoggedIn]);
+    userLoggedIn && getPlaylists();
+  }, [userLoggedIn]);
 
   return (
     <div className={styles.sidebar}>
@@ -51,7 +57,7 @@ const Sidebar = () => {
         />
       </div>
       <div className={styles.divider}></div>
-      {appCtx.isUserLoggedIn && (
+      {userLoggedIn && (
         <div className={styles["playlists-wrapper"]}>
           <div className={styles.playlists}>
             {playlists
@@ -64,7 +70,7 @@ const Sidebar = () => {
           </div>
         </div>
       )}
-      {!appCtx.isUserLoggedIn && (
+      {!userLoggedIn && (
         <div className={styles.footer}>
           <span>Cookies</span>
           <span>Privacy</span>

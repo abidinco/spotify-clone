@@ -1,34 +1,43 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  useEffect,
+  useState,
+  // , useContext
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Spotify from "../../../spotify/api";
-import AppContext from "../../../store";
+// import AppContext from "../../../store";
 import { millisToMinutesAndSeconds } from "../../../utils";
 import PlayCard from "../../UI/PlayCard";
 import Icon from "../../UI/Icon";
 import styles from "./SearchAll.module.css";
 
+import { useSelector } from "react-redux";
+
 const SearchAll = () => {
   const navigate = useNavigate();
-  const appCtx = useContext(AppContext);
+  // const appCtx = useContext(AppContext);
+  const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const searchText = useSelector((state) => state.search.searchText);
+
   const [albums, setAlbums] = useState(null);
   const [topSong, setTopSong] = useState(null);
   const [songs, setSongs] = useState(null);
 
   const getAlbums = async () => {
-    const results = await Spotify.search(appCtx.searchText, "album", 7);
+    const results = await Spotify.search(searchText, "album", 7);
     setAlbums(results.albums.items);
   };
 
   const getSongs = async () => {
-    const results = await Spotify.search(appCtx.searchText, "track", 5);
+    const results = await Spotify.search(searchText, "track", 5);
     setTopSong(results.tracks.items.shift());
     setSongs(results.tracks.items);
   };
 
   useEffect(() => {
-    appCtx.isUserLoggedIn && getAlbums();
-    appCtx.isUserLoggedIn && getSongs();
-  }, [appCtx.searchText]);
+    userLoggedIn && getAlbums();
+    userLoggedIn && getSongs();
+  }, [searchText]);
 
   return (
     <React.Fragment>
