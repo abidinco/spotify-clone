@@ -28,7 +28,7 @@ const SearchBox = () => {
   const inputRef = useRef("");
 
   const api = (val) => {
-    dispatch(search(val));
+    dispatch(search({ searchText: val }));
     // appCtx.handleSearch(val);
   };
 

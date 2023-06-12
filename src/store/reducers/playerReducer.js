@@ -17,8 +17,10 @@ export const playerSlice = createSlice({
     },
     play: (state) => {
       state.isPlaying = true;
+      document.querySelector("#audio-player").play();
     },
     pause: (state) => {
+      document.querySelector("#audio-player").pause();
       state.isPlaying = false;
     },
     mute: (state, action) => {
@@ -28,9 +30,12 @@ export const playerSlice = createSlice({
       state.looped = action.payload.loop;
     },
     changeTrack: (state, action) => {
+      setTimeout(() => {
+        document.querySelector("#audio-player").play();
+      }, 50);
       return (state = {
-        isPlaying: action.payload.isPlaying,
-        trackSrc: action.payload.trackSrc,
+        isPlaying: true,
+        trackSrc: action.payload.track,
       });
     },
   },

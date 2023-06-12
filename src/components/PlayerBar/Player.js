@@ -81,7 +81,9 @@ const Player = () => {
         </div>
         <div
           className={styles["player-control-play"]}
-          onClick={playerIsPlaying ? () => dispatch(pause()) : () => dispatch(play())}
+          onClick={
+            playerIsPlaying ? () => dispatch(pause()) : () => dispatch(play())
+          }
         >
           {playerIsPlaying ? (
             <Icon name="player-pause" color="black" width={16} height={16} />
@@ -97,7 +99,7 @@ const Player = () => {
             height={16}
           />
         </div>
-        <div onClick={() => dispatch(loop(!playerLooped))}>
+        <div onClick={() => dispatch(loop({ loop: !playerLooped }))}>
           <Icon
             name={`player-repeat${playerLooped ? "-active" : ""}`}
             color="rgb(255, 255, 255, .7)"

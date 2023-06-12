@@ -108,7 +108,9 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setPlaylist(playlist);
-      dispatch(changeNavbarNowPlayingText(playlist.name));
+      dispatch(
+        changeNavbarNowPlayingText({ text: playlist.name })
+      );
       // appCtx.handleChangeNavbarNowPlayingText(playlist.name);
     };
   } else if (isArtistPage) {
@@ -119,7 +121,9 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setArtist(artist);
-      dispatch(changeNavbarNowPlayingText(artist.name));
+      dispatch(
+        changeNavbarNowPlayingText({ text: artist.name })
+      );
       // appCtx.handleChangeNavbarNowPlayingText(artist.name);
     };
     getArtistTracks = async () => {
@@ -140,7 +144,9 @@ const PlaylistRoot = () => {
         "CURRENT_USER_SAVED_TRACKS"
       );
       setLikedSongs(likedSongs);
-      dispatch(changeNavbarNowPlayingText("Liked Songs"));
+      dispatch(
+        changeNavbarNowPlayingText({ text: "Liked Songs" })
+      );
       // appCtx.handleChangeNavbarNowPlayingText("Liked songs");
     };
   } else if (isAlbumPage) {
@@ -151,7 +157,9 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setAlbum(album);
-      dispatch(changeNavbarNowPlayingText(album.name));
+      dispatch(
+        changeNavbarNowPlayingText({ text: album.name })
+      );
       // appCtx.handleChangeNavbarNowPlayingText(album.name);
     };
   }

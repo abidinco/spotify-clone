@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
 import "./index.css";
+import { GlobalHistory } from "./utils";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -15,9 +16,10 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         {/* <AppContextProvider> */}
-          <App />
-          {/* used for resetFocus() like this: ("#empty").focus() at SideBarLink.js:51 */}
-          <div id="empty" tabIndex="-1" />
+        <GlobalHistory />
+        <App />
+        {/* used for resetFocus() like this: ("#empty").focus() at SideBarLink.js:51 */}
+        <div id="empty" tabIndex="-1" />
         {/* </AppContextProvider> */}
       </Provider>
     </BrowserRouter>

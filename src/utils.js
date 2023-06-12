@@ -1,3 +1,10 @@
+import { useNavigate } from "react-router-dom";
+export let globalNavigate;
+export const GlobalHistory = () => {
+  globalNavigate = useNavigate();
+  return null;
+};
+
 // Converts "2011-07-12" to Jul 12, 2011
 // Used at artist page to show date_released
 const months = [

@@ -91,7 +91,7 @@ const PlayerBar = () => {
             height={16}
           />
         </div>
-        <div onClick={() => dispatch(mute(!playerMuted))}>
+        <div onClick={() => dispatch(mute({ mute: !playerMuted }))}>
           <Icon
             name={`player-volume-${
               playerVolume === 0 || playerMuted
@@ -117,9 +117,9 @@ const PlayerBar = () => {
             value={playerMuted ? 0 : playerVolume}
             onChange={(e) =>
               playerMuted
-                ? dispatch(mute(false)) &&
-                  dispatch(setVolume(e.target.valueAsNumber))
-                : dispatch(setVolume(e.target.valueAsNumber))
+                ? dispatch(mute({ mute: false })) &&
+                  dispatch(setVolume({ volume: e.target.valueAsNumber }))
+                : dispatch(setVolume({ volume: e.target.valueAsNumber }))
             }
           />
         </div>

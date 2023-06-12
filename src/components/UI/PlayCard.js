@@ -26,7 +26,7 @@ const PlayCard = (props) => {
       {!props.dontShowPlayButton && props.trackUrl && (
         <div
           className={styles["button-wrapper"]}
-          onClick={() => dispatch(changeTrack(props.trackUrl))}
+          onClick={() => dispatch(changeTrack({track: props.trackUrl}))}
         >
           <Icon name="player-play" color="black" width={18} height={18} />
         </div>

@@ -68,7 +68,10 @@ const SongList = (props) => {
                         <div
                           className={styles["index-icon"]}
                           onClick={
-                            () => dispatch(changeTrack(track.preview_url))
+                            () =>
+                              dispatch(
+                                changeTrack({ track: track.preview_url })
+                              )
                             // appCtx.handlePlayerChangeTrack(track.preview_url)
                           }
                         >

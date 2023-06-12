@@ -9,7 +9,7 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     changeNavbarNowPlayingText: (state, action) => {
-      state.navbarNowPlayingText = action.payload;
+      state.navbarNowPlayingText = action.payload.text;
     },
   },
 });

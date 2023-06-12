@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { globalNavigate } from "../../utils";
 
 const initialState = {
   isSearching: false,
@@ -10,12 +11,14 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     search: (state, action) => {
+      globalNavigate("/search/", action.payload.searchText.trim());
       return (state = {
-        isSearching: action.payload.isSearching,
+        isSearching: action.payload.searchText.trim() === "" ? false : true,
         searchText: action.payload.searchText,
       });
     },
     clearSearch: (state) => {
+      globalNavigate("/search/");
       return (state = initialState);
     },
   },

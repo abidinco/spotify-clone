@@ -1,5 +1,6 @@
 import Spotify from "../../spotify/api";
 import { createSlice } from "@reduxjs/toolkit";
+import { globalNavigate } from "../../utils";
 
 const initialState = {
   isUserLoggedIn: false,
@@ -17,7 +18,11 @@ export const authSlice = createSlice({
       }
     },
     logout: (state) => {
+      localStorage.removeItem("accessToken");
       state.isUserLoggedIn = false;
+      setTimeout(() => {
+        globalNavigate("/");
+      }, 100);
     },
   },
 });
