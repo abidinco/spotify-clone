@@ -43,9 +43,10 @@ const PlaylistRoot = () => {
   };
 
   const generatePlaylistImage = () => {
+    console.log(playlist);
     if (isLikedSongsPage) return "/playlist-cover-liked-songs.png";
     if (isPlaylistPage)
-      return playlist && playlist.images[0]
+      return playlist && playlist.images && playlist.images[0]
         ? playlist.images[0].url
           ? playlist.images[0].url
           : "/blank.jpg"
